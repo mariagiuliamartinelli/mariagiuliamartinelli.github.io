@@ -1,0 +1,18 @@
+FOTO DELLE TESTIMONIANZE — Storie dietro Scienze ABC
+
+Queste foto sono quelle usate nel prototipo grafico (index.html) e servono
+come archivio di lavoro.
+
+ATTENZIONE: la rubrica vera e pubblicata sul sito del corso
+scienzeabcsapienza.it (WordPress). Le foto delle testimonianze NON si
+caricano in questa cartella: si caricano direttamente nell'articolo del
+sito, che le salva nella Libreria media di WordPress.
+Vedi la guida: 09_Guida_Aggiungere_una_testimonianza.docx
+
+Regole per le foto (valide anche su WordPress):
+- 5 foto per testimonianza, orizzontali
+- gia alleggerite per il web (max lato lungo ~1600 px, sotto 500 KB)
+- nomi semplici, senza spazi ne accenti (es. rossi-chim-1.jpg)
+- niente persone terze riconoscibili senza consenso
+- ogni foto va pubblicata con didascalia e testo alternativo
+- liberatoria firmata conservata nella cartella condivisa (non sul sito)

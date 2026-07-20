@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scienze Applicate ai Beni Culturali — Sapienza Università di Roma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --granata:#7A1F1F; --granata-chiaro:#9a2b2b; --granata-scuro:#4f1414;
+    --oro:#e6b64c; --sfondo:#f6f2ef; --card:#ffffff;
+    --testo:#241d1a; --grigio:#7b716b; --bordo:#ece4df;
+    --bio:#16a34a; --chim:#2563eb; --fis:#b02fce; --geo:#b45309;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--testo);
+    background:var(--sfondo);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.font-d{font-family:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  a{color:inherit;text-decoration:none}
+  section{scroll-margin-top:80px;padding:50px 0 20px}
+
+  /* reveal on scroll */
+  .js .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+  .js .reveal.in{opacity:1;transform:none}
+
+  /* ---------- NAV ---------- */
+  nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:18px;
+    padding:14px 22px;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);box-shadow:0 6px 22px rgba(80,20,20,.08);transition:all .3s}
+  nav .logo{font-family:'Manrope';font-weight:800;font-size:1.05rem;letter-spacing:.3px;color:var(--granata);margin-right:auto}
+  nav .logo b{color:var(--oro)}
+  nav .logo span.tag-sap{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;background:#f3e6e3;color:var(--granata);padding:3px 8px;border-radius:999px;margin-left:8px;vertical-align:2px}
+  nav a.navlink{font-family:'Manrope';font-weight:600;font-size:.88rem;color:var(--testo);position:relative;transition:color .3s;display:none}
+  nav a.navlink::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--oro);transition:width .22s}
+  nav a.navlink:hover::after{width:100%}
+  nav a.navlink:hover{color:var(--granata-chiaro)}
+  nav .lang-switch{display:flex;gap:4px;background:var(--sfondo);padding:3px;border-radius:999px;border:1px solid var(--bordo)}
+  nav .lang-btn{font-size:.75rem;font-weight:700;padding:4px 10px;border-radius:999px;color:var(--grigio);transition:.15s;cursor:pointer}
+  nav .lang-btn.on{background:var(--granata);color:#fff}
+  @media(min-width:860px){nav a.navlink{display:inline}}
+
+  /* ---------- HERO ---------- */
+  header{position:relative;overflow:hidden;color:#fff;text-align:center;padding:90px 20px 110px;
+    background:
+      radial-gradient(1200px 420px at 15% -10%, #a83434 0%, transparent 60%),
+      radial-gradient(900px 520px at 88% 0%, #8f2727 0%, transparent 55%),
+      linear-gradient(160deg,#8a2525 0%,#6e1d1d 55%,#4f1414 100%);}
+  header::after{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
+    background-image:radial-gradient(rgba(255,255,255,.10) 1.1px,transparent 1.2px);background-size:22px 22px}
+  header>*{position:relative;z-index:1}
+  .hbrand{display:inline-block;font-family:'Manrope';font-size:.72rem;font-weight:700;letter-spacing:2.5px;
+    color:var(--oro);border:1px solid rgba(230,182,76,.5);border-radius:999px;padding:6px 16px;margin-bottom:22px}
+  header h1{font-size:2.8rem;font-weight:800;line-height:1.15;letter-spacing:-.5px;max-width:840px;margin:0 auto}
+  header h1 .hl{color:var(--oro)}
+  header p{opacity:.92;margin:18px auto 0;font-size:1.1rem;max-width:680px}
+  
+  .hero-buttons{display:flex;justify-content:center;gap:14px;margin-top:32px;flex-wrap:wrap}
+  .hero-btn{font-family:'Manrope';font-weight:700;font-size:.95rem;padding:14px 28px;border-radius:999px;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+  .hero-btn.pri{background:var(--oro);color:var(--granata-scuro);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+  .hero-btn.pri:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.3)}
+  .hero-btn.sec{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(4px)}
+  .hero-btn.sec:hover{background:rgba(255,255,255,.22);transform:translateY(-3px)}
+
+  /* ---------- HEADINGS ---------- */
+  .sec-head{text-align:center;margin:30px 0 16px}
+  .sec-head .kick{font-family:'Manrope';font-weight:700;font-size:.75rem;letter-spacing:2px;color:var(--granata-chiaro);text-transform:uppercase}
+  .sec-head h2{font-size:2.1rem;font-weight:800;color:var(--testo);margin-top:6px}
+  .sec-head p{color:var(--grigio);max-width:600px;margin:10px auto 0}
+
+  /* ---------- CORSI GRID ---------- */
+  .corsi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:24px;margin-top:28px}
+  .corso-card{background:var(--card);border-radius:24px;padding:30px 26px;display:flex;flex-direction:column;
+    box-shadow:0 10px 30px rgba(80,20,20,.07);border:1px solid var(--bordo);transition:all .25s ease;position:relative;overflow:hidden}
+  .corso-card:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(80,20,20,.14);border-color:transparent}
+  .corso-card .badge-cod{align-self:flex-start;font-size:.7rem;font-weight:800;letter-spacing:1px;padding:5px 12px;border-radius:999px;margin-bottom:16px;text-transform:uppercase}
+  .corso-card.l43 .badge-cod{background:#e0f2fe;color:#0369a1}
+  .corso-card.lm11 .badge-cod{background:#fef3c7;color:#b45309}
+  .corso-card.lm11-en .badge-cod{background:#f3e8ff;color:#6b21a8}
+  .corso-card h3{font-size:1.35rem;font-weight:800;margin-bottom:8px;line-height:1.25}
+  .corso-card .sub-titolo{font-size:.88rem;color:var(--grigio);font-weight:600;margin-bottom:16px}
+  .corso-card p.desc{font-size:.93rem;color:#4a3f3a;flex:1;margin-bottom:20px}
+  .corso-card .highlights{border-top:1px solid var(--bordo);padding-top:16px;margin-bottom:20px}
+  .corso-card .hl-item{font-size:.85rem;color:var(--grigio);display:flex;align-items:center;gap:8px;margin-bottom:6px}
+  .corso-card .hl-item svg{width:16px;height:16px;stroke:var(--granata-chiaro);fill:none;flex:none}
+  .corso-card .btn-corso{margin-top:auto;font-weight:700;font-size:.88rem;color:var(--granata);display:inline-flex;align-items:center;gap:6px}
+
+  /* ---------- REQUISITI & AMMISSIONE ---------- */
+  .req-box{background:#fff;border-radius:24px;border:1px solid var(--bordo);padding:36px;margin-top:28px;box-shadow:0 10px 30px rgba(80,20,20,.06)}
+  .req-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:20px}
+  @media(max-width:768px){.req-grid{grid-template-columns:1fr}}
+  .req-col{background:var(--sfondo);border-radius:18px;padding:24px;border:1px solid var(--bordo)}
+  .req-col h4{font-size:1.15rem;font-weight:800;color:var(--granata);margin-bottom:12px}
+  .req-col ul{list-style:none}
+  .req-col ul li{font-size:.9rem;color:#453a35;margin-bottom:10px;padding-left:22px;position:relative}
+  .req-col ul li::before{content:"✓";position:absolute;left:0;color:var(--granata-chiaro);font-weight:800}
+  .timeline-dates{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--bordo)}
+  .date-chip{background:#fff;border:1px solid var(--bordo);padding:5px 12px;border-radius:10px;font-size:.8rem;font-weight:700}
+
+  /* ---------- RUBRICA INTERATTIVA ---------- */
+  .settbar{display:flex;justify-content:center;gap:8px;margin-top:16px;flex-wrap:wrap}
+  .settbar span{font-family:'Manrope';font-size:.78rem;font-weight:700;padding:7px 17px;border-radius:999px;color:#fff;cursor:pointer;transition:.15s}
+  .settbar span:hover{transform:translateY(-2px)}
+  .tabs{display:flex;justify-content:center;gap:10px;margin:20px 0 4px}
+  .tab{cursor:pointer;border:none;font:inherit;font-family:'Manrope';font-weight:600;font-size:.92rem;
+    padding:11px 22px;border-radius:999px;background:#fff;color:var(--grigio);box-shadow:0 8px 22px rgba(80,20,20,.08);transition:.18s}
+  .tab.on{background:linear-gradient(140deg,#8a2525,#5f1919);color:#fff}
+  .tab.on.doc{background:linear-gradient(140deg,#1f2937,#0f172a)}
+  .filtri{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 4px}
+  .chip{cursor:pointer;border:1.5px solid var(--bordo);background:#fff;border-radius:999px;padding:6px 14px;font:inherit;font-size:.84rem;font-weight:600;color:var(--grigio);transition:.14s}
+  .chip.on{color:#fff;border-color:var(--c,#333);background:var(--c,#333)}
+  .griglia{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:24px}
+  .card{background:var(--card);border-radius:20px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;
+    box-shadow:0 10px 30px rgba(80,20,20,.08);transition:transform .18s,box-shadow .18s;opacity:0;animation:up .5s forwards}
+  @keyframes up{to{opacity:1;transform:none}}
+  .card:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(80,20,20,.15)}
+  .card .cover{height:155px;position:relative;overflow:hidden}
+  .card .cover img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+  .card:hover .cover img{transform:scale(1.06)}
+  .card .cover .gen{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:2.6rem;color:rgba(255,255,255,.9);background:linear-gradient(140deg,var(--c1),var(--c2))}
+  .card .cover .gen span{opacity:.35;font-size:5rem;position:absolute;right:12px;bottom:-14px}
+  .badge{position:absolute;top:12px;left:12px;font-size:.68rem;font-weight:700;color:#fff;padding:5px 11px;border-radius:999px;background:rgba(0,0,0,.28);backdrop-filter:blur(3px)}
+  .badge.role{left:auto;right:12px;background:rgba(255,255,255,.28)}
+  .card .body{padding:16px 18px 20px;display:flex;flex-direction:column;flex:1}
+  .card h3{font-size:1.1rem;font-weight:700;line-height:1.25;margin-bottom:5px}
+  .card .meta{color:var(--grigio);font-size:.83rem;margin-bottom:8px}
+  .card .estratto{font-size:.88rem;color:#4d423d;flex:1}
+  .card .leggi{margin-top:12px;font-weight:600;font-size:.84rem;color:var(--c,#7A1F1F)}
+  .Bio{--c:var(--bio);--c1:#22c55e;--c2:#15803d}
+  .Chim{--c:var(--chim);--c1:#3b82f6;--c2:#1d4ed8}
+  .Fis{--c:var(--fis);--c1:#c44ae0;--c2:#8a1fb0}
+  .Geo{--c:var(--geo);--c1:#d98033;--c2:#92400e}
+
+  /* FORMS & MODAL */
+  .forms{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:26px}
+  @media(max-width:720px){.forms{grid-template-columns:1fr}}
+  .formcard{border-radius:22px;padding:26px;box-shadow:0 14px 36px rgba(80,20,20,.12);background:#fff;border:1px solid var(--bordo)}
+  .formcard.cand{background:linear-gradient(160deg,#fff,#fbf4f2);border-color:#f0dcd6}
+  .campo{margin-bottom:12px}
+  .campo label{display:block;font-size:.8rem;font-weight:600;margin-bottom:4px}
+  .campo input,.campo select,.campo textarea{width:100%;font:inherit;font-size:.9rem;padding:10px 12px;border:1.5px solid var(--bordo);border-radius:12px;background:#fff}
+  .campo textarea{resize:vertical;min-height:80px}
+  .btn{width:100%;cursor:pointer;border:none;font:inherit;font-weight:700;font-size:.95rem;color:#fff;padding:13px;border-radius:14px;margin-top:4px;background:linear-gradient(140deg,#8a2525,#5f1919)}
+
+  .overlay{position:fixed;inset:0;background:rgba(40,20,18,.6);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:34px 16px;overflow-y:auto;z-index:60}
+  .overlay.show{display:flex}
+  .modal{background:#fff;max-width:700px;width:100%;border-radius:24px;overflow:hidden;margin:auto;animation:pop .28s ease}
+  @keyframes pop{from{opacity:0;transform:scale(.96) translateY(10px)}to{opacity:1;transform:none}}
+  .modal .cover{height:210px;position:relative}
+  .modal .cover img{width:100%;height:100%;object-fit:cover}
+  .modal .cover .gen{position:absolute;inset:0;background:linear-gradient(140deg,var(--c1),var(--c2))}
+  .modal .chiudi{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:none;background:rgba(0,0,0,.35);color:#fff;font-size:1.4rem;cursor:pointer}
+  .modal .inner{padding:26px 28px 34px}
+  .modal .badge2{display:inline-block;font-size:.72rem;font-weight:700;color:#fff;padding:4px 12px;border-radius:999px;background:var(--c);margin-bottom:10px}
+  .modal h2{font-size:1.6rem;font-weight:800;margin-bottom:6px}
+  .modal .meta{color:var(--grigio);margin-bottom:18px}
+  .modal .testo p{margin-bottom:12px;font-size:1rem}
+  .modal .gallery{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+  .modal .gallery img{width:130px;height:90px;object-fit:cover;border-radius:12px;cursor:zoom-in}
+  .lightbox{position:fixed;inset:0;background:rgba(18,10,8,.92);display:none;align-items:center;justify-content:center;padding:22px;z-index:80;cursor:zoom-out}
+  .lightbox.show{display:flex}
+  .lightbox img{max-width:94vw;max-height:94vh;border-radius:12px}
+  .lightbox .lclose{position:absolute;top:18px;right:20px;width:42px;height:42px;border-radius:50%;border:none;background:rgba(255,255,255,.16);color:#fff;font-size:1.5rem}
+
+  /* CONTACTS & FOOTER */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:20px}
+  @media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
+  .contact-card{background:#fff;border-radius:22px;border:1px solid var(--bordo);padding:28px;box-shadow:0 10px 30px rgba(80,20,20,.06)}
+  .contact-card h3{font-size:1.25rem;font-weight:800;color:var(--granata);margin-bottom:10px}
+
+  footer{background:linear-gradient(160deg,#5f1919,#3f1010);color:#f3e7e4;margin-top:70px;padding:50px 22px 40px;text-align:center}
+  footer .fbrand{font-family:'Manrope';font-weight:800;font-size:1.2rem;color:#fff;margin-bottom:6px}
+  footer .fbrand b{color:var(--oro)}
+  footer .fcont{margin:18px 0 10px;display:flex;justify-content:center;gap:24px;flex-wrap:wrap;font-size:.92rem}
+  footer .fcont a{color:#f3e7e4}
+  footer small{display:block;margin-top:20px;opacity:.6;font-size:.8rem}
+</style>
+</head>
+<body>
+
+<script id="contenuti" type="text/plain">
+=====================================================================
+TIPO: studente
+NOME: Mariagiulia Martinelli
+SETTORE: Bio
+TITOLO: Biofilm sul Casino Algardi e collezione etrusca del Museo Sergi
+INFO: Studentessa magistrale LM-11
+FOTO: martinelli-bio-2.jpg, martinelli-bio-3.jpg, martinelli-bio-4.jpg, martinelli-bio-1.jpg, martinelli-bio-5.jpg
+TESTO:
+Durante la tesi triennale ho studiato il biofilm — la patina biologica fatta di microrganismi — che colonizza le pareti del Casino Algardi, a Roma. L'obiettivo era capire quali organismi degradano la superficie e testare un biocida "green" a base di liquirizia, un'alternativa più sostenibile ai prodotti chimici tradizionali. In pratica passavo dal prelievo dei campioni in situ all'osservazione al microscopio in laboratorio.
+
+Con la magistrale mi sono spostata su un lavoro diverso: la rivalutazione bioarcheologica della collezione etrusca del Museo di Antropologia "G. Sergi" della Sapienza. Qui la biologia si applica a reperti umani antichi, per ricostruire informazioni su chi erano quelle persone e come vivevano.
+
+La cosa che non mi aspettavo, quando mi sono iscritta, è quanto lavoro "da laboratorio" ci sia dietro un bene culturale: non si restaura con le mani, si analizza con strumenti scientifici. È esattamente questo che vorrei dire a chi sta scegliendo il corso — è scienza applicata al patrimonio, non restauro pratico. Se vi appassiona l'idea di usare il microscopio per prendervi cura della storia, è il posto giusto.
+=====================================================================
+
+=====================================================================
+TIPO: docente
+NOME: Chimica
+SETTORE: Chim
+TITOLO: Testimonianza in arrivo
+INFO: Prossimamente online
+FOTO:
+TESTO:
+Stiamo raccogliendo le linee di ricerca del settore Chimica. Se insegni o fai ricerca in questo ambito e vuoi raccontarti, scrivici dalla sezione "Partecipa": il prossimo racconto potrebbe essere il tuo.
+=====================================================================
+
+=====================================================================
+TIPO: studente
+NOME: Fisica
+SETTORE: Fis
+TITOLO: Testimonianza in arrivo
+INFO: Prossimamente online
+FOTO:
+TESTO:
+Stiamo raccogliendo le esperienze di tesi e tirocinio del settore Fisica. Se studi in questo ambito e vuoi raccontare la tua esperienza, scrivici dalla sezione "Partecipa": il prossimo racconto potrebbe essere il tuo.
+=====================================================================
+
+=====================================================================
+TIPO: docente
+NOME: Geologia
+SETTORE: Geo
+TITOLO: Testimonianza in arrivo
+INFO: Prossimamente online
+FOTO:
+TESTO:
+Stiamo raccogliendo le linee di ricerca del settore Geologia. Se insegni o fai ricerca in questo ambito e vuoi raccontarti, scrivici dalla sezione "Partecipa": il prossimo racconto potrebbe essere il tuo.
+=====================================================================
+</script>
+
+  <!-- NAVIGATION BAR -->
+  <nav id="nav">
+    <div class="logo">Scienze <b>ABC</b> Sapienza <span class="tag-sap">Sapienza</span></div>
+    <a class="navlink" href="#home">Home</a>
+    <a class="navlink" href="#corsi">Corsi di Laurea</a>
+    <a class="navlink" href="#ammissione">Iscrizioni & Requisiti</a>
+    <a class="navlink" href="#rubrica">Rubrica Storie</a>
+    <a class="navlink" href="#contatti">Contatti</a>
+    <div class="lang-switch">
+      <span class="lang-btn on">IT</span>
+      <span class="lang-btn">EN</span>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION (#home) -->
+  <header id="home">
+    <div class="hbrand">AREA DIDATTICA SCIENZE APPLICATE AI BENI CULTURALI</div>
+    <h1>La scienza al servizio dell'arte <span class="hl">e della salvaguardia</span></h1>
+    <p>Formiamo i Conservation Scientist del futuro a Sapienza Università di Roma. Fisica, chimica, biologia e geologia applicate allo studio e alla conservazione del patrimonio culturale.</p>
+    <div class="hero-buttons">
+      <a href="#corsi" class="hero-btn pri">Esplora i Corsi di Laurea ↓</a>
+      <a href="#ammissione" class="hero-btn sec">Guida alle Iscrizioni</a>
+    </div>
+  </header>
+
+  <div class="main"><div class="wrap">
+
+    <!-- SEZIONE 1: CORSI DI LAUREA (#corsi) -->
+    <section id="corsi">
+      <div class="sec-head">
+        <div class="kick">Offerta Formativa</div>
+        <h2>I nostri percorsi di studio</h2>
+        <p>Un approccio multidisciplinare unico per unire la passione delle scienze naturali alla cura del patrimonio storico e artistico.</p>
+      </div>
+
+      <div class="corsi-grid">
+        <!-- Card 1: Triennale L-43 -->
+        <div class="corso-card l43">
+          <span class="badge-cod">Laurea Triennale · L-43</span>
+          <h3>Tecnologie per la Conservazione e il Restauro</h3>
+          <div class="sub-titolo">Fornisce le basi scientifiche e diagnostiche del settore</div>
+          <p class="desc">Fornisce le fondamenta nei diversi ambiti delle scienze naturali (chimica, fisica, biologia, scienze della terra) integrate con la storia dell'arte e l'archeologia per orientarsi nella conservazione.</p>
+          <div class="highlights">
+            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Durata: 3 Anni (180 CFU)</div>
+            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Accesso tramite verifica TOLC-S</div>
+            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Laboratori e visite nei musei</div>
+          </div>
+          <a href="https://corsidilaurea.uniroma1.it/it/corso/2024/30051/home" target="_blank" class="btn-corso">Scheda Sapienza L-43 →</a>
+        </div>
+
+        <!-- Card 2: Magistrale LM-11 (Italiano) -->
+        <div class="corso-card lm11">
+          <span class="badge-cod">Laurea Magistrale · LM-11</span>
+          <h3>Scienze e Tecnologie per la Conservazione</h3>
+          <div class="sub-titolo">Completa la figura professionale del Conservation Scientist</div>
+          <p class="desc">Finalizza la formazione avanzata approfondendo gli aspetti scientifici più specifici: diagnostica per le opere d'arte, studio dei materiali, monitoraggio microclimatico e gestione della salvaguardia.</p>
+          <div class="highlights">
+            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Durata: 2 Anni (120 CFU)</div>
+            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Requisiti: 84 CFU Scientifici + 6 CFU Umanistici</div>
+            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Progetti di ricerca e tirocini orientati</div>
+          </div>
+          <a href="https://corsidilaurea.uniroma1.it/it/corso/2024/28702/home" target="_blank" class="btn-corso">Scheda Sapienza LM-11 →</a>
+        </div>
+
+        <!-- Card 3: Master Course (English) -->
+        <div class="corso-card lm11-en">
+          <span class="badge-cod">Master Course · LM-11 International</span>
+          <h3>Science & Technology for Cultural Heritage</h3>
+          <div class="sub-titolo">Erogato interamente in lingua inglese</div>
+          <p class="desc">Il corso permette al Conservation Scientist di proiettarsi in un contesto internazionale fin dalla formazione specialistica, favorendo tirocini ed opportunità di ricerca all'estero.</p>
+          <div class="highlights">
+            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 100% Taught in English</div>
+            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> English B2 Proficiency Required</div>
+            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Global research networking</div>
+          </div>
+          <a href="https://scienzeabcsapienza.it/en/home-english/" target="_blank" class="btn-corso">View English Master →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEZIONE 2: REQUISITI & AMMISSIONE (#ammissione) -->
+    <section id="ammissione">
+      <div class="sec-head">
+        <div class="kick">Requisiti e Scadenze</div>
+        <h2>Come iscriversi ai nostri corsi</h2>
+        <p>Tutti i dettagli per la verifica delle conoscenze, la valutazione dei CFU e l'immatricolazione.</p>
+      </div>
+
+      <div class="req-box">
+        <div class="req-grid">
+          <!-- Colonna Triennale -->
+          <div class="req-col">
+            <h4>Accesso Triennale (L-43)</h4>
+            <ul>
+              <li>Diploma di maturità scuola secondaria;</li>
+              <li>Sostenimento della prova d'ingresso online per la verifica delle conoscenze (<b>TOLC-S</b>);</li>
+              <li>Procedura di iscrizione online tramite la piattaforma Sapienza Infostud.</li>
+            </ul>
+            <div class="timeline-dates">
+              <span class="date-chip">Iscrizioni: 02/07 - 31/10</span>
+              <span class="date-chip">Scadenza Immatricolazione: 05/11</span>
+            </div>
+          </div>
+
+          <!-- Colonna Magistrale -->
+          <div class="req-col">
+            <h4>Accesso Magistrale (LM-11)</h4>
+            <ul>
+              <li>Laurea o diploma universitario triennale idoneo;</li>
+              <li>Almeno <b>84 CFU</b> in ambiti scientifici (MAT, CHIM, FIS, GEO, BIO, INF, ING-IND);</li>
+              <li>Almeno <b>6 CFU</b> in discipline storico-artistiche (L-ANT, L-ART, M-STO, ICAR);</li>
+              <li>Conoscenza attestata di lingua Inglese livello <b>B2</b>.</li>
+            </ul>
+            <div class="timeline-dates">
+              <span class="date-chip">Verifica requisiti dal 02/07 (€10)</span>
+              <span class="date-chip">Colloquio di valutazione commissione</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEZIONE 3: RUBRICA STORIE INTERATTIVA (#rubrica) -->
+    <section id="rubrica">
+      <div class="sec-head reveal">
+        <div class="kick">Storie dietro Scienze ABC</div>
+        <h2>Cosa si fa davvero nei nostri corsi</h2>
+        <p>Tesi, tirocini e ricerca raccontati direttamente da studenti e docenti del corso.</p>
+      </div>
+
+      <div class="settbar reveal">
+        <span style="background:var(--bio)" onclick="vaiSettore('Bio')">Bio</span>
+        <span style="background:var(--chim)" onclick="vaiSettore('Chim')">Chim</span>
+        <span style="background:var(--fis)" onclick="vaiSettore('Fis')">Fis</span>
+        <span style="background:var(--geo)" onclick="vaiSettore('Geo')">Geo</span>
+      </div>
+
+      <div class="tabs reveal">
+        <button class="tab on" id="tabTutti" onclick="setTipo('tutti')">Tutte</button>
+        <button class="tab" id="tabStud" onclick="setTipo('studente')">Studenti</button>
+        <button class="tab doc" id="tabDoc" onclick="setTipo('docente')">Docenti</button>
+      </div>
+      <div class="filtri reveal" id="filtri"></div>
+      <div class="griglia" id="griglia"></div>
+
+      <div class="forms reveal" style="margin-top:40px;">
+        <div class="formcard">
+          <h3>Chiedi informazioni</h3>
+          <p style="font-size:.85rem;color:var(--grigio);margin-bottom:12px">Hai domande sul corso o sulle immatricolazioni?</p>
+          <div class="campo"><label>Nome</label><input id="i-nome" type="text" placeholder="Il tuo nome"></div>
+          <div class="campo"><label>Email</label><input id="i-mail" type="email" placeholder="nome@esempio.it"></div>
+          <div class="campo"><label>Messaggio</label><textarea id="i-msg" placeholder="Cosa vorresti sapere?"></textarea></div>
+          <button class="btn" onclick="inviaInfo()">Invia la richiesta</button>
+        </div>
+        <div class="formcard cand">
+          <h3>Racconta la tua esperienza</h3>
+          <p style="font-size:.85rem;color:var(--grigio);margin-bottom:12px">Sei uno studente o laureato? Partecipa alla rubrica!</p>
+          <div class="campo"><label>Nome e cognome</label><input id="c-nome" type="text" placeholder="Nome Cognome"></div>
+          <div class="campo"><label>Email</label><input id="c-mail" type="email" placeholder="nome@studenti.uniroma1.it"></div>
+          <div class="campo"><label>Settore</label>
+            <select id="c-sett"><option value="">Scegli…</option><option>Bio</option><option>Chim</option><option>Fis</option><option>Geo</option></select>
+          </div>
+          <div class="campo"><label>Argomento tesi/tirocinio</label><textarea id="c-msg" placeholder="In due righe, di cosa ti sei occupato/a"></textarea></div>
+          <button class="btn" onclick="inviaCand()">Candidati alla Rubrica</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEZIONE 4: CONTATTI & RISORSE (#contatti) -->
+    <section id="contatti">
+      <div class="sec-head">
+        <div class="kick">Contatti e Sede</div>
+        <h2>Dove trovarci & Canali ufficiali</h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Segreteria Didattica</h3>
+          <p style="font-size:.9rem;color:#453a35;">Dipartimento di Biologia Ambientale · Sapienza Università di Roma</p>
+          <p style="font-size:.9rem;color:#453a35;margin-top:8px;"><b>Email:</b> <a href="mailto:didattica.dba@uniroma1.it" style="color:var(--granata)">didattica.dba@uniroma1.it</a></p>
+          <p style="font-size:.9rem;color:#453a35;margin-top:4px;"><b>Sede:</b> Città Universitaria · Piazzale Aldo Moro 5, Roma</p>
+        </div>
+
+        <div class="contact-card">
+          <h3>Community & Social Media</h3>
+          <p style="font-size:.9rem;color:#453a35;">Segui le storie di laboratorio e gli eventi in tempo reale:</p>
+          <p style="font-size:.9rem;margin-top:8px;">📸 <b>Instagram:</b> <a href="https://www.instagram.com/scienze_abc/" target="_blank" style="color:var(--granata)">@scienze_abc</a></p>
+          <p style="font-size:.9rem;margin-top:4px;">👍 <b>Facebook:</b> <a href="https://www.facebook.com/ScienzeABC" target="_blank" style="color:var(--granata)">ScienzeABC</a></p>
+          <p style="font-size:.9rem;margin-top:4px;">▶️ <b>YouTube:</b> <a href="https://www.youtube.com/watch?v=1tAE2GII7Mw" target="_blank" style="color:var(--granata)">Sapienza Channel</a></p>
+        </div>
+      </div>
+    </section>
+
+  </div></div>
+
+  <!-- MODAL & LIGHTBOX -->
+  <div class="overlay" id="overlay" onclick="if(event.target===this)chiudi()">
+    <div class="modal" id="modal"></div>
+  </div>
+
+  <div class="lightbox" id="lightbox" onclick="chiudiFoto()">
+    <button class="lclose" onclick="chiudiFoto()">×</button>
+    <img id="lightImg" src="" alt="">
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="fbrand">Scienze <b>ABC</b> Sapienza</div>
+    <p style="font-size:.88rem;opacity:.8;">Area Didattica in Scienze Applicate ai Beni Culturali — Sapienza Università di Roma</p>
+    <div class="fcont">
+      <a href="#home">Home</a>
+      <a href="#corsi">Corsi</a>
+      <a href="#ammissione">Iscrizioni</a>
+      <a href="#rubrica">Rubrica</a>
+      <a href="#contatti">Contatti</a>
+    </div>
+    <small>© 2026 Sapienza Università di Roma — Area Didattica Scienze Applicate ai Beni Culturali</small>
+  </footer>
+
+<script>
+document.documentElement.classList.add('js');
+const MAIL = "didattica.dba@uniroma1.it";
+
+function parseContenuti(){
+  const raw = document.getElementById('contenuti').textContent;
+  const blocchi = raw.split(/^\s*=+\s*$/m);
+  const out = [];
+  for(const b of blocchi){
+    if(!b.trim()) continue;
+    const rec = {foto:[], testo:''};
+    let inTesto = false, testoLines = [];
+    for(const line of b.split('\n')){
+      const m = line.match(/^\s*(TIPO|NOME|SETTORE|TITOLO|INFO|FOTO|TESTO)\s*:(.*)$/i);
+      if(m && !inTesto || (m && m[1].toUpperCase()==='TESTO')){
+        const key = m[1].toUpperCase(), val = m[2].trim();
+        if(key==='TESTO'){ inTesto = true; if(val) testoLines.push(val); }
+        else if(key==='FOTO'){ rec.foto = val.split(',').map(s=>s.trim()).filter(Boolean); }
+        else rec[key.toLowerCase()] = val;
+      } else if(inTesto){ testoLines.push(line); }
+    }
+    rec.testo = testoLines.join('\n').trim();
+    const tipoOk = /^(studente|docente)$/i.test(rec.tipo||'');
+    const settOk = /^(Bio|Chim|Fis|Geo)$/i.test(rec.settore||'');
+    const isModello = (rec.nome||'').toLowerCase().includes('nome cognome');
+    if(tipoOk && settOk && rec.nome && !isModello){
+      rec.tipo = rec.tipo.toLowerCase();
+      rec.settore = rec.settore.charAt(0).toUpperCase()+rec.settore.slice(1).toLowerCase();
+      out.push(rec);
+    }
+  }
+  return out;
+}
+const DATI = parseContenuti();
+const SETTORI = ['Bio','Chim','Fis','Geo'];
+const NOMISET = {Bio:'Biologia',Chim:'Chimica',Fis:'Fisica',Geo:'Geologia'};
+let tipoCorrente = 'tutti', filtroSettore = 'Tutti';
+
+function updateTabs(){
+  document.getElementById('tabTutti').classList.toggle('on', tipoCorrente==='tutti');
+  document.getElementById('tabStud').classList.toggle('on', tipoCorrente==='studente');
+  document.getElementById('tabDoc').classList.toggle('on', tipoCorrente==='docente');
+}
+function setTipo(t){
+  tipoCorrente = t; filtroSettore = 'Tutti';
+  updateTabs(); renderFiltri(); renderGriglia();
+}
+function renderFiltri(){
+  const c = document.getElementById('filtri');
+  const voci = ['Tutti', ...SETTORI];
+  c.innerHTML = voci.map(v=>{
+    const cls = v==='Tutti' ? '' : v;
+    return `<button class="chip ${cls} ${v===filtroSettore?'on':''}" onclick="setFiltro('${v}')">${v}</button>`;
+  }).join('');
+}
+function setFiltro(v){ filtroSettore=v; renderFiltri(); renderGriglia(); }
+function vaiSettore(s){ tipoCorrente='tutti'; updateTabs(); filtroSettore=s; renderFiltri(); renderGriglia();
+  document.getElementById('rubrica').scrollIntoView({behavior:'smooth'}); }
+function escapeHtml(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+function coverHtml(d){
+  const role = `<span class="badge role">${d.tipo==='studente'?'Studente':'Docente'}</span>`;
+  if(d.foto[0]) return `<div class="cover"><img src="foto/${encodeURIComponent(d.foto[0])}" alt=""><span class="badge">${d.settore.toUpperCase()}</span>${role}</div>`;
+  return `<div class="cover"><div class="gen">${d.settore}<span>${d.settore[0]}</span></div><span class="badge">${d.settore.toUpperCase()}</span>${role}</div>`;
+}
+function renderGriglia(){
+  const g = document.getElementById('griglia');
+  let lista = tipoCorrente==='tutti' ? DATI.slice() : DATI.filter(d=>d.tipo===tipoCorrente);
+  if(filtroSettore!=='Tutti') lista = lista.filter(d=>d.settore===filtroSettore);
+  if(!lista.length){ g.innerHTML='<div class="vuoto" style="grid-column:1/-1;text-align:center;padding:40px 0;color:var(--grigio)">Ancora nessuna esperienza in questo settore. ✨</div>'; return; }
+  g.innerHTML = lista.map((d,i)=>{
+    const idx = DATI.indexOf(d);
+    const estratto = escapeHtml(d.testo.replace(/^\[.*?\]\s*/,'').slice(0,115))+'…';
+    return `<div class="card ${d.settore}" style="animation-delay:${i*70}ms" onclick="dettaglio(${idx})">
+      ${coverHtml(d)}
+      <div class="body">
+        <h3>${escapeHtml(d.nome)}</h3>
+        <div class="meta">${escapeHtml(d.titolo||'')}</div>
+        <div class="estratto">${estratto}</div>
+        <div class="leggi">Leggi la storia →</div>
+      </div></div>`;
+  }).join('');
+}
+function dettaglio(idx){
+  const d = DATI[idx];
+  const cover = d.foto[0]
+    ? `<div class="cover"><img src="foto/${encodeURIComponent(d.foto[0])}" alt="" onclick="apriFoto('foto/${encodeURIComponent(d.foto[0])}')"></div>`
+    : `<div class="cover"><div class="gen"></div></div>`;
+  const paragrafi = d.testo.split(/\n\s*\n/).map(pp=>`<p>${escapeHtml(pp)}</p>`).join('');
+  const extra = d.foto.slice(1);
+  const gallery = extra.length ? `<div class="gallery">${extra.map(f=>`<img src="foto/${encodeURIComponent(f)}" alt="" onclick="apriFoto('foto/${encodeURIComponent(f)}')">`).join('')}</div>` : '';
+  const modal = document.getElementById('modal');
+  modal.className = 'modal '+d.settore;
+  modal.innerHTML = `
+    ${cover}
+    <button class="chiudi" onclick="chiudi()">×</button>
+    <div class="inner">
+      <span class="badge2">${NOMISET[d.settore]} · ${d.tipo==='studente'?'Studente':'Docente'}</span>
+      <h2>${escapeHtml(d.nome)}</h2>
+      <div class="meta">${escapeHtml(d.titolo||'')}${d.info?' — '+escapeHtml(d.info):''}</div>
+      <div class="testo">${paragrafi}</div>
+      ${gallery}
+    </div>`;
+  document.getElementById('overlay').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function chiudi(){ document.getElementById('overlay').classList.remove('show'); document.body.style.overflow=''; }
+function apriFoto(src){ document.getElementById('lightImg').src=src; document.getElementById('lightbox').classList.add('show'); }
+function chiudiFoto(){ document.getElementById('lightbox').classList.remove('show'); }
+document.addEventListener('keydown',e=>{ if(e.key!=='Escape') return;
+  if(document.getElementById('lightbox').classList.contains('show')) chiudiFoto(); else chiudi(); });
+
+function val(id){ return document.getElementById(id).value.trim(); }
+function inviaInfo(){
+  const n=val('i-nome'), e=val('i-mail'), m=val('i-msg');
+  if(!n||!m){ alert('Scrivi almeno il tuo nome e la domanda.'); return; }
+  const body=`Nome: ${n}\nEmail: ${e}\n\nDomanda:\n${m}`;
+  window.location.href=`mailto:${MAIL}?subject=${encodeURIComponent('Richiesta informazioni sul corso')}&body=${encodeURIComponent(body)}`;
+}
+function inviaCand(){
+  const n=val('c-nome'), e=val('c-mail'), s=val('c-sett'), m=val('c-msg');
+  if(!n||!s){ alert('Scrivi almeno nome e settore.'); return; }
+  const body=`Nome e cognome: ${n}\nEmail: ${e}\nSettore: ${s}\n\nEsperienza:\n${m}\n\n(Candidatura per la rubrica "Storie dietro Scienze ABC")`;
+  window.location.href=`mailto:${MAIL}?subject=${encodeURIComponent('Candidatura testimonianza – Storie dietro Scienze ABC')}&body=${encodeURIComponent(body)}`;
+}
+
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{ nav.classList.toggle('scrolled', window.scrollY>40); });
+const io=new IntersectionObserver((es)=>{es.forEach(x=>{ if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target);} });},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+setTipo('tutti');
+</script>
+</body>
+</html>
