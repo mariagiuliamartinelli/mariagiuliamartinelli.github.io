@@ -30,17 +30,27 @@
   /* ---------- NAV ---------- */
   nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:18px;
     padding:14px 22px;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);box-shadow:0 6px 22px rgba(80,20,20,.08);transition:all .3s}
-  nav .logo{font-family:'Manrope';font-weight:800;font-size:1.05rem;letter-spacing:.3px;color:var(--granata);margin-right:auto}
+  nav .logo{font-family:'Manrope';font-weight:800;font-size:1.05rem;letter-spacing:.3px;color:var(--granata);margin-right:auto;display:flex;align-items:center}
   nav .logo b{color:var(--oro)}
-  nav .logo span.tag-sap{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;background:#f3e6e3;color:var(--granata);padding:3px 8px;border-radius:999px;margin-left:8px;vertical-align:2px}
-  nav a.navlink{font-family:'Manrope';font-weight:600;font-size:.88rem;color:var(--testo);position:relative;transition:color .3s;display:none}
+  nav .logo span.tag-sap{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;background:#f3e6e3;color:var(--granata);padding:3px 8px;border-radius:999px;margin-left:8px}
+  
+  .nav-links-container{display:flex;gap:18px;align-items:center}
+  nav a.navlink{font-family:'Manrope';font-weight:600;font-size:.88rem;color:var(--testo);position:relative;transition:color .3s}
   nav a.navlink::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--oro);transition:width .22s}
-  nav a.navlink:hover::after{width:100%}
-  nav a.navlink:hover{color:var(--granata-chiaro)}
-  nav .lang-switch{display:flex;gap:4px;background:var(--sfondo);padding:3px;border-radius:999px;border:1px solid var(--bordo)}
+  nav a.navlink:hover::after, nav a.navlink.active::after{width:100%}
+  nav a.navlink:hover, nav a.navlink.active{color:var(--granata-chiaro)}
+  
+  nav .lang-switch{display:flex;gap:4px;background:var(--sfondo);padding:3px;border-radius:999px;border:1px solid var(--bordo);margin-left:10px}
   nav .lang-btn{font-size:.75rem;font-weight:700;padding:4px 10px;border-radius:999px;color:var(--grigio);transition:.15s;cursor:pointer}
   nav .lang-btn.on{background:var(--granata);color:#fff}
-  @media(min-width:860px){nav a.navlink{display:inline}}
+
+  /* Mobile menu button */
+  .mobile-toggle{display:none;background:none;border:none;font-size:1.5rem;color:var(--granata);cursor:pointer}
+  @media(max-width:880px){
+    .mobile-toggle{display:block}
+    .nav-links-container{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:20px;box-shadow:0 12px 30px rgba(0,0,0,.12);border-top:1px solid var(--bordo)}
+    .nav-links-container.open{display:flex}
+  }
 
   /* ---------- HERO ---------- */
   header{position:relative;overflow:hidden;color:#fff;text-align:center;padding:90px 20px 110px;
@@ -233,25 +243,28 @@ Stiamo raccogliendo le linee di ricerca del settore Geologia. Se insegni o fai r
   <!-- NAVIGATION BAR -->
   <nav id="nav">
     <div class="logo">Scienze <b>ABC</b> Sapienza <span class="tag-sap">Sapienza</span></div>
-    <a class="navlink" href="#home">Home</a>
-    <a class="navlink" href="#corsi">Corsi di Laurea</a>
-    <a class="navlink" href="#ammissione">Iscrizioni & Requisiti</a>
-    <a class="navlink" href="#rubrica">Rubrica Storie</a>
-    <a class="navlink" href="#contatti">Contatti</a>
+    <button class="mobile-toggle" onclick="toggleMobileMenu()">☰</button>
+    <div class="nav-links-container" id="navLinks">
+      <a class="navlink active" href="#home" data-i18n="nav_home">Home</a>
+      <a class="navlink" href="#corsi" data-i18n="nav_corsi">Corsi di Laurea</a>
+      <a class="navlink" href="#ammissione" data-i18n="nav_ammissione">Iscrizioni & Requisiti</a>
+      <a class="navlink" href="#rubrica" data-i18n="nav_rubrica">Rubrica Storie</a>
+      <a class="navlink" href="#contatti" data-i18n="nav_contatti">Contatti</a>
+    </div>
     <div class="lang-switch">
-      <span class="lang-btn on">IT</span>
-      <span class="lang-btn">EN</span>
+      <span class="lang-btn on" id="btnIT" onclick="setLanguage('it')">IT</span>
+      <span class="lang-btn" id="btnEN" onclick="setLanguage('en')">EN</span>
     </div>
   </nav>
 
   <!-- HERO SECTION (#home) -->
   <header id="home">
-    <div class="hbrand">AREA DIDATTICA SCIENZE APPLICATE AI BENI CULTURALI</div>
-    <h1>La scienza al servizio dell'arte <span class="hl">e della salvaguardia</span></h1>
-    <p>Formiamo i Conservation Scientist del futuro a Sapienza Università di Roma. Fisica, chimica, biologia e geologia applicate allo studio e alla conservazione del patrimonio culturale.</p>
+    <div class="hbrand" data-i18n="hero_badge">AREA DIDATTICA SCIENZE APPLICATE AI BENI CULTURALI</div>
+    <h1 data-i18n="hero_title">La scienza al servizio dell'arte <span class="hl">e della salvaguardia</span></h1>
+    <p data-i18n="hero_desc">Formiamo i Conservation Scientist del futuro a Sapienza Università di Roma. Fisica, chimica, biologia e geologia applicate allo studio e alla conservazione del patrimonio culturale.</p>
     <div class="hero-buttons">
-      <a href="#corsi" class="hero-btn pri">Esplora i Corsi di Laurea ↓</a>
-      <a href="#ammissione" class="hero-btn sec">Guida alle Iscrizioni</a>
+      <a href="#corsi" class="hero-btn pri" data-i18n="hero_btn_pri">Esplora i Corsi di Laurea ↓</a>
+      <a href="#ammissione" class="hero-btn sec" data-i18n="hero_btn_sec">Guida alle Iscrizioni</a>
     </div>
   </header>
 
@@ -260,52 +273,52 @@ Stiamo raccogliendo le linee di ricerca del settore Geologia. Se insegni o fai r
     <!-- SEZIONE 1: CORSI DI LAUREA (#corsi) -->
     <section id="corsi">
       <div class="sec-head">
-        <div class="kick">Offerta Formativa</div>
-        <h2>I nostri percorsi di studio</h2>
-        <p>Un approccio multidisciplinare unico per unire la passione delle scienze naturali alla cura del patrimonio storico e artistico.</p>
+        <div class="kick" data-i18n="corsi_kick">Offerta Formativa</div>
+        <h2 data-i18n="corsi_title">I nostri percorsi di studio</h2>
+        <p data-i18n="corsi_desc">Un approccio multidisciplinare unico per unire la passione delle scienze naturali alla cura del patrimonio storico e artistico.</p>
       </div>
 
       <div class="corsi-grid">
         <!-- Card 1: Triennale L-43 -->
         <div class="corso-card l43">
-          <span class="badge-cod">Laurea Triennale · L-43</span>
-          <h3>Tecnologie per la Conservazione e il Restauro</h3>
-          <div class="sub-titolo">Fornisce le basi scientifiche e diagnostiche del settore</div>
-          <p class="desc">Fornisce le fondamenta nei diversi ambiti delle scienze naturali (chimica, fisica, biologia, scienze della terra) integrate con la storia dell'arte e l'archeologia per orientarsi nella conservazione.</p>
+          <span class="badge-cod" data-i18n="l43_badge">Laurea Triennale · L-43</span>
+          <h3 data-i18n="l43_title">Tecnologie per la Conservazione e il Restauro</h3>
+          <div class="sub-titolo" data-i18n="l43_subtitle">Fornisce le basi scientifiche e diagnostiche del settore</div>
+          <p class="desc" data-i18n="l43_desc">Fornisce le fondamenta nei diversi ambiti delle scienze naturali (chimica, fisica, biologia, scienze della terra) integrate con la storia dell'arte e l'archeologia per orientarsi nella conservazione.</p>
           <div class="highlights">
-            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Durata: 3 Anni (180 CFU)</div>
-            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Accesso tramite verifica TOLC-S</div>
-            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Laboratori e visite nei musei</div>
+            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> <span data-i18n="l43_hl1">Durata: 3 Anni (180 CFU)</span></div>
+            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> <span data-i18n="l43_hl2">Accesso tramite verifica TOLC-S</span></div>
+            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> <span data-i18n="l43_hl3">Laboratori e visite nei musei</span></div>
           </div>
-          <a href="https://corsidilaurea.uniroma1.it/it/corso/2024/30051/home" target="_blank" class="btn-corso">Scheda Sapienza L-43 →</a>
+          <a href="https://corsidilaurea.uniroma1.it/it/corso/2024/30051/home" target="_blank" class="btn-corso" data-i18n="l43_btn">Scheda Sapienza L-43 →</a>
         </div>
 
         <!-- Card 2: Magistrale LM-11 (Italiano) -->
         <div class="corso-card lm11">
-          <span class="badge-cod">Laurea Magistrale · LM-11</span>
-          <h3>Scienze e Tecnologie per la Conservazione</h3>
-          <div class="sub-titolo">Completa la figura professionale del Conservation Scientist</div>
-          <p class="desc">Finalizza la formazione avanzata approfondendo gli aspetti scientifici più specifici: diagnostica per le opere d'arte, studio dei materiali, monitoraggio microclimatico e gestione della salvaguardia.</p>
+          <span class="badge-cod" data-i18n="lm11_badge">Laurea Magistrale · LM-11</span>
+          <h3 data-i18n="lm11_title">Scienze e Tecnologie per la Conservazione</h3>
+          <div class="sub-titolo" data-i18n="lm11_subtitle">Completa la figura professionale del Conservation Scientist</div>
+          <p class="desc" data-i18n="lm11_desc">Finalizza la formazione avanzata approfondendo gli aspetti scientifici più specifici: diagnostica per le opere d'arte, studio dei materiali, monitoraggio microclimatico e gestione della salvaguardia.</p>
           <div class="highlights">
-            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Durata: 2 Anni (120 CFU)</div>
-            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Requisiti: 84 CFU Scientifici + 6 CFU Umanistici</div>
-            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Progetti di ricerca e tirocini orientati</div>
+            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> <span data-i18n="lm11_hl1">Durata: 2 Anni (120 CFU)</span></div>
+            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> <span data-i18n="lm11_hl2">Requisiti: 84 CFU Scientifici + 6 CFU Umanistici</span></div>
+            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> <span data-i18n="lm11_hl3">Progetti di ricerca e tirocini orientati</span></div>
           </div>
-          <a href="https://corsidilaurea.uniroma1.it/it/corso/2024/28702/home" target="_blank" class="btn-corso">Scheda Sapienza LM-11 →</a>
+          <a href="https://corsidilaurea.uniroma1.it/it/corso/2024/28702/home" target="_blank" class="btn-corso" data-i18n="lm11_btn">Scheda Sapienza LM-11 →</a>
         </div>
 
         <!-- Card 3: Master Course (English) -->
         <div class="corso-card lm11-en">
           <span class="badge-cod">Master Course · LM-11 International</span>
-          <h3>Science & Technology for Cultural Heritage</h3>
-          <div class="sub-titolo">Erogato interamente in lingua inglese</div>
-          <p class="desc">Il corso permette al Conservation Scientist di proiettarsi in un contesto internazionale fin dalla formazione specialistica, favorendo tirocini ed opportunità di ricerca all'estero.</p>
+          <h3 data-i18n="master_title">Science & Technology for Cultural Heritage</h3>
+          <div class="sub-titolo" data-i18n="master_subtitle">Erogato interamente in lingua inglese</div>
+          <p class="desc" data-i18n="master_desc">Il corso permette al Conservation Scientist di proiettarsi in un contesto internazionale fin dalla formazione specialistica, favorendo tirocini ed opportunità di ricerca all'estero.</p>
           <div class="highlights">
             <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 100% Taught in English</div>
-            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> English B2 Proficiency Required</div>
-            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Global research networking</div>
+            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> <span data-i18n="master_hl2">English B2 Proficiency Required</span></div>
+            <div class="hl-item"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> <span data-i18n="master_hl3">Global research networking</span></div>
           </div>
-          <a href="https://scienzeabcsapienza.it/en/home-english/" target="_blank" class="btn-corso">View English Master →</a>
+          <a href="https://scienzeabcsapienza.it/en/home-english/" target="_blank" class="btn-corso" data-i18n="master_btn">View English Master →</a>
         </div>
       </div>
     </section>
@@ -313,39 +326,39 @@ Stiamo raccogliendo le linee di ricerca del settore Geologia. Se insegni o fai r
     <!-- SEZIONE 2: REQUISITI & AMMISSIONE (#ammissione) -->
     <section id="ammissione">
       <div class="sec-head">
-        <div class="kick">Requisiti e Scadenze</div>
-        <h2>Come iscriversi ai nostri corsi</h2>
-        <p>Tutti i dettagli per la verifica delle conoscenze, la valutazione dei CFU e l'immatricolazione.</p>
+        <div class="kick" data-i18n="req_kick">Requisiti e Scadenze</div>
+        <h2 data-i18n="req_title">Come iscriversi ai nostri corsi</h2>
+        <p data-i18n="req_desc">Tutti i dettagli per la verifica delle conoscenze, la valutazione dei CFU e l'immatricolazione.</p>
       </div>
 
       <div class="req-box">
         <div class="req-grid">
           <!-- Colonna Triennale -->
           <div class="req-col">
-            <h4>Accesso Triennale (L-43)</h4>
+            <h4 data-i18n="l43_req_h4">Accesso Triennale (L-43)</h4>
             <ul>
-              <li>Diploma di maturità scuola secondaria;</li>
-              <li>Sostenimento della prova d'ingresso online per la verifica delle conoscenze (<b>TOLC-S</b>);</li>
-              <li>Procedura di iscrizione online tramite la piattaforma Sapienza Infostud.</li>
+              <li data-i18n="l43_req_1">Diploma di maturità scuola secondaria;</li>
+              <li data-i18n="l43_req_2">Sostenimento della prova d'ingresso online per la verifica delle conoscenze (<b>TOLC-S</b>);</li>
+              <li data-i18n="l43_req_3">Procedura di iscrizione online tramite la piattaforma Sapienza Infostud.</li>
             </ul>
             <div class="timeline-dates">
-              <span class="date-chip">Iscrizioni: 02/07 - 31/10</span>
-              <span class="date-chip">Scadenza Immatricolazione: 05/11</span>
+              <span class="date-chip" data-i18n="l43_date1">Iscrizioni: 02/07 - 31/10</span>
+              <span class="date-chip" data-i18n="l43_date2">Scadenza Immatricolazione: 05/11</span>
             </div>
           </div>
 
           <!-- Colonna Magistrale -->
           <div class="req-col">
-            <h4>Accesso Magistrale (LM-11)</h4>
+            <h4 data-i18n="lm11_req_h4">Accesso Magistrale (LM-11)</h4>
             <ul>
-              <li>Laurea o diploma universitario triennale idoneo;</li>
-              <li>Almeno <b>84 CFU</b> in ambiti scientifici (MAT, CHIM, FIS, GEO, BIO, INF, ING-IND);</li>
-              <li>Almeno <b>6 CFU</b> in discipline storico-artistiche (L-ANT, L-ART, M-STO, ICAR);</li>
-              <li>Conoscenza attestata di lingua Inglese livello <b>B2</b>.</li>
+              <li data-i18n="lm11_req_1">Laurea o diploma universitario triennale idoneo;</li>
+              <li data-i18n="lm11_req_2">Almeno <b>84 CFU</b> in ambiti scientifici (MAT, CHIM, FIS, GEO, BIO, INF, ING-IND);</li>
+              <li data-i18n="lm11_req_3">Almeno <b>6 CFU</b> in discipline storico-artistiche (L-ANT, L-ART, M-STO, ICAR);</li>
+              <li data-i18n="lm11_req_4">Conoscenza attestata di lingua Inglese livello <b>B2</b>.</li>
             </ul>
             <div class="timeline-dates">
-              <span class="date-chip">Verifica requisiti dal 02/07 (€10)</span>
-              <span class="date-chip">Colloquio di valutazione commissione</span>
+              <span class="date-chip" data-i18n="lm11_date1">Verifica requisiti dal 02/07 (€10)</span>
+              <span class="date-chip" data-i18n="lm11_date2">Colloquio di valutazione commissione</span>
             </div>
           </div>
         </div>
@@ -355,9 +368,9 @@ Stiamo raccogliendo le linee di ricerca del settore Geologia. Se insegni o fai r
     <!-- SEZIONE 3: RUBRICA STORIE INTERATTIVA (#rubrica) -->
     <section id="rubrica">
       <div class="sec-head reveal">
-        <div class="kick">Storie dietro Scienze ABC</div>
-        <h2>Cosa si fa davvero nei nostri corsi</h2>
-        <p>Tesi, tirocini e ricerca raccontati direttamente da studenti e docenti del corso.</p>
+        <div class="kick" data-i18n="rubrica_kick">Storie dietro Scienze ABC</div>
+        <h2 data-i18n="rubrica_title">Cosa si fa davvero nei nostri corsi</h2>
+        <p data-i18n="rubrica_desc">Tesi, tirocini e ricerca raccontati direttamente da studenti e docenti del corso.</p>
       </div>
 
       <div class="settbar reveal">
@@ -368,32 +381,32 @@ Stiamo raccogliendo le linee di ricerca del settore Geologia. Se insegni o fai r
       </div>
 
       <div class="tabs reveal">
-        <button class="tab on" id="tabTutti" onclick="setTipo('tutti')">Tutte</button>
-        <button class="tab" id="tabStud" onclick="setTipo('studente')">Studenti</button>
-        <button class="tab doc" id="tabDoc" onclick="setTipo('docente')">Docenti</button>
+        <button class="tab on" id="tabTutti" onclick="setTipo('tutti')" data-i18n="tab_tutti">Tutte</button>
+        <button class="tab" id="tabStud" onclick="setTipo('studente')" data-i18n="tab_stud">Studenti</button>
+        <button class="tab doc" id="tabDoc" onclick="setTipo('docente')" data-i18n="tab_doc">Docenti</button>
       </div>
       <div class="filtri reveal" id="filtri"></div>
       <div class="griglia" id="griglia"></div>
 
       <div class="forms reveal" style="margin-top:40px;">
         <div class="formcard">
-          <h3>Chiedi informazioni</h3>
-          <p style="font-size:.85rem;color:var(--grigio);margin-bottom:12px">Hai domande sul corso o sulle immatricolazioni?</p>
-          <div class="campo"><label>Nome</label><input id="i-nome" type="text" placeholder="Il tuo nome"></div>
-          <div class="campo"><label>Email</label><input id="i-mail" type="email" placeholder="nome@esempio.it"></div>
-          <div class="campo"><label>Messaggio</label><textarea id="i-msg" placeholder="Cosa vorresti sapere?"></textarea></div>
-          <button class="btn" onclick="inviaInfo()">Invia la richiesta</button>
+          <h3 data-i18n="form_info_title">Chiedi informazioni</h3>
+          <p style="font-size:.85rem;color:var(--grigio);margin-bottom:12px" data-i18n="form_info_sub">Hai domande sul corso o sulle immatricolazioni?</p>
+          <div class="campo"><label data-i18n="form_name">Nome</label><input id="i-nome" type="text" placeholder="Il tuo nome"></div>
+          <div class="campo"><label data-i18n="form_email">Email</label><input id="i-mail" type="email" placeholder="nome@esempio.it"></div>
+          <div class="campo"><label data-i18n="form_msg">Messaggio</label><textarea id="i-msg" placeholder="Cosa vorresti sapere?"></textarea></div>
+          <button class="btn" onclick="inviaInfo()" data-i18n="btn_invia">Invia la richiesta</button>
         </div>
         <div class="formcard cand">
-          <h3>Racconta la tua esperienza</h3>
-          <p style="font-size:.85rem;color:var(--grigio);margin-bottom:12px">Sei uno studente o laureato? Partecipa alla rubrica!</p>
-          <div class="campo"><label>Nome e cognome</label><input id="c-nome" type="text" placeholder="Nome Cognome"></div>
-          <div class="campo"><label>Email</label><input id="c-mail" type="email" placeholder="nome@studenti.uniroma1.it"></div>
-          <div class="campo"><label>Settore</label>
+          <h3 data-i18n="form_cand_title">Racconta la tua esperienza</h3>
+          <p style="font-size:.85rem;color:var(--grigio);margin-bottom:12px" data-i18n="form_cand_sub">Sei uno studente o laureato? Partecipa alla rubrica!</p>
+          <div class="campo"><label data-i18n="form_fullname">Nome e cognome</label><input id="c-nome" type="text" placeholder="Nome Cognome"></div>
+          <div class="campo"><label data-i18n="form_email">Email</label><input id="c-mail" type="email" placeholder="nome@studenti.uniroma1.it"></div>
+          <div class="campo"><label data-i18n="form_sector">Settore</label>
             <select id="c-sett"><option value="">Scegli…</option><option>Bio</option><option>Chim</option><option>Fis</option><option>Geo</option></select>
           </div>
-          <div class="campo"><label>Argomento tesi/tirocinio</label><textarea id="c-msg" placeholder="In due righe, di cosa ti sei occupato/a"></textarea></div>
-          <button class="btn" onclick="inviaCand()">Candidati alla Rubrica</button>
+          <div class="campo"><label data-i18n="form_topic">Argomento tesi/tirocinio</label><textarea id="c-msg" placeholder="In due righe, di cosa ti sei occupato/a"></textarea></div>
+          <button class="btn" onclick="inviaCand()" data-i18n="btn_cand">Candidati alla Rubrica</button>
         </div>
       </div>
     </section>
@@ -401,21 +414,21 @@ Stiamo raccogliendo le linee di ricerca del settore Geologia. Se insegni o fai r
     <!-- SEZIONE 4: CONTATTI & RISORSE (#contatti) -->
     <section id="contatti">
       <div class="sec-head">
-        <div class="kick">Contatti e Sede</div>
-        <h2>Dove trovarci & Canali ufficiali</h2>
+        <div class="kick" data-i18n="contact_kick">Contatti e Sede</div>
+        <h2 data-i18n="contact_title">Dove trovarci & Canali ufficiali</h2>
       </div>
 
       <div class="contact-grid">
         <div class="contact-card">
-          <h3>Segreteria Didattica</h3>
-          <p style="font-size:.9rem;color:#453a35;">Dipartimento di Biologia Ambientale · Sapienza Università di Roma</p>
+          <h3 data-i18n="contact_h3_1">Segreteria Didattica</h3>
+          <p style="font-size:.9rem;color:#453a35;" data-i18n="contact_dept">Dipartimento di Biologia Ambientale · Sapienza Università di Roma</p>
           <p style="font-size:.9rem;color:#453a35;margin-top:8px;"><b>Email:</b> <a href="mailto:didattica.dba@uniroma1.it" style="color:var(--granata)">didattica.dba@uniroma1.it</a></p>
-          <p style="font-size:.9rem;color:#453a35;margin-top:4px;"><b>Sede:</b> Città Universitaria · Piazzale Aldo Moro 5, Roma</p>
+          <p style="font-size:.9rem;color:#453a35;margin-top:4px;" data-i18n="contact_addr"><b>Sede:</b> Città Universitaria · Piazzale Aldo Moro 5, Roma</p>
         </div>
 
         <div class="contact-card">
-          <h3>Community & Social Media</h3>
-          <p style="font-size:.9rem;color:#453a35;">Segui le storie di laboratorio e gli eventi in tempo reale:</p>
+          <h3 data-i18n="contact_h3_2">Community & Social Media</h3>
+          <p style="font-size:.9rem;color:#453a35;" data-i18n="contact_social_desc">Segui le storie di laboratorio e gli eventi in tempo reale:</p>
           <p style="font-size:.9rem;margin-top:8px;">📸 <b>Instagram:</b> <a href="https://www.instagram.com/scienze_abc/" target="_blank" style="color:var(--granata)">@scienze_abc</a></p>
           <p style="font-size:.9rem;margin-top:4px;">👍 <b>Facebook:</b> <a href="https://www.facebook.com/ScienzeABC" target="_blank" style="color:var(--granata)">ScienzeABC</a></p>
           <p style="font-size:.9rem;margin-top:4px;">▶️ <b>YouTube:</b> <a href="https://www.youtube.com/watch?v=1tAE2GII7Mw" target="_blank" style="color:var(--granata)">Sapienza Channel</a></p>
@@ -438,13 +451,13 @@ Stiamo raccogliendo le linee di ricerca del settore Geologia. Se insegni o fai r
   <!-- FOOTER -->
   <footer>
     <div class="fbrand">Scienze <b>ABC</b> Sapienza</div>
-    <p style="font-size:.88rem;opacity:.8;">Area Didattica in Scienze Applicate ai Beni Culturali — Sapienza Università di Roma</p>
+    <p style="font-size:.88rem;opacity:.8;" data-i18n="footer_sub">Area Didattica in Scienze Applicate ai Beni Culturali — Sapienza Università di Roma</p>
     <div class="fcont">
-      <a href="#home">Home</a>
-      <a href="#corsi">Corsi</a>
-      <a href="#ammissione">Iscrizioni</a>
-      <a href="#rubrica">Rubrica</a>
-      <a href="#contatti">Contatti</a>
+      <a href="#home" data-i18n="nav_home">Home</a>
+      <a href="#corsi" data-i18n="nav_corsi">Corsi</a>
+      <a href="#ammissione" data-i18n="nav_ammissione">Iscrizioni</a>
+      <a href="#rubrica" data-i18n="nav_rubrica">Rubrica</a>
+      <a href="#contatti" data-i18n="nav_contatti">Contatti</a>
     </div>
     <small>© 2026 Sapienza Università di Roma — Area Didattica Scienze Applicate ai Beni Culturali</small>
   </footer>
@@ -453,6 +466,73 @@ Stiamo raccogliendo le linee di ricerca del settore Geologia. Se insegni o fai r
 document.documentElement.classList.add('js');
 const MAIL = "didattica.dba@uniroma1.it";
 
+/* ---- TRADUZIONI IT / EN ---- */
+const TRANSLATIONS = {
+  it: {
+    nav_home: "Home", nav_corsi: "Corsi di Laurea", nav_ammissione: "Iscrizioni & Requisiti", nav_rubrica: "Rubrica Storie", nav_contatti: "Contatti",
+    hero_badge: "AREA DIDATTICA SCIENZE APPLICATE AI BENI CULTURALI", hero_title: "La scienza al servizio dell'arte <span class=\"hl\">e della salvaguardia</span>",
+    hero_desc: "Formiamo i Conservation Scientist del futuro a Sapienza Università di Roma. Fisica, chimica, biologia e geologia applicate allo studio e alla conservazione del patrimonio culturale.",
+    hero_btn_pri: "Esplora i Corsi di Laurea ↓", hero_btn_sec: "Guida alle Iscrizioni",
+    corsi_kick: "Offerta Formativa", corsi_title: "I nostri percorsi di studio", corsi_desc: "Un approccio multidisciplinare unico per unire la passione delle scienze naturali alla cura del patrimonio storico e artistico.",
+    l43_badge: "Laurea Triennale · L-43", l43_title: "Tecnologie per la Conservazione e il Restauro", l43_subtitle: "Fornisce le basi scientifiche e diagnostiche del settore", l43_desc: "Fornisce le fondamenta nei diversi ambiti delle scienze naturali (chimica, fisica, biologia, scienze della terra) integrate con la storia dell'arte e l'archeologia per orientarsi nella conservazione.",
+    l43_hl1: "Durata: 3 Anni (180 CFU)", l43_hl2: "Accesso tramite verifica TOLC-S", l43_hl3: "Laboratori e visite nei musei", l43_btn: "Scheda Sapienza L-43 →",
+    lm11_badge: "Laurea Magistrale · LM-11", lm11_title: "Scienze e Tecnologie per la Conservazione", lm11_subtitle: "Completa la figura professionale del Conservation Scientist", lm11_desc: "Finalizza la formazione avanzata approfondendo gli aspetti scientifici più specifici: diagnostica per le opere d'arte, studio dei materiali, monitoraggio microclimatico e gestione della salvaguardia.",
+    lm11_hl1: "Durata: 2 Anni (120 CFU)", lm11_hl2: "Requisiti: 84 CFU Scientifici + 6 CFU Umanistici", lm11_hl3: "Progetti di ricerca e tirocini orientati", lm11_btn: "Scheda Sapienza LM-11 →",
+    master_title: "Science & Technology for Cultural Heritage", master_subtitle: "Erogato interamente in lingua inglese", master_desc: "Il corso permette al Conservation Scientist di proiettarsi in un contesto internazionale fin dalla formazione specialistica, favorendo tirocini ed opportunità di ricerca all'estero.",
+    master_hl2: "Conoscenza Inglese Livello B2", master_hl3: "Rete di ricerca internazionale", master_btn: "View English Master →",
+    req_kick: "Requisiti e Scadenze", req_title: "Come iscriversi ai nostri corsi", req_desc: "Tutti i dettagli per la verifica delle conoscenze, la valutazione dei CFU e l'immatricolazione.",
+    l43_req_h4: "Accesso Triennale (L-43)", l43_req_1: "Diploma di maturità scuola secondaria;", l43_req_2: "Sostenimento della prova d'ingresso online per la verifica delle conoscenze (TOLC-S);", l43_req_3: "Procedura di iscrizione online tramite la piattaforma Sapienza Infostud.",
+    l43_date1: "Iscrizioni: 02/07 - 31/10", l43_date2: "Scadenza Immatricolazione: 05/11",
+    lm11_req_h4: "Accesso Magistrale (LM-11)", lm11_req_1: "Laurea o diploma universitario triennale idoneo;", lm11_req_2: "Almeno 84 CFU in ambiti scientifici (MAT, CHIM, FIS, GEO, BIO, INF, ING-IND);", lm11_req_3: "Almeno 6 CFU in discipline storico-artistiche (L-ANT, L-ART, M-STO, ICAR);", lm11_req_4: "Conoscenza attestata di lingua Inglese livello B2.",
+    lm11_date1: "Verifica requisiti dal 02/07 (€10)", lm11_date2: "Colloquio di valutazione commissione",
+    rubrica_kick: "Storie dietro Scienze ABC", rubrica_title: "Cosa si fa davvero nei nostri corsi", rubrica_desc: "Tesi, tirocini e ricerca raccontati direttamente da studenti e docenti del corso.",
+    tab_tutti: "Tutte", tab_stud: "Studenti", tab_doc: "Docenti",
+    form_info_title: "Chiedi informazioni", form_info_sub: "Hai domande sul corso o sulle immatricolazioni?", form_name: "Nome", form_email: "Email", form_msg: "Messaggio", btn_invia: "Invia la richiesta",
+    form_cand_title: "Racconta la tua esperienza", form_cand_sub: "Sei uno studente o laureato? Partecipa alla rubrica!", form_fullname: "Nome e cognome", form_sector: "Settore", form_topic: "Argomento tesi/tirocinio", btn_cand: "Candidati alla Rubrica",
+    contact_kick: "Contatti e Sede", contact_title: "Dove trovarci & Canali ufficiali", contact_h3_1: "Segreteria Didattica", contact_dept: "Dipartimento di Biologia Ambientale · Sapienza Università di Roma", contact_addr: "Sede: Città Universitaria · Piazzale Aldo Moro 5, Roma",
+    contact_h3_2: "Community & Social Media", contact_social_desc: "Segui le storie di laboratorio e gli eventi in tempo reale:", footer_sub: "Area Didattica in Scienze Applicate ai Beni Culturali — Sapienza Università di Roma"
+  },
+  en: {
+    nav_home: "Home", nav_corsi: "Degree Programs", nav_ammissione: "Admissions & Requirements", nav_rubrica: "Stories & Experiences", nav_contatti: "Contacts",
+    hero_badge: "FACULTY OF APPLIED SCIENCES FOR CULTURAL HERITAGE", hero_title: "Science at the service of art <span class=\"hl\">and preservation</span>",
+    hero_desc: "Training future Conservation Scientists at Sapienza University of Rome. Physics, chemistry, biology, and geology applied to the analysis and protection of cultural heritage.",
+    hero_btn_pri: "Explore Degree Programs ↓", hero_btn_sec: "Admissions Guide",
+    corsi_kick: "Educational Offer", corsi_title: "Our Academic Pathways", corsi_desc: "A unique multidisciplinary approach combining passion for natural sciences with the preservation of historical and artistic heritage.",
+    l43_badge: "Bachelor's Degree · L-43", l43_title: "Technologies for Conservation and Restoration", l43_subtitle: "Provides fundamental scientific and diagnostic skills", l43_desc: "Covers core foundations in natural sciences (chemistry, physics, biology, earth sciences) integrated with art history and archaeology for conservation careers.",
+    l43_hl1: "Duration: 3 Years (180 ECTS)", l43_hl2: "Admission via TOLC-S entrance test", l43_hl3: "Laboratories and museum field visits", l43_btn: "Sapienza L-43 Course Page →",
+    lm11_badge: "Master's Degree · LM-11", lm11_title: "Science and Technology for Conservation", lm11_subtitle: "Completes professional training as a Conservation Scientist", lm11_desc: "Advanced specialization in scientific analysis: diagnostic techniques for artwork, material science, microclimate monitoring, and heritage management.",
+    lm11_hl1: "Duration: 2 Years (120 ECTS)", lm11_hl2: "Entry requirements: 84 STEM ECTS + 6 Humanities ECTS", lm11_hl3: "Research projects and targeted internships", lm11_btn: "Sapienza LM-11 Course Page →",
+    master_title: "Science & Technology for Cultural Heritage", master_subtitle: "Taught 100% in English", master_desc: "Enables Conservation Scientists to thrive in international environments from early training, fostering global research networks and international mobility.",
+    master_hl2: "B2 English Level Required", master_hl3: "Global research network", master_btn: "View English Master →",
+    req_kick: "Requirements & Deadlines", req_title: "How to Apply to Our Courses", req_desc: "All details regarding knowledge verification, credit evaluation, and enrollment deadlines.",
+    l43_req_h4: "Bachelor's Admission (L-43)", l43_req_1: "High School Diploma (or equivalent);", l43_req_2: "Online entrance knowledge test (<b>TOLC-S</b>);", l43_req_3: "Online application via Sapienza Infostud portal.",
+    l43_date1: "Applications: 02/07 - 31/10", l43_date2: "Enrollment Deadline: 05/11",
+    lm11_req_h4: "Master's Admission (LM-11)", lm11_req_1: "Eligible 3-year Bachelor's degree;", lm11_req_2: "At least <b>84 ECTS</b> in STEM subjects (MAT, CHIM, FIS, GEO, BIO, INF, ENG);", lm11_req_3: "At least <b>6 ECTS</b> in Humanities & Art History (L-ANT, L-ART, M-STO);", lm11_req_4: "Certified English Proficiency level <b>B2</b>.",
+    lm11_date1: "Requirements verification from 02/07 (€10)", lm11_date2: "Admission board evaluation interview",
+    rubrica_kick: "Stories behind Scienze ABC", rubrica_title: "What we really do in our courses", rubrica_desc: "Theses, internships, and research told directly by students and faculty.",
+    tab_tutti: "All", tab_stud: "Students", tab_doc: "Faculty",
+    form_info_title: "Ask for Information", form_info_sub: "Do you have questions about degrees or enrollment?", form_name: "Name", form_email: "Email", form_msg: "Message", btn_invia: "Send Inquiry",
+    form_cand_title: "Share Your Experience", form_cand_sub: "Are you a student or alumni? Join our story series!", form_fullname: "Full Name", form_sector: "Field", form_topic: "Thesis / Internship Topic", btn_cand: "Submit Your Story",
+    contact_kick: "Contacts & Location", contact_title: "Where to find us & Official Channels", contact_h3_1: "Academic Office", contact_dept: "Department of Environmental Biology · Sapienza University of Rome", contact_addr: "Location: Main Campus · Piazzale Aldo Moro 5, Rome",
+    contact_h3_2: "Community & Social Media", contact_social_desc: "Follow laboratory stories and events in real time:", footer_sub: "Department of Applied Sciences for Cultural Heritage — Sapienza University of Rome"
+  }
+};
+
+function setLanguage(lang) {
+  document.getElementById('btnIT').classList.toggle('on', lang==='it');
+  document.getElementById('btnEN').classList.toggle('on', lang==='en');
+  const dict = TRANSLATIONS[lang] || TRANSLATIONS.it;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key]) el.innerHTML = dict[key];
+  });
+}
+
+function toggleMobileMenu(){
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+/* ---- parser contenuti ---- */
 function parseContenuti(){
   const raw = document.getElementById('contenuti').textContent;
   const blocchi = raw.split(/^\s*=+\s*$/m);
@@ -577,6 +657,21 @@ function inviaCand(){
 
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{ nav.classList.toggle('scrolled', window.scrollY>40); });
+
+/* Active link highlight on scroll */
+const sections = document.querySelectorAll('section, header#home');
+const navLinks = document.querySelectorAll('nav a.navlink');
+window.addEventListener('scroll', () => {
+  let current = 'home';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) current = sec.getAttribute('id');
+  });
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+  });
+});
+
 const io=new IntersectionObserver((es)=>{es.forEach(x=>{ if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target);} });},{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
