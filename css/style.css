@@ -47,13 +47,13 @@ body {
      purple arrive that early dropped them to about 3.9:1 against their ground.
      The saturated stop now lands under #explore, whose type is white. */
   background: linear-gradient(180deg,
-    #87CEEB 0%,
-    #9b8ced 15%,
-    #9d86e8 30%,
-    #8a2be2 48%,
-    #4a2b8f 64%,
-    #1d1046 82%,
-    #0c0520 100%);
+    #8fd0ec 0%,
+    #a294ef 15%,
+    #a48ff0 30%,
+    #9760dd 48%,
+    #7256b4 64%,
+    #4b3c81 82%,
+    #322558 100%);
 }
 /* sub-pages need a light middle for the body copy, so the same single gradient
    opens violet, resolves to white across the content, then closes dark again.
@@ -64,14 +64,14 @@ body {
    card is opaque paper, and is fully dark by the time the footer starts. */
 body.subpage {
   background: linear-gradient(180deg,
-    #87CEEB 0%,
-    #9b8ced 11%,
-    #a08fd0 19%,
+    #8fd0ec 0%,
+    #a294ef 11%,
+    #a99ad6 19%,
     var(--paper) 27%,
     var(--paper) calc(100% - 700px),
-    #a08fd0 calc(100% - 580px),
-    #3a2168 calc(100% - 500px),
-    #0c0520 calc(100% - 420px));
+    #a99ad6 calc(100% - 580px),
+    #6a5498 calc(100% - 500px),
+    #322558 calc(100% - 420px));
 }
 /* every band that used to paint its own background is now see-through */
 #hero, #explore, #cta, .page-hero, .page-nav, footer,
@@ -191,8 +191,11 @@ body.menu-open { overflow: hidden; }
   padding: 100px 0 56px;
   color: #1a0f3d; text-align: center;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  overflow: hidden;
+  /* only the pinned version needs to clip: in normal flow the panel sits below
+     the dish and the hero has to be free to grow past one viewport */
+  overflow: visible;
 }
+body.hero-scrub #hero { overflow: hidden; }
 .hero-inner { max-width: 760px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 2; }
 .dish-stage {
   position: relative;
@@ -286,17 +289,38 @@ body.menu-open { overflow: hidden; }
 .scroll-hint::after { content: "⌄"; font-size: 1.2rem; animation: bob 1.6s ease-in-out infinite; }
 @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
 
-/* ══════════════════ REVEAL PANEL (desktop: pinned, beside the dish) ══════════════════ */
-/* intro text and the mission list occupy the same spot and crossfade, so only
-   the dish is on screen at rest : everything else appears as you scroll. */
+/* ══════════════════ REVEAL PANEL ══════════════════ */
+/* Default: the intro and the mission list simply follow the dish in normal
+   flow, both plainly visible. This is what everyone sees if the scroll
+   sequence cannot run -- GSAP is fetched from a CDN, and when that request
+   failed the whole panel used to be stranded at opacity 0 with nothing left to
+   turn it back on.
+   The pinned version, where the two panes share one grid cell beside the dish
+   and crossfade as you scroll, is opt-in: main.js adds .hero-scrub once it has
+   confirmed GSAP, ScrollTrigger and a desktop viewport, and hides the panes
+   itself from there. No opacity in this file gates them. */
 .reveal-panel {
-  position: absolute; top: 50%; right: 6%; transform: translateY(-50%);
-  width: min(460px, 42%); z-index: 3;
-  max-height: calc(100vh - 150px);
-  display: grid; text-align: left;
+  position: static; transform: none; width: 100%; z-index: 3;
+  display: block; text-align: left;
+  margin-top: 50px; padding: 60px 0 90px;
 }
-.reveal-intro, .reveal-panel .mission-list { grid-area: 1 / 1; align-self: center; }
-.reveal-intro { opacity: 0; }
+.reveal-intro { text-align: center; padding-inline: 24px; margin: 0 auto 60px; max-width: 560px; }
+.reveal-intro .eyebrow-pill, .reveal-intro .hero-tags, .reveal-intro .hero-actions { justify-content: center; }
+.reveal-panel .mission-list { padding-inline: 24px; max-width: 560px; margin-inline: auto; }
+
+body.hero-scrub .reveal-panel {
+  position: absolute; top: 50%; right: 6%; transform: translateY(-50%);
+  width: min(460px, 42%); max-height: calc(100vh - 150px);
+  display: grid; margin-top: 0; padding: 0;
+}
+body.hero-scrub .reveal-intro,
+body.hero-scrub .reveal-panel .mission-list {
+  grid-area: 1 / 1; align-self: center;
+  max-width: none; margin: 0; padding-inline: 0; text-align: left;
+}
+body.hero-scrub .reveal-intro .eyebrow-pill,
+body.hero-scrub .reveal-intro .hero-tags,
+body.hero-scrub .reveal-intro .hero-actions { justify-content: flex-start; }
 .reveal-intro .eyebrow-pill { margin-bottom: 20px; }
 .reveal-intro h1 {
   font-size: clamp(1.8rem, 3.6vw, 2.6rem); color: #1a0f3d; letter-spacing: -0.01em;
@@ -309,7 +333,7 @@ body.menu-open { overflow: hidden; }
 .reveal-intro .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
 .mission-list { display: flex; flex-direction: column; gap: 32px; }
-.mission-item { display: grid; grid-template-columns: auto auto 1fr; align-items: center; gap: 20px; text-align: left; opacity: 0; }
+.mission-item { display: grid; grid-template-columns: auto auto 1fr; align-items: center; gap: 20px; text-align: left; }
 .mission-dots { display: flex; gap: 6px; }
 .mission-dots span { width: 6px; height: 6px; border-radius: 50%; background: rgba(26,15,61,0.5); }
 .mission-icon {
@@ -321,21 +345,6 @@ body.menu-open { overflow: hidden; }
 .mission-text strong { color: var(--accent-ink); font-family: var(--sans); font-weight: 800; }
 .mission-text p { font-size: 0.95rem; line-height: 1.55; color: rgba(26,15,61,0.96); margin: 0 0 8px; text-shadow: none; }
 .mission-meta { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.78rem; color: rgba(26,15,61,0.82); }
-
-/* mobile: no pin, no crossfade : everything just sits in normal flow, always visible */
-@media (max-width: 899px) {
-  .reveal-panel {
-    position: static; transform: none; width: 100%; display: block;
-    margin-top: 50px; padding: 60px 0 90px;
-    /* no background of its own: on phones too the colour comes from the single
-       body gradient, otherwise this block would re-introduce a visible band */
-    text-align: left;
-  }
-  .reveal-intro { opacity: 1 !important; text-align: center; padding-inline: 24px; margin-bottom: 60px; max-width: 520px; margin-inline: auto; }
-  .reveal-intro .eyebrow-pill, .reveal-intro .hero-tags, .reveal-intro .hero-actions { justify-content: center; }
-  .mission-list { padding-inline: 24px; max-width: 520px; margin-inline: auto; }
-  .mission-item { opacity: 1 !important; }
-}
 
 /* ══════════════════ SECTION HEADERS (light sections) ══════════════════ */
 .section-light { padding: 100px 0; }
@@ -446,7 +455,7 @@ body.menu-open { overflow: hidden; }
 /* dark-field microscopy: luminous, out-of-focus bodies drifting on a near-black ground */
 footer {
   position: relative; overflow: hidden;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255,255,255,0.8);
   padding: 70px 0 56px;
 }
 .df-field { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
@@ -471,7 +480,7 @@ footer .wrap { position: relative; z-index: 1; }
   margin-bottom: 18px;
 }
 .footer-mark { width: 30px; height: 50px; flex-shrink: 0; }
-.footer-sub { color: rgba(255,255,255,0.5); font-size: 0.9rem; }
+.footer-sub { color: rgba(255,255,255,0.68); font-size: 0.9rem; }
 .footer-title { font-family: var(--display); color: #fff; font-size: 1.3rem; margin-bottom: 16px; }
 /* the global link colour (--violet-1) is meant for the pale sections; on the
    near-black footer it sits at about 2.2:1, so links there take a light tint */
@@ -499,7 +508,7 @@ footer a:hover { color: #fff; }
 }
 #explore .sec-head { text-align: center; margin-bottom: 60px; }
 #explore .sec-head h2 { color: #fff; }
-#explore .sec-head p { color: rgba(255,255,255,0.66); }
+#explore .sec-head p { color: rgba(255,255,255,0.84); }
 
 .helix-nav {
   display: grid; grid-template-columns: 108px 1fr;
@@ -551,7 +560,7 @@ footer a:hover { color: #fff; }
   line-height: 1.15; transition: color .25s ease;
 }
 .helix-links a:hover .helix-label strong { color: var(--accent); }
-.helix-label span { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+.helix-label span { font-size: 0.82rem; color: rgba(255,255,255,0.78); }
 .helix-links a::after {
   content: "→"; margin-left: auto; font-size: 1.1rem;
   opacity: 0; transform: translateX(-6px);

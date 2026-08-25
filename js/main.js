@@ -322,7 +322,24 @@ if (!REDUCED && window.gsap && window.ScrollTrigger && isDesktop.matches) {
   const missionList = document.getElementById('missionList');
   if (dishStage && hero) {
     const missionItems = missionList ? missionList.querySelectorAll('.mission-item') : [];
-    if (missionItems.length) gsap.set(missionItems, { y: 26 });
+    // Switching to the pinned layout and hiding the two panes both happen here,
+    // never in the stylesheet. Anything that stops this block from running --
+    // GSAP not arriving from the CDN, a reduced-motion preference, a narrow
+    // window -- leaves the panel in normal flow with everything on screen,
+    // instead of stranding it at opacity 0 with nothing left to reveal it.
+    document.body.classList.add('hero-scrub');
+    gsap.set(revealIntro, { opacity: 0 });
+    if (missionItems.length) gsap.set(missionItems, { y: 26, opacity: 0 });
+
+    // Last line of defence: if ScrollTrigger never actually registers, undo the
+    // hiding rather than leave the panel blank.
+    setTimeout(() => {
+      if (!ScrollTrigger.getAll().length) {
+        document.body.classList.remove('hero-scrub');
+        gsap.set([revealIntro, ...missionItems].filter(Boolean), { clearProps: 'opacity,transform' });
+      }
+    }, 2500);
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: hero,
