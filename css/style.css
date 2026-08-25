@@ -9,13 +9,16 @@
   --darkfield-top: #170c30;
   --darkfield: #0c0520;
   --accent: #A94BF7;
+  /* one column for every block of running text on a page, so the hero, the
+     lists and the entries all share a left edge instead of stepping in and out */
+  --measure: 880px;
   /* accent text on the pale violet hero ground: #A94BF7 reads at ~1.4:1 there,
      this keeps the hue and clears 4.5:1 */
   --accent-ink: #421479;
   --accent-glow: #8b58ee;
   --ink: #231f20;
   --body: #4a4650;
-  --muted: #7a7580;
+  --muted: #5f5a68;
   --line: #e7e3ee;
   --paper: #ffffff;
   --paper-soft: #f7f5fb;
@@ -353,7 +356,7 @@ body.menu-open { overflow: hidden; }
 .project-meta { font-size: 0.78rem; font-weight: 600; color: var(--muted); }
 
 /* ---------- ENTRY LIST (research experience / education) ---------- */
-.entry-list { display: flex; flex-direction: column; gap: 0; max-width: 980px; margin-inline: auto; }
+.entry-list { display: flex; flex-direction: column; gap: 0; max-width: var(--measure); margin-inline: auto; }
 .entry {
   display: grid; grid-template-columns: 220px 1fr; gap: 36px;
   padding: 36px 0; border-top: 1px solid var(--line);
@@ -372,7 +375,7 @@ body.menu-open { overflow: hidden; }
 }
 
 /* ---------- RESEARCH OUTPUT (publications / talks) ---------- */
-.output-block { max-width: 880px; margin: 0 auto 46px; }
+.output-block { max-width: var(--measure); margin: 0 auto 46px; }
 .output-title { font-size: 1.05rem; font-family: var(--sans); font-weight: 800; color: var(--violet-1); margin-bottom: 18px; text-transform: uppercase; letter-spacing: 0.04em; }
 .output-row { padding: 22px 26px; background: var(--paper-soft); border-radius: var(--radius-lg); margin-bottom: 14px; }
 .output-name { font-size: 1rem; font-weight: 700; color: var(--ink); margin: 0 0 8px; line-height: 1.45; }
@@ -389,7 +392,7 @@ body.menu-open { overflow: hidden; }
 .lang-row strong { color: var(--ink); }
 
 /* ---------- MINI LIST (conferences, work experience, certifications) ---------- */
-.mini-list { display: flex; flex-direction: column; max-width: 900px; margin-inline: auto; }
+.mini-list { display: flex; flex-direction: column; max-width: var(--measure); margin-inline: auto; }
 .mini-row {
   display: grid; grid-template-columns: 150px 1fr; gap: 24px; align-items: baseline;
   padding: 18px 0; border-top: 1px solid var(--line);
@@ -410,8 +413,12 @@ body.menu-open { overflow: hidden; }
 @media (max-width: 1000px) { .two-col .mini-row { grid-template-columns: 1fr; gap: 6px; } }
 
 /* ---------- AWARDS ---------- */
-.award-list { display: flex; flex-direction: column; gap: 18px; max-width: 780px; margin-inline: auto; }
-.award-row { display: flex; align-items: center; gap: 20px; background: var(--paper-soft); border-radius: var(--radius-lg); padding: 24px 28px; }
+.award-list { display: flex; flex-direction: column; gap: 18px; max-width: var(--measure); margin-inline: auto; }
+/* a fixed first column for the date: as a flex row the pill sized itself to its
+   own text, so "a.y. 2026/2027" and "2023 - 2025" pushed the four award titles
+   to four different x positions. Top-aligned to match .entry-side elsewhere. */
+.award-row { display: grid; grid-template-columns: 158px 1fr; align-items: start; gap: 22px; background: var(--paper-soft); border-radius: var(--radius-lg); padding: 24px 28px; }
+.award-row .badge-date { justify-self: start; }
 .award-row .badge-date { font-size: 0.78rem; font-weight: 700; color: var(--violet-1); background: #fff; padding: 6px 14px; border-radius: var(--radius-pill); white-space: nowrap; }
 .award-row h4 { font-size: 1.02rem; font-family: var(--sans); font-weight: 800; color: var(--ink); margin: 0 0 4px; }
 .award-row p { margin: 0; font-size: 0.88rem; color: var(--muted); }
@@ -466,6 +473,10 @@ footer .wrap { position: relative; z-index: 1; }
 .footer-mark { width: 30px; height: 50px; flex-shrink: 0; }
 .footer-sub { color: rgba(255,255,255,0.5); font-size: 0.9rem; }
 .footer-title { font-family: var(--display); color: #fff; font-size: 1.3rem; margin-bottom: 16px; }
+/* the global link colour (--violet-1) is meant for the pale sections; on the
+   near-black footer it sits at about 2.2:1, so links there take a light tint */
+footer a { color: #cdb4ff; transition: color .2s ease; }
+footer a:hover { color: #fff; }
 .footer-links { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
 .footer-social { display: flex; gap: 12px; margin-top: 20px; }
 .footer-social a { width: 42px; height: 42px; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
@@ -557,10 +568,12 @@ footer .wrap { position: relative; z-index: 1; }
 
 /* ══════════════════ SUB-PAGES ══════════════════ */
 .page-hero {
-  padding: 150px 0 90px;
+  /* the following .section-light already opens with 100px, so a 90px tail here
+     left ~190px of empty violet between the intro line and the first entry */
+  padding: 150px 0 36px;
   color: #1a0f3d;
 }
-.page-hero .wrap { max-width: 880px; }
+.page-hero .wrap { max-width: calc(var(--measure) + 56px); }
 .back-link {
   display: inline-flex; align-items: center; gap: 9px;
   font-size: 0.86rem; font-weight: 700; color: #1a0f3d;
