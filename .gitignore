@@ -1,83 +1,27 @@
-# ============================================================================
-# Hugo Site .gitignore
-# ============================================================================
-
-# ============================================================================
-# Hugo Build Artifacts
-# ============================================================================
-
-# Generated site output
-public/
-
-# Hugo resources (processed assets)
-resources/
-
-# Hugo build lock
-.hugo_build.lock
-
-# Hugo stats
-hugo_stats.json
-
-# Auto-generated JS config
-**/assets/jsconfig.json
-
-# ============================================================================
-# Node.js & Package Managers
-# ============================================================================
-
-# Dependencies
-node_modules/
-
-# ============================================================================
-# Environment & Configuration
-# ============================================================================
-
-# Environment variables
-.env
-.env.local
-.env.*.local
-
-# ============================================================================
-# Generated Content
-# ============================================================================
-
-# Pagefind search index
-pagefind/
-static/pagefind/
-
-# ============================================================================
-# Operating System
-# ============================================================================
+# The site is hand-written static HTML — no build step, no dependencies.
+# Everything in the repo IS the published site.
 
 # macOS
 .DS_Store
 .DS_Store?
 ._*
 
-# Windows
+# Windows / Linux
 Thumbs.db
 Desktop.ini
-
-# Linux
 *~
 
-# ============================================================================
-# Logs & Temporary Files
-# ============================================================================
+# Editor / tooling local state
+.claude/
+.superpowers/
+.worktrees/
+.playwright-mcp/
+.vscode/
+.idea/
 
-*.log
-npm-debug.log*
-
-# Local tracking notes
+# Local notes that should not ship
 STATUS.md
 TODO.md
 
-# Local Git worktrees
-.worktrees/
-
-# Visual brainstorming artifacts
-.superpowers/
-
-
-# Claude Code local session files
-.claude/
+# Logs
+*.log

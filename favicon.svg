@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Mariagiulia Martinelli">
+  <!-- same double helix as the header brand mark (#helix in every page), drawn
+       on the site's own violet so it stays legible in a light or a dark tab bar -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8f7ad0"/>
+      <stop offset="1" stop-color="#4a3f6e"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#g)"/>
+  <g transform="translate(20 12) scale(1.0)"
+     fill="none" stroke="#ffffff" stroke-width="2.4"
+     stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 2C6 10 18 14 18 20C18 26 6 30 6 38"/>
+    <path d="M18 2C18 10 6 14 6 20C6 26 18 30 18 38"/>
+    <path d="M7.4 6.5h9.2M9.2 11.5h5.6M9.2 28.5h5.6M7.4 33.5h9.2"/>
+  </g>
+</svg>

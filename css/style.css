@@ -26,7 +26,18 @@
   --sans: 'Montserrat', system-ui, -apple-system, sans-serif;
   --radius-pill: 30px;
   --radius-lg: 26px;
+  /* height of the footer at this viewport, +10px of slack. The sub-page
+     gradient anchors its closing ramp to this, so the dark is already in place
+     where the footer's white text starts. Re-measure before changing:
+       document.querySelector('footer').getBoundingClientRect().height  */
+  --footer-h: 422px;
 }
+/* the footer re-flows four times on the way down to a phone, and each time it
+   gets taller; the gradient has to follow it. Measured on projects.html. */
+@media (max-width: 999px)  { :root { --footer-h: 490px; } }  /* 478 measured */
+@media (max-width: 700px)  { :root { --footer-h: 648px; } }  /* 628-635      */
+@media (max-width: 460px)  { :root { --footer-h: 696px; } }  /* 684          */
+@media (max-width: 380px)  { :root { --footer-h: 752px; } }  /* 740          */
 
 * { box-sizing: border-box; }
 html { scroll-behavior: auto; }
@@ -61,17 +72,24 @@ body {
    to a percentage: the sub-pages differ in length, so fixed percentages put the
    footer on pale violet on the short ones (projects, publications) and its white
    text disappeared. The 280px ramp sits entirely behind .page-nav, whose own
-   card is opaque paper, and is fully dark by the time the footer starts. */
+   card is opaque paper, and is fully dark by the time the footer starts.
+
+   Every stop is derived from --footer-h, because the footer is NOT a fixed
+   422px: it re-flows and grows as the viewport narrows. Measured heights on
+   projects.html — 422px at >=1000px, 478px at 760-999px, 628-635px at 500-700px,
+   684px at 390-460px, 740px at 320-380px. Hard-coding 420px meant that below
+   1000px the top of the footer sat on white-to-lavender and its white text
+   vanished. Redefine --footer-h per breakpoint (below), never the stops. */
 body.subpage {
   background: linear-gradient(180deg,
     #a8dcf0 0%,
     #b2a8f0 11%,
     #c0b6e4 19%,
     var(--paper) 27%,
-    var(--paper) calc(100% - 700px),
-    #c0b6e4 calc(100% - 580px),
-    #8478ac calc(100% - 500px),
-    #4a3f6e calc(100% - 420px));
+    var(--paper) calc(100% - var(--footer-h) - 280px),
+    #c0b6e4 calc(100% - var(--footer-h) - 160px),
+    #8478ac calc(100% - var(--footer-h) - 80px),
+    #4a3f6e calc(100% - var(--footer-h)));
 }
 /* every band that used to paint its own background is now see-through */
 #hero, #explore, #cta, .page-hero, .page-nav, footer,
@@ -353,7 +371,7 @@ body.hero-scrub .reveal-intro .hero-actions { justify-content: flex-start; }
 .sec-head p { color: var(--muted); font-size: 1.02rem; }
 
 /* ---------- PROJECT GRID ---------- */
-.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 26px; }
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 26px; }
 .project-card {
   background: var(--paper-soft); border-radius: var(--radius-lg); padding: 32px;
   transition: transform .25s ease, box-shadow .25s ease;
@@ -392,7 +410,7 @@ body.hero-scrub .reveal-intro .hero-actions { justify-content: flex-start; }
 .output-venue { font-size: 0.84rem; color: var(--muted); margin: 0; }
 
 /* ---------- SKILLS ---------- */
-.skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; }
+.skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 22px; }
 .skill-card { background: var(--paper-soft); border-radius: var(--radius-lg); padding: 28px; }
 .skill-card h4 { font-size: 1rem; font-family: var(--sans); font-weight: 800; color: var(--ink); margin: 0 0 12px; }
 .skill-card p { font-size: 0.9rem; color: var(--body); margin: 0; line-height: 1.65; }
@@ -665,7 +683,10 @@ footer a:hover { color: #fff; }
   .project-card, .skill-card { padding: 24px; }
   .output-row { padding: 20px 22px; }
   .output-block { margin-bottom: 34px; }
-  .award-row { flex-direction: column; align-items: flex-start; gap: 12px; padding: 22px 24px; }
+  /* .award-row is display:grid, so `flex-direction: column` did nothing here and
+     the 158px date column survived onto the phone, squeezing the title to ~52px
+     and pushing the row off the right edge. Collapse the grid instead. */
+  .award-row { grid-template-columns: 1fr; align-items: start; gap: 12px; padding: 22px 24px; }
   .entry { padding: 26px 0; }
   .entry-body h3 { font-size: 1.08rem; }
   .lang-row { flex-direction: column; gap: 16px; text-align: left; }
