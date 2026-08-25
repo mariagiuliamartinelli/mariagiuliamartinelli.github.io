@@ -10,6 +10,7 @@ education.html      titoli di studio + conferenze
 projects.html       6 progetti open source
 publications.html   pubblicazioni, manoscritti, contributi orali
 cv.html             premi, competenze, esperienza, certificazioni
+404.html            servita da GitHub per qualsiasi URL inesistente
 css/style.css       tutto il CSS
 js/main.js          tutto il JS (GSAP + ScrollTrigger dalla CDN cdnjs)
 Martinelli_Mariagiulia_CV.pdf
@@ -19,14 +20,22 @@ apple-touch-icon.png  180×180, iOS ignora le favicon SVG
 icon-512.png        512×512, per Android / PWA
 og-image.png        1200×630, anteprima quando il link viene condiviso
 .nojekyll           impedisce a GitHub di passare i file per Jekyll
-.github/workflows/deploy.yml   pubblica il repo così com'è su GitHub Pages
+sitemap.xml         le sei pagine, per i motori di ricerca
+robots.txt          consente l'indicizzazione, esclude il PDF, punta alla sitemap
+site.webmanifest    nome, colori e icone (è l'unico a referenziare icon-512.png)
+README.md           cosa è il sito, come si guarda, come si pubblica
+.github/workflows/deploy.yml   pubblica il repo così com'è (ora disarmato)
 ```
+
+`404.html` usa percorsi **root-assoluti** (`/css/style.css`): GitHub la serve
+anche per URL profondi come `/a/b/c`, dove i percorsi relativi si
+risolverebbero contro quella cartella inesistente e darebbero 404 a loro volta.
 
 ---
 
 ## Come guardare il sito (leggi prima di dire "non funziona")
 
-**Chrome tiene in cache l'`index.html` stesso.** Il numero di versione (`?v=27`)
+**Chrome tiene in cache l'`index.html` stesso.** Il numero di versione (`?v=28`)
 sta *dentro* l'HTML, quindi se il browser serve l'HTML vecchio continua a
 caricare anche il CSS vecchio, e le modifiche non si vedono. Questo ha già fatto
 perdere tempo una volta.
@@ -42,14 +51,14 @@ poi apri `http://localhost:8899/index.html?qualcosa` — la query finale salta l
 cache in modo garantito, senza scorciatoie da tastiera.
 
 **Dopo ogni modifica a `css/style.css` o `js/main.js`, alza il cache-buster in
-tutte e sei le pagine.** Ora è a `v=27`.
+tutte e sette le pagine.** Ora è a `v=28`.
 
 ```bash
 python3 - <<'EOF'
 import io, glob
 for f in sorted(glob.glob('*.html')):
     s = io.open(f, encoding='utf-8').read()
-    io.open(f,'w',encoding='utf-8').write(s.replace('?v=27','?v=28'))
+    io.open(f,'w',encoding='utf-8').write(s.replace('?v=28','?v=29'))
 EOF
 ```
 
@@ -202,6 +211,49 @@ già scuro. Non ha bisogno di `--footer-h`.
 a quel punto conviene passare quella sezione a inchiostro scuro. Non schiarire a
 occhio — calcola il contrasto.
 
+### Come misurare il contrasto senza prendere una cantonata
+
+`getComputedStyle(body).backgroundImage` restituisce le fermate **come sono
+scritte**, cioè con dentro `calc(100% - 702px)`. `parseFloat` su quella stringa
+dà `NaN`, e un parser ingenuo finisce per collassare tutte le fermate e
+restituire sempre l'ultimo colore. È già successo: una verifica dava "tutto a
+posto, peggio 5,19:1" mentre in realtà stava misurando "bianco su `#4a3f6e`"
+a prescindere dalla posizione, e nascondeva difetti a 1,9:1.
+
+Un parser corretto deve:
+
+1. risolvere `calc(100% - Npx)` come `altezzaDocumento - N`;
+2. compositare l'**alpha**: `rgba(26,15,61,0.12)` non è scuro, è il 12% di scuro
+   sopra il gradiente, e va calcolato;
+3. risalire gli antenati per trovare l'eventuale sfondo opaco che copre il
+   gradiente (le card `.page-nav`, `.project-card`…);
+4. saltare la piastra: `.dish` ha un `radial-gradient` scuro tutto suo, quindi
+   il testo bianco dentro sta benissimo anche se il gradiente del body lì è
+   chiaro. Ignorare questo dà falsi positivi su `.portrait-mark`.
+
+In alternativa, la verità assoluta: screenshot e campionamento dei pixel.
+
+### Difetti di contrasto già corretti — non tornare indietro
+
+| elemento | era | ora | come |
+|---|---|---|---|
+| `.nav-cta` "Contact Me" | 1,9:1 | 9,4:1 | `--hdr-cta-ink`, una variabile a parte |
+| `.cta-box h2` | 2,1:1 | 7,7:1 | bianco: `.cta-box` non ha uno sfondo suo |
+| `.entry-date` `.mini-date` `.output-title` | 3,2:1 | ≥6,2:1 | `--accent-ink` invece di `--violet-1` |
+| `.entry-org`, `.mini-row span` | 3,4:1 | ≥5,4:1 | `#3d3945` invece di `--muted` |
+| `#explore .eyebrow-pill--on-dark` | 3,3:1 | ≥4,8:1 | inchiostro bianco + pill più scura |
+
+Due trappole dentro questa tabella:
+
+- **`.nav-cta` ha bisogno di due inchiostri, non di uno.** A riposo la pill è
+  `rgba(26,15,61,0.12)`, che in cima alla pagina composita su azzurro chiaro; con
+  `.is-over-light` diventa `#231f20` opaca. Il testo deve seguire il fondo della
+  *pill*, non quello dell'header: da qui `--hdr-cta-ink`.
+- **`.eyebrow-pill--on-dark` sta su fondo chiaro nelle `.page-hero`** delle
+  sottopagine e del 404, dove l'inchiostro scuro è quello giusto. `#explore` è
+  l'unico punto dove la classe sta davvero sul scuro: la regola è circoscritta a
+  `#explore`, non applicata alla classe.
+
 Altri colori con una ragione dietro:
 
 - `--accent-ink: #421479` — l'accent `#A94BF7` su viola pallido dà ~1,4:1. Usato
@@ -323,6 +375,13 @@ L'autenticazione col remote è via SSH, con una chiave dedicata
   una regressione mobile, succede a tutte le larghezze ed è il comportamento
   normale di un header trasparente in `position: fixed`. Se dà fastidio, la
   soluzione è nascondere l'header quando si scorre verso il basso.
+- **`#hero` e `#explore` della home restano fra 3,3:1 e 4,1:1.** Riguarda i
+  bianchi semi-trasparenti (`rgba(255,255,255,0.78)` di `.helix-label span`), il
+  paragrafo e l'h2 di `#explore`, e due righe di `#hero` a 320px. Sono gli unici
+  gruppi ancora sotto 4,5:1 dopo la scansione di 3985 elementi su 7 pagine × 12
+  larghezze. Non li ho toccati perché `#explore` è la sezione su cui è tarata
+  tutta la scala di colore del sito: alzarne il contrasto significa decidere se
+  scurire il fondo lì o portare quei testi a bianco pieno.
 - **GSAP arriva da cdnjs.** Il fallback è verificato e la pagina resta usabile,
   ma il sito dipende da un terzo. Se vuoi toglierlo del tutto, servono ~40 righe
   di `IntersectionObserver` al posto di ScrollTrigger.

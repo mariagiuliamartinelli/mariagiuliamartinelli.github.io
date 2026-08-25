@@ -1,0 +1,13 @@
+{
+  "name": "Mariagiulia Martinelli",
+  "short_name": "M. Martinelli",
+  "description": "Bioarchaeology, palaeogenetics and conservation science.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#a8dcf0",
+  "theme_color": "#4a3f6e",
+  "icons": [
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

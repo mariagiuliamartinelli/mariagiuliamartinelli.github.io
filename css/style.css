@@ -107,6 +107,11 @@ section { position: relative; }
 }
 .eyebrow-pill--on-dark { background: rgba(26,15,61,0.06); color: #1a0f3d; border: 1px solid rgba(26,15,61,0.18); }
 .eyebrow-pill::before { content: "●"; color: var(--accent); font-size: 0.55rem; }
+/* #explore is the one place --on-dark really does sit on dark: its ground is
+   ~rgb(116,95,166), where the dark ink of the base rule measured 3.3:1. Only
+   the ink flips — lightening the pill itself would raise the backdrop and
+   make it worse (4.0:1), keeping it dark leaves white at 5.8:1. */
+#explore .eyebrow-pill--on-dark { color: #fff; background: rgba(26,15,61,0.28); border-color: rgba(255,255,255,0.3); }
 
 /* ---------- BUTTONS ---------- */
 .btn {
@@ -135,11 +140,13 @@ section { position: relative; }
   --hdr-ink: #1a0f3d;
   --hdr-line: rgba(26,15,61,0.5);
   --hdr-cta-bg: rgba(26,15,61,0.12);
+  --hdr-cta-ink: #1a0f3d;
 }
 #header.is-over-light {
   --hdr-ink: #231f20;
   --hdr-line: #231f20;
   --hdr-cta-bg: #231f20;
+  --hdr-cta-ink: #fff;
 }
 #header .wrap { display: flex; align-items: center; justify-content: space-between; }
 .brand {
@@ -156,11 +163,19 @@ section { position: relative; }
   stroke-linecap: round; stroke-linejoin: round;
 }
 .header-right { display: flex; align-items: center; gap: 18px; }
+/* The pill's ink has to follow its own background, not the header's. Its resting
+   background is rgba(26,15,61,0.12) — 12% of dark over whatever the gradient is
+   doing — so at the top of every page it composites to pale blue-grey
+   rgb(151,193,218), and the white text it used to carry measured 1.9:1 there.
+   Over the light band `.is-over-light` swaps in an opaque #231f20 pill, where
+   white is right. Hence a second variable rather than a single colour. */
 .nav-cta {
   padding: 11px 22px; border-radius: var(--radius-pill);
-  background: var(--hdr-cta-bg); color: #fff !important; font-weight: 700;
+  background: var(--hdr-cta-bg); color: var(--hdr-cta-ink) !important; font-weight: 700;
 }
-.nav-cta:hover { background: var(--accent) !important; }
+/* --accent on hover left the label at ~4.2:1 either way round; --violet-1 keeps
+   the palette and carries white at 6.4:1 */
+.nav-cta:hover { background: var(--violet-1) !important; color: #fff !important; }
 
 /* ---------- Hamburger + side menu ---------- */
 .hamburger {
@@ -390,8 +405,12 @@ body.hero-scrub .reveal-intro .hero-actions { justify-content: flex-start; }
 }
 .entry:last-child { border-bottom: 1px solid var(--line); }
 .entry-side { display: flex; flex-direction: column; gap: 6px; }
-.entry-date { font-size: 0.82rem; font-weight: 700; color: var(--violet-1); }
-.entry-org { font-size: 0.82rem; color: var(--muted); }
+/* The first entry of every list falls inside the violet-to-white band of the
+   sub-page gradient, at every width — 3.2:1 at 660px and still 3.6:1 at 1440.
+   --accent-ink is the token kept for precisely this ground; on the white
+   further down it reads even better than --violet-1 did. Same for the greys. */
+.entry-date { font-size: 0.82rem; font-weight: 700; color: var(--accent-ink); }
+.entry-org { font-size: 0.82rem; color: #3d3945; }
 .entry-body h3 { font-size: 1.2rem; font-family: var(--sans); font-weight: 800; color: var(--ink); margin: 0 0 14px; line-height: 1.35; }
 .entry-body h3 em { font-style: italic; }
 .entry-body ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
@@ -403,7 +422,7 @@ body.hero-scrub .reveal-intro .hero-actions { justify-content: flex-start; }
 
 /* ---------- RESEARCH OUTPUT (publications / talks) ---------- */
 .output-block { max-width: var(--measure); margin: 0 auto 46px; }
-.output-title { font-size: 1.05rem; font-family: var(--sans); font-weight: 800; color: var(--violet-1); margin-bottom: 18px; text-transform: uppercase; letter-spacing: 0.04em; }
+.output-title { font-size: 1.05rem; font-family: var(--sans); font-weight: 800; color: var(--accent-ink); margin-bottom: 18px; text-transform: uppercase; letter-spacing: 0.04em; }
 .output-row { padding: 22px 26px; background: var(--paper-soft); border-radius: var(--radius-lg); margin-bottom: 14px; }
 .output-name { font-size: 1rem; font-weight: 700; color: var(--ink); margin: 0 0 8px; line-height: 1.45; }
 .output-authors { font-size: 0.88rem; color: var(--body); margin: 0 0 4px; }
@@ -425,9 +444,9 @@ body.hero-scrub .reveal-intro .hero-actions { justify-content: flex-start; }
   padding: 18px 0; border-top: 1px solid var(--line);
 }
 .mini-row:last-child { border-bottom: 1px solid var(--line); }
-.mini-date { font-size: 0.8rem; font-weight: 700; color: var(--violet-1); white-space: nowrap; }
+.mini-date { font-size: 0.8rem; font-weight: 700; color: var(--accent-ink); white-space: nowrap; }
 .mini-row strong { display: block; font-size: 0.96rem; color: var(--ink); font-weight: 700; line-height: 1.45; margin-bottom: 3px; }
-.mini-row span:not(.mini-date) { font-size: 0.85rem; color: var(--muted); }
+.mini-row span:not(.mini-date) { font-size: 0.85rem; color: #3d3945; }
 @media (max-width: 700px) {
   .mini-row { grid-template-columns: 1fr; gap: 6px; }
 }
@@ -462,7 +481,10 @@ body.hero-scrub .reveal-intro .hero-actions { justify-content: flex-start; }
   border: 1.5px solid var(--line); border-radius: 50px;
   display: flex; flex-direction: column; align-items: center; gap: 26px;
 }
-.cta-box h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); color: var(--ink); }
+/* .cta-box paints no background of its own, so this heading sits straight on
+   the body gradient, which is dark violet by then: --ink measured 2.1:1.
+   White matches the rest of the type over the dark field and gives 7.7:1. */
+.cta-box h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); color: #fff; }
 
 /* ---------- WAVE DIVIDER ---------- */
 /* the wave divider is gone: it lived inside .wrap (max-width 1180px) so it never
@@ -690,6 +712,7 @@ footer a:hover { color: #fff; }
   .entry { padding: 26px 0; }
   .entry-body h3 { font-size: 1.08rem; }
   .lang-row { flex-direction: column; gap: 16px; text-align: left; }
+
 
   /* sub-pages */
   .page-hero { padding: 108px 0 62px; }

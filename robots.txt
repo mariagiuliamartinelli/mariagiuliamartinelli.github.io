@@ -1,0 +1,9 @@
+# Everything on this site is meant to be found.
+User-agent: *
+Allow: /
+
+# the CV is linked from every page, but it is the PDF of a real person's
+# record — keep it out of search results and let people reach it from the site
+Disallow: /Martinelli_Mariagiulia_CV.pdf
+
+Sitemap: https://mariagiuliamartinelli.github.io/sitemap.xml

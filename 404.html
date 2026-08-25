@@ -3,31 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Open Source · Mariagiulia Martinelli</title>
-<meta name="description" content="Open source pipelines by Mariagiulia Martinelli: Etruscan-Analysis, systematic review framework, kraken2 comparison and more.">
+<title>Page not found · Mariagiulia Martinelli</title>
+<meta name="description" content="That page does not exist on Mariagiulia Martinelli's site.">
+<!-- a 404 must never be indexed, so it carries no canonical and no Open Graph -->
+<meta name="robots" content="noindex, follow">
 
-<link rel="canonical" href="https://mariagiuliamartinelli.github.io/projects.html">
-
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#4a3f6e">
 
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Mariagiulia Martinelli">
-<meta property="og:locale" content="en_GB">
-<meta property="og:url" content="https://mariagiuliamartinelli.github.io/projects.html">
-<meta property="og:title" content="Open Source · Mariagiulia Martinelli">
-<meta property="og:description" content="Open source pipelines by Mariagiulia Martinelli: Etruscan-Analysis, systematic review framework, kraken2 comparison and more.">
-<meta property="og:image" content="https://mariagiuliamartinelli.github.io/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Mariagiulia Martinelli — bioarchaeology, palaeogenetics and conservation science">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Open Source · Mariagiulia Martinelli">
-<meta name="twitter:description" content="Open source pipelines by Mariagiulia Martinelli: Etruscan-Analysis, systematic review framework, kraken2 comparison and more.">
-<meta name="twitter:image" content="https://mariagiuliamartinelli.github.io/og-image.png">
-<link rel="stylesheet" href="css/style.css?v=28">
+<!-- every path here is root-absolute on purpose: GitHub Pages serves this file
+     for any missing URL, including deep ones like /a/b/c, and relative paths
+     would resolve against that fake directory and 404 in turn -->
+<link rel="stylesheet" href="/css/style.css?v=28">
 </head>
 <body class="subpage">
 
@@ -41,7 +30,7 @@
 
 <header id="header">
   <div class="wrap">
-    <a href="index.html" class="brand" aria-label="Back to home">
+    <a href="/index.html" class="brand" aria-label="Back to home">
       <svg class="brand-mark" aria-hidden="true"><use href="#helix"/></svg>
       <span class="brand-name">Mariagiulia Martinelli</span>
     </a>
@@ -57,12 +46,12 @@
 <nav id="side-menu" class="side-menu" aria-hidden="true">
   <button class="side-menu__close" id="side-menu-close" aria-label="Close menu">✕</button>
   <ul class="side-menu__links">
-    <li><a href="research.html">Research</a></li>
-    <li><a href="education.html">Education</a></li>
-    <li><a href="projects.html" aria-current="page">Open Source</a></li>
-    <li><a href="publications.html">Publications</a></li>
-    <li><a href="cv.html">Awards &amp; Skills</a></li>
-    <li><a href="Martinelli_Mariagiulia_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a></li>
+    <li><a href="/research.html">Research</a></li>
+    <li><a href="/education.html">Education</a></li>
+    <li><a href="/projects.html">Open Source</a></li>
+    <li><a href="/publications.html">Publications</a></li>
+    <li><a href="/cv.html">Awards &amp; Skills</a></li>
+    <li><a href="/Martinelli_Mariagiulia_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -70,61 +59,21 @@
 
 <section class="page-hero">
   <div class="wrap">
-    <a href="index.html" class="back-link"><span aria-hidden="true">←</span> Back to home</a>
-    <span class="eyebrow-pill eyebrow-pill--on-dark">Open Source</span>
-    <h1>Pipelines and tools I write and release</h1>
-    <p>Reproducible analysis, openly published: from cranial collections to HPC classifier benchmarks.</p>
+    <a href="/index.html" class="back-link"><span aria-hidden="true">←</span> Back to home</a>
+    <span class="eyebrow-pill eyebrow-pill--on-dark">Error 404</span>
+    <h1>This page doesn't exist</h1>
+    <p>The link may be out of date, or the address mistyped. Everything on the site is one click away below.</p>
   </div>
 </section>
 
-<section id="projects" class="section-light">
-  <div class="wrap">
-
-    <div class="project-grid">
-      <div class="project-card" data-reveal>
-        <span class="tag">R</span>
-        <h3>Etruscan-Analysis: Bioarchaeological Pipeline</h3>
-        <p>Pipeline for a historical cranial collection: record standardisation and auditing, anatomical heat maps of dental pathology and taphonomic damage, stress markers by age cohort, and interactive provenance mapping. Ships with a mock dataset for reuse.</p>
-        <span class="project-meta">tidyverse · sf · leaflet</span>
-      </div>
-      <div class="project-card" data-reveal>
-        <span class="tag">R</span>
-        <h3>Bioarchaeological-Systematic-Review</h3>
-        <p>Framework for literature data mining and statistical analysis of osteological stress markers in non-adult populations: 28 stress indicators, co-occurrence matrices, chronological parsing of site intervals, and non-parametric hypothesis testing. Analytical backbone of the systematic review.</p>
-        <span class="project-meta">Non-parametric testing</span>
-      </div>
-      <div class="project-card" data-reveal>
-        <span class="tag">R · Shell</span>
-        <h3>kraken2-krakenuniq-comparison</h3>
-        <p>R and shell scripts for the Valencia aDNA comparison on the Dardel HPC cluster: SLURM job arrays, abundance-matrix construction, cross-tool validation and pathogen screening.</p>
-        <span class="project-meta">SLURM · PDC / KTH</span>
-      </div>
-      <div class="project-card" data-reveal>
-        <span class="tag">JavaScript</span>
-        <h3>CO<sub>2</sub> Time Machine</h3>
-        <p>Interactive 3D globe for temporal and spatial mapping of environmental data. Developed for <em>Communicating Environmental Science</em> (MI4008), Stockholm University.</p>
-        <span class="project-meta">Stockholm University</span>
-      </div>
-      <div class="project-card" data-reveal>
-        <span class="tag">HTML</span>
-        <h3>scienze-abc</h3>
-        <p>Archive and graphical prototype for the testimonial section of <em>Storie dietro Scienze ABC</em>, the science-outreach project of Sapienza.</p>
-        <span class="project-meta">scienzeabcsapienza.it</span>
-      </div>
-      <div class="project-card" data-reveal>
-        <span class="tag">R · to be released</span>
-        <h3>Biofilm Metagenomics Workflow (Casino Algardi)</h3>
-        <p>R pipeline for 16S rRNA and ITS amplicon analysis of biofilms on stone surfaces: phyloseq diversity analysis and functional-group classification.</p>
-        <span class="project-meta">phyloseq · vegan</span>
-      </div>
-    </div>
-  </div>
-</section>
-
+<!-- .page-nav is not decoration here: the sub-page gradient turns dark over the
+     280px above the footer, and this section is what occupies that band on
+     every other page. Its cards are opaque paper, so the ramp stays behind
+     them and never runs under the message above. See CLAUDE.md, invariant 2. -->
 <section class="page-nav">
   <div class="wrap">
-    <a href="education.html"><span>Previous</span><strong>Education</strong></a>
-    <a href="publications.html" class="is-next"><span>Next</span><strong>Publications</strong></a>
+    <a href="/index.html"><span>Start here</span><strong>Home</strong></a>
+    <a href="/research.html" class="is-next"><span>Or go to</span><strong>Research</strong></a>
   </div>
 </section>
 
@@ -169,6 +118,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-<script src="js/main.js?v=28"></script>
+<script src="/js/main.js?v=28"></script>
 </body>
 </html>
