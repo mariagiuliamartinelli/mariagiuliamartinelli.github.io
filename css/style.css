@@ -47,13 +47,13 @@ body {
      purple arrive that early dropped them to about 3.9:1 against their ground.
      The saturated stop now lands under #explore, whose type is white. */
   background: linear-gradient(180deg,
-    #8fd0ec 0%,
-    #a294ef 15%,
-    #a48ff0 30%,
-    #9760dd 48%,
-    #7256b4 64%,
-    #4b3c81 82%,
-    #322558 100%);
+    #a8dcf0 0%,
+    #b2a8f0 16%,
+    #b2a6ee 32%,
+    #957ac8 46%,
+    #7b64ae 56%,
+    #5f5090 74%,
+    #4a3f6e 100%);
 }
 /* sub-pages need a light middle for the body copy, so the same single gradient
    opens violet, resolves to white across the content, then closes dark again.
@@ -64,14 +64,14 @@ body {
    card is opaque paper, and is fully dark by the time the footer starts. */
 body.subpage {
   background: linear-gradient(180deg,
-    #8fd0ec 0%,
-    #a294ef 11%,
-    #a99ad6 19%,
+    #a8dcf0 0%,
+    #b2a8f0 11%,
+    #c0b6e4 19%,
     var(--paper) 27%,
     var(--paper) calc(100% - 700px),
-    #a99ad6 calc(100% - 580px),
-    #6a5498 calc(100% - 500px),
-    #322558 calc(100% - 420px));
+    #c0b6e4 calc(100% - 580px),
+    #8478ac calc(100% - 500px),
+    #4a3f6e calc(100% - 420px));
 }
 /* every band that used to paint its own background is now see-through */
 #hero, #explore, #cta, .page-hero, .page-nav, footer,
