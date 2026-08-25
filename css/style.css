@@ -9,6 +9,9 @@
   --darkfield-top: #170c30;
   --darkfield: #0c0520;
   --accent: #A94BF7;
+  /* accent text on the pale violet hero ground: #A94BF7 reads at ~1.4:1 there,
+     this keeps the hue and clears 4.5:1 */
+  --accent-ink: #421479;
   --accent-glow: #8b58ee;
   --ink: #231f20;
   --body: #4a4650;
@@ -35,13 +38,18 @@ body {
   font-size: 17px;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
-  /* home: descends from light blue to purple/dark */
+  /* home: descends from light blue to purple/dark. The pale periwinkle is held
+     through the whole pinned hero (which sweeps the top ~36% of the document)
+     because the intro copy and the mission list are dark ink: letting the vivid
+     purple arrive that early dropped them to about 3.9:1 against their ground.
+     The saturated stop now lands under #explore, whose type is white. */
   background: linear-gradient(180deg,
     #87CEEB 0%,
-    #9b8ced 16%,
-    #8a2be2 40%,
-    #4a2b8f 58%,
-    #1d1046 80%,
+    #9b8ced 15%,
+    #9d86e8 30%,
+    #8a2be2 48%,
+    #4a2b8f 64%,
+    #1d1046 82%,
     #0c0520 100%);
 }
 /* sub-pages need a light middle for the body copy, so the same single gradient
@@ -260,16 +268,18 @@ body.menu-open { overflow: hidden; }
 }
 .dish-hint {
   position: absolute; bottom: 5%; left: 50%; transform: translateX(-50%); z-index: 6;
-  font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.6); white-space: nowrap;
+  font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.78); white-space: nowrap;
 }
 /* initials floating on the glass, no ring or box around them */
+/* the initials sit on the dark agar inside the dish, so they are light ink:
+   dark-on-dark left them all but invisible */
 .portrait-mark {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
   z-index: 6; pointer-events: none;
   font-family: var(--display); font-size: clamp(1.6rem, 3.6vw, 2.4rem);
-  color: rgba(26,15,61,0.7); text-shadow: none;
+  color: rgba(255,255,255,0.86); text-shadow: 0 2px 14px rgba(8,3,26,0.5);
 }
-.scroll-hint { font-size: 0.8rem; font-weight: 700; color: rgba(26,15,61,0.8); display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 10px; }
+.scroll-hint { font-size: 0.8rem; font-weight: 700; color: rgba(26,15,61,0.92); display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 10px; }
 .scroll-hint::after { content: "⌄"; font-size: 1.2rem; animation: bob 1.6s ease-in-out infinite; }
 @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
 
@@ -289,8 +299,8 @@ body.menu-open { overflow: hidden; }
   font-size: clamp(1.8rem, 3.6vw, 2.6rem); color: #1a0f3d; letter-spacing: -0.01em;
   line-height: 1.14; margin: 0 0 18px;
 }
-.reveal-intro h1 em { font-style: normal; color: var(--accent); }
-.reveal-intro .hero-summary { font-size: 1rem; color: rgba(26,15,61,0.82); margin-bottom: 22px; }
+.reveal-intro h1 em { font-style: normal; color: var(--accent-ink); }
+.reveal-intro .hero-summary { font-size: 1rem; color: rgba(26,15,61,0.92); margin-bottom: 22px; }
 .reveal-intro .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
 .reveal-intro .hero-tag { font-size: 0.82rem; font-weight: 600; color: #1a0f3d; background: rgba(26,15,61,0.06); border: 1px solid rgba(26,15,61,0.18); padding: 7px 14px; border-radius: var(--radius-pill); }
 .reveal-intro .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
@@ -298,16 +308,16 @@ body.menu-open { overflow: hidden; }
 .mission-list { display: flex; flex-direction: column; gap: 32px; }
 .mission-item { display: grid; grid-template-columns: auto auto 1fr; align-items: center; gap: 20px; text-align: left; opacity: 0; }
 .mission-dots { display: flex; gap: 6px; }
-.mission-dots span { width: 6px; height: 6px; border-radius: 50%; background: rgba(26,15,61,0.35); }
+.mission-dots span { width: 6px; height: 6px; border-radius: 50%; background: rgba(26,15,61,0.5); }
 .mission-icon {
   width: 60px; height: 60px; border-radius: 50%; border: 1.5px solid rgba(26,15,61,0.2);
   display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; overflow: hidden;
   background: rgba(26,15,61,0.06);
 }
 .mission-icon svg { width: 25px; height: 25px; stroke: #1a0f3d; fill: none; }
-.mission-text strong { color: var(--accent); font-family: var(--sans); font-weight: 800; }
-.mission-text p { font-size: 0.95rem; line-height: 1.55; color: rgba(26,15,61,0.9); margin: 0 0 8px; text-shadow: none; }
-.mission-meta { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.76rem; color: rgba(26,15,61,0.65); }
+.mission-text strong { color: var(--accent-ink); font-family: var(--sans); font-weight: 800; }
+.mission-text p { font-size: 0.95rem; line-height: 1.55; color: rgba(26,15,61,0.96); margin: 0 0 8px; text-shadow: none; }
+.mission-meta { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.78rem; color: rgba(26,15,61,0.82); }
 
 /* mobile: no pin, no crossfade : everything just sits in normal flow, always visible */
 @media (max-width: 899px) {
@@ -465,9 +475,11 @@ footer .wrap { position: relative; z-index: 1; }
 /* ---------- MOTION ---------- */
 [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.16,1,.3,1); }
 [data-reveal].in { opacity: 1; transform: none; }
-.hero-inner > * { opacity: 0; transition: opacity .6s ease; }
-body.motion-ready .hero-inner > * { opacity: 1; }
-body:not(.motion-enabled) .hero-inner > * { opacity: 1; }
+/* The hero is visible on its own. Its opacity is never gated on a script
+   running or on an animation callback firing: GSAP fades it in from an inline
+   opacity it manages itself, so with no JS, slow JS or a throttled background
+   tab the dish and the scroll hint are simply there. */
+.hero-inner > * { opacity: 1; }
 
 /* ══════════════════ HELIX NAVIGATION HUB ══════════════════ */
 #explore {

@@ -296,13 +296,18 @@ if (!REDUCED && window.gsap) {
 }
 
 // ---------- Hero entrance ----------
-document.body.classList.add('motion-enabled');
+// Whether the hero is legible must never depend on this animation running.
+// It used to: the CSS held .hero-inner > * at opacity 0 and only an onComplete
+// callback turned it back on, so a tab opened in the background (where
+// requestAnimationFrame is throttled and the timeline never completes) showed
+// an empty hero for good. The entrance now moves the elements and nothing else
+// : if the ticker never runs they sit 26px low, which nobody notices, instead
+// of being invisible or stranded half way through a fade.
+document.body.classList.add('motion-enabled', 'motion-ready');
 if (!REDUCED && window.gsap) {
   const items = document.querySelectorAll('.hero-inner > *');
   gsap.timeline({ defaults: { ease: 'power3.out' } })
-    .from(items, { y: 26, duration: 0.7, stagger: 0.09, onComplete: () => document.body.classList.add('motion-ready') });
-} else {
-  document.body.classList.add('motion-ready');
+    .from(items, { y: 26, duration: 0.7, stagger: 0.09 });
 }
 
 // ---------- Pinned scroll sequence ----------
