@@ -257,9 +257,19 @@ lo stesso gradiente e i font del sito e fanne uno screenshot a quella misura.
 
 ## Deploy
 
-Pages è servito da GitHub Actions, non dal branch. `.github/workflows/deploy.yml`
-fa checkout, `upload-pages-artifact` con `path: '.'` e `deploy-pages`: nessun
-build, il repo **è** il sito.
+**Il sito non è ancora online, ed è voluto.** Il workflow è disarmato: il
+trigger `push` è commentato e `deploy.yml` parte solo a mano dalla tab Actions.
+Pushare non pubblica niente.
+
+Per pubblicare davvero servono tre cose insieme:
+
+1. riattivare le due righe `push:` in `.github/workflows/deploy.yml`
+2. rendere il repo **pubblico** — Pages non serve un repo privato con un piano
+   gratuito, e un repo `<utente>.github.io` privato semplicemente non risponde
+3. **Settings → Pages → Source** su **GitHub Actions**, non su *Deploy from a branch*
+
+`.github/workflows/deploy.yml` fa checkout, `upload-pages-artifact` con
+`path: '.'` e `deploy-pages`: nessun build, il repo **è** il sito.
 
 Ha sostituito il workflow Hugo Blox che stava qui prima e che girava
 `hugo --minify`: dopo la rimozione del sito Hugo quel workflow sarebbe fallito a
@@ -277,18 +287,30 @@ Se il deploy non parte, controlla in **Settings → Pages** che *Source* sia
 
 ```
 branch di lavoro:  redesign/static-site
-branch pubblicato: main
-remote:            github.com/mariagiuliamartinelli/mariagiuliamartinelli.github.io
+branch principale: main  (ha il merge, è quello buono)
+remote:            git@github.com:mariagiuliamartinelli/mariagiuliamartinelli.github.io  (SSH)
 ```
 
-Il sito Hugo precedente (258 file) è stato rimosso dal merge, per scelta
-esplicita. Resta comunque recuperabile dalla storia: l'ultimo commit in cui
-esisteva è **d7c61d3** (`Update scienze-abc testimonials and photos`).
+**Non esiste nessun sito Hugo online.** Il `CLAUDE.md` precedente dava per
+scontato che `mariagiuliamartinelli.github.io` fosse pubblicato con Hugo: è
+falso, quell'URL risponde 404 e il repo non esisteva proprio. `origin/main`
+puntava a `5879dee`, un commit che non si trova in nessun repo raggiungibile
+dall'account — la cartella era stata clonata da un repo poi cancellato o
+rinominato, e il remote era stato impostato in previsione di un repo mai creato.
+
+Conseguenza pratica: il merge che rimuove i 258 file Hugo non ha tolto niente a
+nessuno, perché non c'era niente di pubblicato. La storia Hugo resta comunque
+fra gli antenati di `main`: l'ultimo commit in cui quei file esistevano è
+**d7c61d3** (`Update scienze-abc testimonials and photos`).
 
 ```bash
 git show d7c61d3 --stat          # cosa c'era
 git checkout d7c61d3 -- <file>   # ripescare un singolo file
 ```
+
+L'autenticazione col remote è via SSH, con una chiave dedicata
+(`~/.ssh/id_ed25519_github`, voce `Host github.com` in `~/.ssh/config`, con
+`IdentitiesOnly yes` per non confonderla con quella del PDC).
 
 ---
 

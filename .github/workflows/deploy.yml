@@ -4,11 +4,19 @@
 # It replaces the Hugo Blox workflow that used to live here, which ran
 # `hugo --minify` and would now fail — there is no hugoblox.yaml and no
 # content/ directory any more.
+#
+# DISARMED ON PURPOSE. The site is not meant to go online yet, so the automatic
+# `push` trigger is commented out and this workflow only runs when someone
+# starts it by hand from the Actions tab. Nothing gets published by pushing.
+#
+# To go live: uncomment the two `push` lines below, make the repository public
+# (Pages does not serve a private repo on a free plan) and set
+# Settings -> Pages -> Source to "GitHub Actions".
 name: Deploy site to GitHub Pages
 
 on:
-  push:
-    branches: ['main']
+  # push:
+  #   branches: ['main']
   workflow_dispatch:
 
 permissions:
