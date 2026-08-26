@@ -338,7 +338,7 @@ body.hero-scrub #hero { overflow: hidden; }
   margin-top: 50px; padding: 60px 0 90px;
 }
 .reveal-intro { text-align: center; padding-inline: 24px; margin: 0 auto 60px; max-width: 560px; }
-.reveal-intro .eyebrow-pill, .reveal-intro .hero-tags, .reveal-intro .hero-actions { justify-content: center; }
+.reveal-intro .eyebrow-pill, .reveal-intro .hero-actions { justify-content: center; }
 .reveal-panel .mission-list { padding-inline: 24px; max-width: 560px; margin-inline: auto; }
 
 body.hero-scrub .reveal-panel {
@@ -352,7 +352,6 @@ body.hero-scrub .reveal-panel .mission-list {
   max-width: none; margin: 0; padding-inline: 0; text-align: left;
 }
 body.hero-scrub .reveal-intro .eyebrow-pill,
-body.hero-scrub .reveal-intro .hero-tags,
 body.hero-scrub .reveal-intro .hero-actions { justify-content: flex-start; }
 .reveal-intro .eyebrow-pill { margin-bottom: 20px; }
 .reveal-intro h1 {
@@ -361,8 +360,6 @@ body.hero-scrub .reveal-intro .hero-actions { justify-content: flex-start; }
 }
 .reveal-intro h1 em { font-style: normal; color: var(--accent-ink); }
 .reveal-intro .hero-summary { font-size: 1rem; color: rgba(26,15,61,0.92); margin-bottom: 22px; }
-.reveal-intro .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
-.reveal-intro .hero-tag { font-size: 0.82rem; font-weight: 600; color: #1a0f3d; background: rgba(26,15,61,0.06); border: 1px solid rgba(26,15,61,0.18); padding: 7px 14px; border-radius: var(--radius-pill); }
 .reveal-intro .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
 .mission-list { display: flex; flex-direction: column; gap: 32px; }
@@ -600,7 +597,6 @@ footer a:hover { color: #fff; }
   line-height: 1.15; transition: color .25s ease;
 }
 .helix-links a:hover .helix-label strong { color: var(--accent); }
-.helix-label span { font-size: 0.82rem; color: rgba(255,255,255,0.78); }
 .helix-links a::after {
   content: "→"; margin-left: auto; font-size: 1.1rem;
   opacity: 0; transform: translateX(-6px);
@@ -676,7 +672,6 @@ footer a:hover { color: #fff; }
   .reveal-intro { padding-inline: 20px; margin-bottom: 46px; }
   .reveal-intro h1 { font-size: 1.65rem; }
   .reveal-intro .hero-summary { font-size: 0.95rem; }
-  .hero-tag { font-size: 0.78rem; padding: 7px 13px; }
   .hero-actions { width: 100%; }
   .btn { padding: 14px 22px; font-size: 0.9rem; }
 
@@ -697,7 +692,6 @@ footer a:hover { color: #fff; }
   .helix-connector { width: 22px; }
   .helix-links a:hover .helix-connector { width: 30px; }
   .helix-label strong { font-size: 1.08rem; }
-  .helix-label span { font-size: 0.78rem; }
 
   /* generic sections */
   .section-light { padding: 64px 0; }

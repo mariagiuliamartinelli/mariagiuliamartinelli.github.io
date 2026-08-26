@@ -33,7 +33,7 @@ skips the browser cache, which otherwise serves a stale `index.html` and, with
 it, a stale stylesheet.
 
 **After editing `css/style.css` or `js/main.js`, bump the `?v=` cache-buster in
-every HTML file.** It is at `v=27`.
+every HTML file.** It is at `v=29`.
 
 ## Deployment
 
