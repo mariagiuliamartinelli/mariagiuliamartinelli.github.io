@@ -309,16 +309,22 @@ lo stesso gradiente e i font del sito e fanne uno screenshot a quella misura.
 
 ## Deploy
 
-**Il sito non è ancora online, ed è voluto.** Il workflow è disarmato: il
-trigger `push` è commentato e `deploy.yml` parte solo a mano dalla tab Actions.
-Pushare non pubblica niente.
+**Il sito è online.** Ogni push su `main` fa ripartire il workflow e
+ripubblica: non c'è nessun passaggio manuale, e non c'è nessuna anteprima prima
+della messa online. Quello che pushi è quello che si vede.
 
-Per pubblicare davvero servono tre cose insieme:
+Due condizioni stanno fuori dal repo e vanno tenute a mente se un giorno il
+deploy smette di funzionare:
 
-1. riattivare le due righe `push:` in `.github/workflows/deploy.yml`
-2. rendere il repo **pubblico** — Pages non serve un repo privato con un piano
-   gratuito, e un repo `<utente>.github.io` privato semplicemente non risponde
-3. **Settings → Pages → Source** su **GitHub Actions**, non su *Deploy from a branch*
+1. il repo deve essere **pubblico** — Pages non serve un repo privato con un
+   piano gratuito, e un repo `<utente>.github.io` privato semplicemente non
+   risponde
+2. **Settings → Pages → Source** deve essere su **GitHub Actions**, non su
+   *Deploy from a branch*
+
+Per fermare temporaneamente le pubblicazioni automatiche basta commentare le due
+righe `push:` in `deploy.yml`: il workflow resta lanciabile a mano dalla tab
+Actions.
 
 `.github/workflows/deploy.yml` fa checkout, `upload-pages-artifact` con
 `path: '.'` e `deploy-pages`: nessun build, il repo **è** il sito.

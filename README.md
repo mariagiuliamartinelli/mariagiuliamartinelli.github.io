@@ -37,16 +37,14 @@ every HTML file.** It is at `v=29`.
 
 ## Deployment
 
-Not published yet, and deliberately so: the `push` trigger in
-`.github/workflows/deploy.yml` is commented out, so the workflow only runs when
-started by hand from the Actions tab.
+Live at <https://mariagiuliamartinelli.github.io/>. Every push to `main`
+republishes it through `.github/workflows/deploy.yml` — there is no staging step,
+so what you push is what goes online.
 
-To go live, three things have to happen together:
-
-1. uncomment the `push:` lines in `.github/workflows/deploy.yml`
-2. make this repository **public** — GitHub Pages does not serve a private
-   repository on a free plan
-3. set **Settings → Pages → Source** to **GitHub Actions**
+Two conditions live outside the repository and are worth knowing if a deploy
+ever stops working: the repository has to stay **public** (Pages does not serve
+a private repository on a free plan), and **Settings → Pages → Source** has to
+be **GitHub Actions** rather than a branch.
 
 The workflow itself does no building: it checks out the repository, uploads it
 as-is and hands it to Pages.
