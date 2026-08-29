@@ -25,3 +25,6 @@ TODO.md
 
 # Logs
 *.log
+
+# Local helper page for building the Gmail signature (not part of the site)
+firma-gmail.html
