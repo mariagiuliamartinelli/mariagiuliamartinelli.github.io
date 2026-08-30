@@ -34,7 +34,7 @@ skips the browser cache, which otherwise serves a stale `index.html` and, with
 it, a stale stylesheet.
 
 **After editing `css/style.css`, `js/main.js` or `js/i18n.js`, bump the `?v=`
-cache-buster in every HTML file.** It is at `v=30`.
+cache-buster in every HTML file.** It is at `v=31`.
 
 ## Languages
 
