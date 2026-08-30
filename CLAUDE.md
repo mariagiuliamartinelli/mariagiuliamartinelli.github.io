@@ -1,6 +1,6 @@
 # Sito personale — Mariagiulia Martinelli
 
-Sito statico scritto a mano: sei pagine HTML, un foglio di stile, uno script.
+Sito statico scritto a mano: sette pagine HTML, un foglio di stile, due script.
 **Nessun build step**, nessun generatore. Si apre e basta.
 
 ```
@@ -11,6 +11,8 @@ projects.html       6 progetti open source
 publications.html   pubblicazioni, manoscritti, contributi orali
 cv.html             premi, competenze, esperienza, certificazioni
 404.html            servita da GitHub per qualsiasi URL inesistente
+firma-gmail.html    generatore della firma email; fuori dalla navigazione e
+                    dalla sitemap, non ha header, footer né traduzione
 css/style.css       tutto il CSS
 js/main.js          tutto il JS (GSAP + ScrollTrigger dalla CDN cdnjs)
 js/i18n.js          traduzione italiana: motore + dizionario, un file solo
@@ -20,12 +22,17 @@ favicon.svg         elica su fondo viola, la stessa del brand in header
 apple-touch-icon.png  180×180, iOS ignora le favicon SVG
 icon-512.png        512×512, per Android / PWA
 og-image.png        1200×630, anteprima quando il link viene condiviso
+signature-icon.svg  variante del marchio per la firma email: tratto più
+                    spesso e senza pioli, che a 20px si impastano
+signature-icon.png  160×160, è quella che firma-gmail.html incorpora
+signature-icon-20.png  20×20, per i client che non riscalano
 .nojekyll           impedisce a GitHub di passare i file per Jekyll
 sitemap.xml         le sei pagine, per i motori di ricerca
 robots.txt          consente l'indicizzazione, esclude il PDF, punta alla sitemap
 site.webmanifest    nome, colori e icone (è l'unico a referenziare icon-512.png)
 README.md           cosa è il sito, come si guarda, come si pubblica
-.github/workflows/deploy.yml   pubblica il repo così com'è (ora disarmato)
+CLAUDE.md           questo file
+.github/workflows/deploy.yml   pubblica il repo così com'è a ogni push su main
 ```
 
 `404.html` usa percorsi **root-assoluti** (`/css/style.css`): GitHub la serve
