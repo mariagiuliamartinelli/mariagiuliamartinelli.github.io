@@ -17,6 +17,7 @@ cv.html             awards, skills, certifications
 
 css/style.css       all of the CSS
 js/main.js          all of the JS (GSAP + ScrollTrigger, from cdnjs)
+js/i18n.js          Italian translation: engine and dictionary in one file
 ```
 
 ## Running it locally
@@ -32,8 +33,21 @@ then <http://localhost:8899/index.html?anything>. The trailing query string
 skips the browser cache, which otherwise serves a stale `index.html` and, with
 it, a stale stylesheet.
 
-**After editing `css/style.css` or `js/main.js`, bump the `?v=` cache-buster in
-every HTML file.** It is at `v=29`.
+**After editing `css/style.css`, `js/main.js` or `js/i18n.js`, bump the `?v=`
+cache-buster in every HTML file.** It is at `v=30`.
+
+## Languages
+
+English and Italian, from a single set of pages. The HTML holds the English —
+`js/i18n.js` swaps in the Italian, and the `EN · IT` control at the top right
+switches between them. The choice is remembered in `localStorage`; a first-time
+visitor whose browser is set to Italian lands in Italian.
+
+With JavaScript off the site still reads in full, in English: the script only
+ever replaces text, it never reveals it. To translate new content, write the
+HTML in English, tag it `data-i18n="key"`, and add the key to `js/i18n.js`. A
+key with no entry stays in English on purpose — that is how project names,
+tools, institutions and species are kept from being translated.
 
 ## Deployment
 

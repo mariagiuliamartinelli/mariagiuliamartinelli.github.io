@@ -13,6 +13,7 @@ cv.html             premi, competenze, esperienza, certificazioni
 404.html            servita da GitHub per qualsiasi URL inesistente
 css/style.css       tutto il CSS
 js/main.js          tutto il JS (GSAP + ScrollTrigger dalla CDN cdnjs)
+js/i18n.js          traduzione italiana: motore + dizionario, un file solo
 Martinelli_Mariagiulia_CV.pdf
 
 favicon.svg         elica su fondo viola, la stessa del brand in header
@@ -35,7 +36,7 @@ risolverebbero contro quella cartella inesistente e darebbero 404 a loro volta.
 
 ## Come guardare il sito (leggi prima di dire "non funziona")
 
-**Chrome tiene in cache l'`index.html` stesso.** Il numero di versione (`?v=29`)
+**Chrome tiene in cache l'`index.html` stesso.** Il numero di versione (`?v=30`)
 sta *dentro* l'HTML, quindi se il browser serve l'HTML vecchio continua a
 caricare anche il CSS vecchio, e le modifiche non si vedono. Questo ha già fatto
 perdere tempo una volta.
@@ -50,15 +51,15 @@ python3 -m http.server 8899
 poi apri `http://localhost:8899/index.html?qualcosa` — la query finale salta la
 cache in modo garantito, senza scorciatoie da tastiera.
 
-**Dopo ogni modifica a `css/style.css` o `js/main.js`, alza il cache-buster in
-tutte e sette le pagine.** Ora è a `v=29`.
+**Dopo ogni modifica a `css/style.css`, `js/main.js` o `js/i18n.js`, alza il
+cache-buster in tutte e sette le pagine.** Ora è a `v=30`.
 
 ```bash
 python3 - <<'EOF'
 import io, glob
 for f in sorted(glob.glob('*.html')):
     s = io.open(f, encoding='utf-8').read()
-    io.open(f,'w',encoding='utf-8').write(s.replace('?v=29','?v=30'))
+    io.open(f,'w',encoding='utf-8').write(s.replace('?v=30','?v=31'))
 EOF
 ```
 
@@ -103,6 +104,46 @@ Verifica veloce del fallback: togli i tre `<script src="https://cdnjs...">` da
 una copia della home e aprila. Deve essere **tutto visibile**, impilato sotto la
 piastra. Riverificato a 1440px e a 390px: `.reveal-intro`, le tre
 `.mission-item` e `.hero-inner > *` restano visibili con `gsap === undefined`.
+
+### 1-bis. L'inglese sta nell'HTML, l'italiano solo nel dizionario
+
+Il sito è bilingue con **un solo set di pagine**. Nei file HTML c'è l'inglese, e
+`js/i18n.js` lo *sostituisce* quando la lingua scelta è l'italiano. Non rivela
+mai niente: a JavaScript spento il sito resta leggibile per intero in inglese.
+È l'invariante 1 applicata alla traduzione — verificato togliendo prima la CDN
+di GSAP, poi tutti gli `<script>`.
+
+Il vocabolario è di tre attributi e basta:
+
+```html
+<h2 data-i18n="explore.title">Pick a strand</h2>            <!-- textContent -->
+<p data-i18n-html="home.mission1"><strong>…</strong> …</p>  <!-- innerHTML   -->
+<meta name="description" data-i18n-attr="content:meta.home.desc" content="…">
+```
+
+**Una chiave senza voce nel dizionario resta in inglese, ed è voluto.** È così
+che nomi di progetti (`Etruscan-Analysis`), strumenti (`Kraken2`, `SLURM`,
+`phyloseq`), istituzioni, specie (*Yersinia pestis*), titoli di pubblicazioni e
+date non vengono tradotti. Annotare largo, tradurre stretto.
+
+Due cose da non rompere:
+
+1. **`i18n.js` va caricato prima di GSAP e di `main.js`.** L'italiano è più
+   lungo dell'inglese del 10-15% e cambia le altezze: se ScrollTrigger misura
+   prima della sostituzione, misura un layout che poi non esiste più.
+2. **`overflow-wrap: break-word` su `h1,h2,h3,h4,p,li` non è decorativo.**
+   `biodeterioramento` non entra in un `h1` a 320px e da solo mandava
+   `research.html` 4px oltre il viewport (è l'invariante 5 che si ripresenta in
+   italiano).
+
+Per aggiungere una pagina o un blocco di testo: scrivi l'HTML in inglese, metti
+`data-i18n="chiave"`, aggiungi la chiave in `js/i18n.js`. Se non la aggiungi,
+quel testo resta in inglese e nient'altro si rompe.
+
+Verificato: 126 combinazioni (7 pagine × 9 larghezze da 320 a 1440 × 2 lingue),
+zero overflow orizzontale, `<html lang>` sempre corretto, EN→IT→EN senza
+perdite. Contrasti del selettore: etichetta attiva 6,4:1, etichetta inattiva
+12:1 in cima alla pagina e 17,8:1 sulla banda chiara, bordo 3,1:1.
 
 ### 2. Il gradiente delle sottopagine si aggancia a `--footer-h`, non a un numero
 

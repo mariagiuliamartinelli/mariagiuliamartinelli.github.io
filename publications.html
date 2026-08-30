@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Publications & Talks · Mariagiulia Martinelli</title>
-<meta name="description" content="Publications, manuscripts in preparation and oral contributions by Mariagiulia Martinelli.">
+<title data-i18n="meta.pubs.title">Publications & Talks · Mariagiulia Martinelli</title>
+<meta name="description" data-i18n-attr="content:meta.pubs.desc" content="Publications, manuscripts in preparation and oral contributions by Mariagiulia Martinelli.">
 
 <link rel="canonical" href="https://mariagiuliamartinelli.github.io/publications.html">
 
@@ -27,7 +27,7 @@
 <meta name="twitter:title" content="Publications &amp; Talks · Mariagiulia Martinelli">
 <meta name="twitter:description" content="Publications, manuscripts in preparation and oral contributions by Mariagiulia Martinelli.">
 <meta name="twitter:image" content="https://mariagiuliamartinelli.github.io/og-image.png">
-<link rel="stylesheet" href="css/style.css?v=29">
+<link rel="stylesheet" href="css/style.css?v=30">
 </head>
 <body class="subpage">
 
@@ -46,8 +46,13 @@
       <span class="brand-name">Mariagiulia Martinelli</span>
     </a>
     <div class="header-right">
-      <a href="#contact" class="nav-cta">Contact Me</a>
-      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="side-menu">
+      <div class="lang-switch" role="group" aria-label="Language / Lingua">
+        <svg class="lang-switch__globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>
+        <button type="button" class="lang-switch__btn" data-lang="en" lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="lang-switch__btn" data-lang="it" lang="it" aria-pressed="false">IT</button>
+      </div>
+      <a href="#contact" class="nav-cta" data-i18n="nav.contactCta">Contact Me</a>
+      <button class="hamburger" id="hamburger" data-i18n-attr="aria-label:nav.openMenu" aria-label="Open menu" aria-expanded="false" aria-controls="side-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -55,25 +60,25 @@
 </header>
 
 <nav id="side-menu" class="side-menu" aria-hidden="true">
-  <button class="side-menu__close" id="side-menu-close" aria-label="Close menu">✕</button>
+  <button class="side-menu__close" id="side-menu-close" data-i18n-attr="aria-label:nav.closeMenu" aria-label="Close menu">✕</button>
   <ul class="side-menu__links">
-    <li><a href="research.html">Research</a></li>
-    <li><a href="education.html">Education</a></li>
-    <li><a href="projects.html">Open Source</a></li>
-    <li><a href="publications.html" aria-current="page">Publications</a></li>
-    <li><a href="cv.html">Awards &amp; Skills</a></li>
-    <li><a href="Martinelli_Mariagiulia_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="research.html"><span data-i18n="nav.research">Research</span></a></li>
+    <li><a href="education.html"><span data-i18n="nav.education">Education</span></a></li>
+    <li><a href="projects.html"><span data-i18n="nav.projects">Open Source</span></a></li>
+    <li><a href="publications.html" aria-current="page"><span data-i18n="nav.publications">Publications</span></a></li>
+    <li><a href="cv.html"><span data-i18n="nav.awards">Awards &amp; Skills</span></a></li>
+    <li><a href="Martinelli_Mariagiulia_CV.pdf" target="_blank" rel="noopener"><span data-i18n="nav.cvPdf">CV (PDF)</span></a></li>
+    <li><a href="#contact"><span data-i18n="nav.contact">Contact</span></a></li>
   </ul>
 </nav>
 <div class="side-menu-overlay" id="side-menu-overlay"></div>
 
 <section class="page-hero">
   <div class="wrap">
-    <a href="index.html" class="back-link"><span aria-hidden="true">←</span> Back to home</a>
-    <span class="eyebrow-pill eyebrow-pill--on-dark">Publications & Talks</span>
-    <h1>Research output</h1>
-    <p>Published abstracts, manuscripts in preparation and oral contributions at national and international conferences.</p>
+    <a href="index.html" class="back-link"><span aria-hidden="true">←</span> <span data-i18n="nav.backHome">Back to home</span></a>
+    <span class="eyebrow-pill eyebrow-pill--on-dark" data-i18n="pubs.t01">Publications & Talks</span>
+    <h1 data-i18n="pubs.t02">Research output</h1>
+    <p data-i18n="pubs.t03">Published abstracts, manuscripts in preparation and oral contributions at national and international conferences.</p>
   </div>
 </section>
 
@@ -81,44 +86,44 @@
   <div class="wrap">
 
     <div class="output-block" data-reveal>
-      <h3 class="output-title">Publications</h3>
+      <h3 class="output-title" data-i18n="pubs.t04">Publications</h3>
       <article class="output-row">
-        <p class="output-name">Unveiling the Microbial Hazard: Exploring Biofilm Composition on Casino Algardi for Conservation Insights</p>
-        <p class="output-authors">C. Alisi, V. Fonti, <strong>M. Martinelli</strong>, G. Migliore, P. Paganin, F. Tasso</p>
-        <p class="output-venue">Abstract in the Proceedings of <em>The Omics &amp; Heritage</em> (O&amp;H) · Rome, Italy · 14–15 May 2024</p>
+        <p class="output-name" data-i18n="pubs.t05">Unveiling the Microbial Hazard: Exploring Biofilm Composition on Casino Algardi for Conservation Insights</p>
+        <p class="output-authors" data-i18n-html="pubs.t06">C. Alisi, V. Fonti, <strong>M. Martinelli</strong>, G. Migliore, P. Paganin, F. Tasso</p>
+        <p class="output-venue" data-i18n-html="pubs.t07">Abstract in the Proceedings of <em>The Omics &amp; Heritage</em> (O&amp;H) · Rome, Italy · 14–15 May 2024</p>
       </article>
     </div>
 
     <div class="output-block" data-reveal>
-      <h3 class="output-title">Manuscripts in preparation</h3>
+      <h3 class="output-title" data-i18n="pubs.t08">Manuscripts in preparation</h3>
       <article class="output-row">
-        <p class="output-name">Microbial Biodiversity on the Casino del Bel Respiro Walls: Implications for Conservation Strategies</p>
-        <p class="output-authors"><strong>M. Martinelli</strong>, V. Fonti, P. Paganin, F. Tasso, C. Alisi</p>
-        <p class="output-venue"><em>International Biodeterioration &amp; Biodegradation</em> · manuscript in preparation, 2026</p>
+        <p class="output-name" data-i18n="pubs.t09">Microbial Biodiversity on the Casino del Bel Respiro Walls: Implications for Conservation Strategies</p>
+        <p class="output-authors" data-i18n-html="pubs.t10"><strong>M. Martinelli</strong>, V. Fonti, P. Paganin, F. Tasso, C. Alisi</p>
+        <p class="output-venue" data-i18n-html="pubs.t11"><em>International Biodeterioration &amp; Biodegradation</em> · manuscript in preparation, 2026</p>
       </article>
       <article class="output-row">
-        <p class="output-name">A Systematic Review of Analytical Methodologies in Bioarchaeology of Stress in Non-Adult Populations: Recommendations for the Next 50 Years</p>
-        <p class="output-authors">L. Morucci, A.A. Bastanza, <strong>M. Martinelli</strong>, S. Iorio</p>
-        <p class="output-venue"><em>International Journal of Paleopathology</em> · manuscript in preparation, 2026</p>
+        <p class="output-name" data-i18n="pubs.t12">A Systematic Review of Analytical Methodologies in Bioarchaeology of Stress in Non-Adult Populations: Recommendations for the Next 50 Years</p>
+        <p class="output-authors" data-i18n-html="pubs.t13">L. Morucci, A.A. Bastanza, <strong>M. Martinelli</strong>, S. Iorio</p>
+        <p class="output-venue" data-i18n-html="pubs.t14"><em>International Journal of Paleopathology</em> · manuscript in preparation, 2026</p>
       </article>
       <article class="output-row">
-        <p class="output-name">The Animal World in Jan Brueghel's Four Elements</p>
-        <p class="output-authors"><strong>M. Martinelli</strong>, C. Chimenti</p>
-        <p class="output-venue">Manuscript in preparation, 2026</p>
+        <p class="output-name" data-i18n="pubs.t15">The Animal World in Jan Brueghel's Four Elements</p>
+        <p class="output-authors" data-i18n-html="pubs.t16"><strong>M. Martinelli</strong>, C. Chimenti</p>
+        <p class="output-venue" data-i18n="pubs.t17">Manuscript in preparation, 2026</p>
       </article>
     </div>
 
     <div class="output-block" data-reveal>
-      <h3 class="output-title">Oral contributions</h3>
+      <h3 class="output-title" data-i18n="pubs.t18">Oral contributions</h3>
       <article class="output-row">
-        <p class="output-name">Glycyrrhiza glabra vs Biofilm: nuove prospettive per la conservazione dei beni culturali</p>
-        <p class="output-authors"><strong>M. Martinelli</strong>, V. Fonti, F. Tasso, P. Paganin, C. Alisi</p>
-        <p class="output-venue"><em>Orizzonti Antichi tra Ordine Perduto e Nuove Armonie</em> · University of Pisa · 02–04/12/2025</p>
+        <p class="output-name" data-i18n="pubs.t19">Glycyrrhiza glabra vs Biofilm: nuove prospettive per la conservazione dei beni culturali</p>
+        <p class="output-authors" data-i18n-html="pubs.t20"><strong>M. Martinelli</strong>, V. Fonti, F. Tasso, P. Paganin, C. Alisi</p>
+        <p class="output-venue" data-i18n-html="pubs.t21"><em>Orizzonti Antichi tra Ordine Perduto e Nuove Armonie</em> · University of Pisa · 02–04/12/2025</p>
       </article>
       <article class="output-row">
-        <p class="output-name">Unveiling the Microbial Hazard: Exploring Biofilm Composition on Casino Algardi for Conservation Insights</p>
-        <p class="output-authors">C. Alisi, V. Fonti, <strong>M. Martinelli</strong>, G. Migliore, P. Paganin, F. Tasso</p>
-        <p class="output-venue">Co-author of oral contribution · <em>The Omics &amp; Heritage</em> (O&amp;H) · CNR, ISB · 14–15/05/2024</p>
+        <p class="output-name" data-i18n="pubs.t22">Unveiling the Microbial Hazard: Exploring Biofilm Composition on Casino Algardi for Conservation Insights</p>
+        <p class="output-authors" data-i18n-html="pubs.t23">C. Alisi, V. Fonti, <strong>M. Martinelli</strong>, G. Migliore, P. Paganin, F. Tasso</p>
+        <p class="output-venue" data-i18n-html="pubs.t24">Co-author of oral contribution · <em>The Omics &amp; Heritage</em> (O&amp;H) · CNR, ISB · 14–15/05/2024</p>
       </article>
     </div>
   </div>
@@ -126,8 +131,8 @@
 
 <section class="page-nav">
   <div class="wrap">
-    <a href="projects.html"><span>Previous</span><strong>Open Source</strong></a>
-    <a href="cv.html" class="is-next"><span>Next</span><strong>Awards & Skills</strong></a>
+    <a href="projects.html"><span data-i18n="nav.previous">Previous</span><strong data-i18n="nav.projects">Open Source</strong></a>
+    <a href="cv.html" class="is-next"><span data-i18n="nav.next">Next</span><strong data-i18n="nav.awards">Awards &amp; Skills</strong></a>
   </div>
 </section>
 
@@ -148,12 +153,12 @@
           <svg class="footer-mark" aria-hidden="true"><use href="#helix"/></svg>
           <span>Mariagiulia<br>Martinelli</span>
         </span>
-        <p class="footer-sub">Bioarchaeology · Palaeogenetics<br>Conservation Science<br>Sapienza University of Rome</p>
+        <p class="footer-sub" data-i18n-html="footer.sub">Bioarchaeology · Palaeogenetics<br>Conservation Science<br>Sapienza University of Rome</p>
       </div>
       <div>
-        <h3 class="footer-title">Need to reach me?</h3>
-        <p><strong>Academic:</strong> <a href="mailto:martinelli.1994472@studenti.uniroma1.it">martinelli.1994472@studenti.uniroma1.it</a></p>
-        <p><strong>Personal:</strong> <a href="mailto:mariagiuliamartinelli1202@gmail.com">mariagiuliamartinelli1202@gmail.com</a></p>
+        <h3 class="footer-title" data-i18n="footer.title">Need to reach me?</h3>
+        <p><strong data-i18n="footer.academic">Academic:</strong> <a href="mailto:martinelli.1994472@studenti.uniroma1.it">martinelli.1994472@studenti.uniroma1.it</a></p>
+        <p><strong data-i18n="footer.personal">Personal:</strong> <a href="mailto:mariagiuliamartinelli1202@gmail.com">mariagiuliamartinelli1202@gmail.com</a></p>
         <div class="footer-links">
           <a href="https://github.com/mariagiuliamartinelli" target="_blank" rel="noopener">GitHub ↗</a>
           <a href="https://www.linkedin.com/in/mariagiulia-martinelli-19977b277/" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -169,9 +174,10 @@
   </div>
 </footer>
 
+<script src="js/i18n.js?v=30"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-<script src="js/main.js?v=29"></script>
+<script src="js/main.js?v=30"></script>
 </body>
 </html>

@@ -95,6 +95,11 @@ body.subpage {
 #hero, #explore, #cta, .page-hero, .page-nav, footer,
 .section-light, .section-alt { background: transparent; }
 h1, h2, h3 { font-family: var(--display); font-weight: 400; color: var(--ink); line-height: 1.08; margin: 0; }
+/* Italian runs longer than English and builds single words no 320px heading
+   can hold — "biodeterioramento" pushed research.html 4px past the viewport
+   and gave the whole document a horizontal scrollbar. This engages ONLY when
+   a word cannot fit a line on its own, so it changes nothing in English. */
+h1, h2, h3, h4, p, li, dd, dt { overflow-wrap: break-word; }
 a { color: var(--violet-1); text-decoration: none; }
 img { max-width: 100%; display: block; }
 .wrap { width: 100%; max-width: 1180px; margin-inline: auto; padding-inline: 28px; }
@@ -176,6 +181,37 @@ section { position: relative; }
 /* --accent on hover left the label at ~4.2:1 either way round; --violet-1 keeps
    the palette and carries white at 6.4:1 */
 .nav-cta:hover { background: var(--violet-1) !important; color: #fff !important; }
+
+/* ---------- Language switch ---------- */
+/* Same ink contract as the rest of the header: the two labels ride on the
+   inherited --hdr-ink, and the active segment carries its own OPAQUE
+   background, so its white label never depends on what the gradient happens
+   to be doing behind the header. --violet-1 carries white at 6.4:1 — the same
+   reasoning as .nav-cta:hover just above. */
+.lang-switch {
+  display: inline-flex; align-items: center; gap: 2px;
+  padding: 3px 3px 3px 9px;
+  border: 1.5px solid var(--hdr-line); border-radius: var(--radius-pill);
+  transition: border-color .25s ease;
+}
+.lang-switch__globe {
+  width: 15px; height: 15px; margin-right: 5px; flex-shrink: 0;
+  fill: none; stroke: var(--hdr-ink); stroke-width: 1.6;
+  stroke-linecap: round; stroke-linejoin: round;
+  transition: stroke .25s ease;
+}
+.lang-switch__btn {
+  border: 0; background: transparent; cursor: pointer;
+  font-family: var(--sans); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: .06em; line-height: 1;
+  padding: 6px 11px; border-radius: var(--radius-pill);
+  color: var(--hdr-ink);
+  transition: background .25s ease, color .25s ease;
+}
+.lang-switch__btn:hover { background: rgba(132,57,187,.16); }
+.lang-switch__btn[aria-pressed="true"],
+.lang-switch__btn[aria-pressed="true"]:hover { background: var(--violet-1); color: #fff; }
+.lang-switch__btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 /* ---------- Hamburger + side menu ---------- */
 .hamburger {
@@ -659,6 +695,25 @@ footer a:hover { color: #fff; }
   #header { padding: 14px 0; }
   #header.is-over-light { padding: 14px 0; }
   .nav-cta { display: none; }
+  /* the switch stays in the header on phones — burying a language control
+     behind the hamburger hides the one thing a non-English reader is looking
+     for. It has to earn its width instead: the globe goes (EN/IT needs no
+     gloss) and the padding tightens, which is what keeps "Mariagiulia
+     Martinelli" on a single line down to 320px. Measured, not guessed. */
+  .header-right { gap: 10px; }
+  .lang-switch { padding: 2px; gap: 1px; }
+  .lang-switch__globe { display: none; }
+  .lang-switch__btn { padding: 6px 8px; font-size: 0.68rem; letter-spacing: .04em; }
+
+  /* At 320px the name needs exactly 2px more than the row leaves it, and flex
+     was resolving that by breaking "Mariagiulia Martinelli" across two lines.
+     These three lines reclaim ~9px, which buys it back with margin to spare.
+     nowrap then stops flex from shrinking the name at 360-620px, where the
+     space was already there and it wrapped anyway. Only the 320px case is
+     tight; the rest of this range has 40px+ of slack. */
+  .brand { gap: 7px; }
+  .brand-name { white-space: nowrap; }
+  .lang-switch__btn { padding: 6px 6px; font-size: 0.66rem; letter-spacing: .02em; }
   .brand { font-size: 0.92rem; gap: 9px; }
   .brand-mark { width: 17px; height: 28px; }
   .hamburger { width: 42px; height: 42px; }

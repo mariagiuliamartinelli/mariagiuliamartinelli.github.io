@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Awards & Skills · Mariagiulia Martinelli</title>
-<meta name="description" content="Awards, skills, work experience and certifications of Mariagiulia Martinelli.">
+<title data-i18n="meta.cv.title">Awards & Skills · Mariagiulia Martinelli</title>
+<meta name="description" data-i18n-attr="content:meta.cv.desc" content="Awards, skills, work experience and certifications of Mariagiulia Martinelli.">
 
 <link rel="canonical" href="https://mariagiuliamartinelli.github.io/cv.html">
 
@@ -27,7 +27,7 @@
 <meta name="twitter:title" content="Awards &amp; Skills · Mariagiulia Martinelli">
 <meta name="twitter:description" content="Awards, skills, work experience and certifications of Mariagiulia Martinelli.">
 <meta name="twitter:image" content="https://mariagiuliamartinelli.github.io/og-image.png">
-<link rel="stylesheet" href="css/style.css?v=29">
+<link rel="stylesheet" href="css/style.css?v=30">
 </head>
 <body class="subpage">
 
@@ -46,8 +46,13 @@
       <span class="brand-name">Mariagiulia Martinelli</span>
     </a>
     <div class="header-right">
-      <a href="#contact" class="nav-cta">Contact Me</a>
-      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="side-menu">
+      <div class="lang-switch" role="group" aria-label="Language / Lingua">
+        <svg class="lang-switch__globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>
+        <button type="button" class="lang-switch__btn" data-lang="en" lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="lang-switch__btn" data-lang="it" lang="it" aria-pressed="false">IT</button>
+      </div>
+      <a href="#contact" class="nav-cta" data-i18n="nav.contactCta">Contact Me</a>
+      <button class="hamburger" id="hamburger" data-i18n-attr="aria-label:nav.openMenu" aria-label="Open menu" aria-expanded="false" aria-controls="side-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -55,25 +60,25 @@
 </header>
 
 <nav id="side-menu" class="side-menu" aria-hidden="true">
-  <button class="side-menu__close" id="side-menu-close" aria-label="Close menu">✕</button>
+  <button class="side-menu__close" id="side-menu-close" data-i18n-attr="aria-label:nav.closeMenu" aria-label="Close menu">✕</button>
   <ul class="side-menu__links">
-    <li><a href="research.html">Research</a></li>
-    <li><a href="education.html">Education</a></li>
-    <li><a href="projects.html">Open Source</a></li>
-    <li><a href="publications.html">Publications</a></li>
-    <li><a href="cv.html" aria-current="page">Awards &amp; Skills</a></li>
-    <li><a href="Martinelli_Mariagiulia_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="research.html"><span data-i18n="nav.research">Research</span></a></li>
+    <li><a href="education.html"><span data-i18n="nav.education">Education</span></a></li>
+    <li><a href="projects.html"><span data-i18n="nav.projects">Open Source</span></a></li>
+    <li><a href="publications.html"><span data-i18n="nav.publications">Publications</span></a></li>
+    <li><a href="cv.html" aria-current="page"><span data-i18n="nav.awards">Awards &amp; Skills</span></a></li>
+    <li><a href="Martinelli_Mariagiulia_CV.pdf" target="_blank" rel="noopener"><span data-i18n="nav.cvPdf">CV (PDF)</span></a></li>
+    <li><a href="#contact"><span data-i18n="nav.contact">Contact</span></a></li>
   </ul>
 </nav>
 <div class="side-menu-overlay" id="side-menu-overlay"></div>
 
 <section class="page-hero">
   <div class="wrap">
-    <a href="index.html" class="back-link"><span aria-hidden="true">←</span> Back to home</a>
-    <span class="eyebrow-pill eyebrow-pill--on-dark">Curriculum</span>
-    <h1>Awards, skills and background</h1>
-    <p>Fellowships and merit awards, laboratory and analytical skills, work experience and certifications.</p>
+    <a href="index.html" class="back-link"><span aria-hidden="true">←</span> <span data-i18n="nav.backHome">Back to home</span></a>
+    <span class="eyebrow-pill eyebrow-pill--on-dark" data-i18n="cv.t01">Curriculum</span>
+    <h1 data-i18n="cv.t02">Awards, skills and background</h1>
+    <p data-i18n="cv.t03">Fellowships and merit awards, laboratory and analytical skills, work experience and certifications.</p>
   </div>
 </section>
 
@@ -84,29 +89,29 @@
       <div class="award-row" data-reveal>
         <span class="badge-date">a.y. 2026/2027</span>
         <div>
-          <h4>Tutoring Fellowship (Cat. B1), Degree Programmes in <em>Scienze Applicate ai Beni Culturali</em></h4>
-          <p>Department of Environmental Biology, Sapienza University of Rome. Awarded through public comparative selection (Call BT-B1 18/2026, 2 positions available), scored on degree marks, academic record and previous tutoring experience. 75 hours of teaching and laboratory support for the L-43 and LM-11 degree classes.</p>
+          <h4 data-i18n-html="cv.t04">Tutoring Fellowship (Cat. B1), Degree Programmes in <em>Scienze Applicate ai Beni Culturali</em></h4>
+          <p data-i18n="cv.t05">Department of Environmental Biology, Sapienza University of Rome. Awarded through public comparative selection (Call BT-B1 18/2026, 2 positions available), scored on degree marks, academic record and previous tutoring experience. 75 hours of teaching and laboratory support for the L-43 and LM-11 degree classes.</p>
         </div>
       </div>
       <div class="award-row" data-reveal>
         <span class="badge-date">03/2026 – 08/2026</span>
         <div>
-          <h4>Merit Scholarship, Academic Excellence Track (Master's)</h4>
-          <p>Highly selective merit-based scholarship and honours programme (<em>Percorso d'Eccellenza</em>) for top-ranked students, requiring an integrative curriculum of advanced research beyond standard degree requirements. Qualifying project: ancient metagenomic analysis of Roman–Medieval archaeological samples, at the Centre for Palaeogenetics, Stockholm.</p>
+          <h4 data-i18n="cv.t06">Merit Scholarship, Academic Excellence Track (Master's)</h4>
+          <p data-i18n-html="cv.t07">Highly selective merit-based scholarship and honours programme (<em>Percorso d'Eccellenza</em>) for top-ranked students, requiring an integrative curriculum of advanced research beyond standard degree requirements. Qualifying project: ancient metagenomic analysis of Roman–Medieval archaeological samples, at the Centre for Palaeogenetics, Stockholm.</p>
         </div>
       </div>
       <div class="award-row" data-reveal>
         <span class="badge-date">04/2023 – 12/2024</span>
         <div>
-          <h4>Merit Scholarship, Academic Excellence Track (Bachelor's)</h4>
-          <p>Highly selective merit-based scholarship and honours programme (<em>Percorso d'Eccellenza</em>) for top-ranked students. Qualifying project: iconographic and taxonomic analysis of the <em>Four Elements</em> cycle by Jan Brueghel the Elder.</p>
+          <h4 data-i18n="cv.t08">Merit Scholarship, Academic Excellence Track (Bachelor's)</h4>
+          <p data-i18n-html="cv.t09">Highly selective merit-based scholarship and honours programme (<em>Percorso d'Eccellenza</em>) for top-ranked students. Qualifying project: iconographic and taxonomic analysis of the <em>Four Elements</em> cycle by Jan Brueghel the Elder.</p>
         </div>
       </div>
       <div class="award-row" data-reveal>
         <span class="badge-date">2023 – 2025</span>
         <div>
-          <h4>Student Assistantship, Earth Science Library</h4>
-          <p>Sapienza University of Rome. Merit-based student collaboration grant awarded through competitive University ranking.</p>
+          <h4 data-i18n="cv.t10">Student Assistantship, Earth Science Library</h4>
+          <p data-i18n="cv.t11">Sapienza University of Rome. Merit-based student collaboration grant awarded through competitive University ranking.</p>
         </div>
       </div>
     </div>
@@ -116,33 +121,33 @@
 <section id="skills" class="section-light section-alt">
   <div class="wrap">
     <div class="sec-head" data-reveal>
-      <span class="eyebrow-pill">Skills</span>
-      <h2>At the bench and in R</h2>
+      <span class="eyebrow-pill" data-i18n="cv.t12">Skills</span>
+      <h2 data-i18n="cv.t13">At the bench and in R</h2>
     </div>
     <div class="skill-grid">
       <div class="skill-card" data-reveal>
-        <h4>Osteology, Taphonomy &amp; Conservation of Skeletal Remains</h4>
-        <p>Skeletal inventory and biological profile (age, sex, stature) · dental palaeopathology · macroscopic assessment of preservation, weathering and taphonomic alteration · sampling strategy · collection management and photographic traceability</p>
+        <h4 data-i18n="cv.t14">Osteology, Taphonomy &amp; Conservation of Skeletal Remains</h4>
+        <p data-i18n="cv.t15">Skeletal inventory and biological profile (age, sex, stature) · dental palaeopathology · macroscopic assessment of preservation, weathering and taphonomic alteration · sampling strategy · collection management and photographic traceability</p>
       </div>
       <div class="skill-card" data-reveal>
-        <h4>Laboratory &amp; Analytical Practice</h4>
-        <p><em>Molecular:</em> ancient and genomic DNA extraction · PCR (16S rRNA, ITS) · amplicon sequencing · contamination control in low-copy-number contexts.<br><em>Microscopy:</em> optical and stereomicroscopy · biofilm sampling</p>
+        <h4 data-i18n="cv.t16">Laboratory &amp; Analytical Practice</h4>
+        <p data-i18n-html="cv.t17"><em>Molecular:</em> ancient and genomic DNA extraction · PCR (16S rRNA, ITS) · amplicon sequencing · contamination control in low-copy-number contexts.<br><em>Microscopy:</em> optical and stereomicroscopy · biofilm sampling</p>
       </div>
       <div class="skill-card" data-reveal>
-        <h4>Data Analysis, Statistics &amp; Reporting</h4>
-        <p>R (tidyverse, phyloseq, vegan, ggplot2, sf, leaflet) · non-parametric testing · multivariate ordination (PCoA, Bray–Curtis, Procrustes) · reproducible pipelines, Git/GitHub, LaTeX · figures, reports and manuscripts</p>
+        <h4 data-i18n="cv.t18">Data Analysis, Statistics &amp; Reporting</h4>
+        <p data-i18n="cv.t19">R (tidyverse, phyloseq, vegan, ggplot2, sf, leaflet) · non-parametric testing · multivariate ordination (PCoA, Bray–Curtis, Procrustes) · reproducible pipelines, Git/GitHub, LaTeX · figures, reports and manuscripts</p>
       </div>
       <div class="skill-card" data-reveal>
-        <h4>Bioinformatics &amp; High-Performance Computing</h4>
-        <p>Kraken2 · KrakenUniq · pathogen screening from read counts · SLURM job arrays on HPC (Dardel, PDC/KTH) · shell scripting on Linux</p>
+        <h4 data-i18n="cv.t20">Bioinformatics &amp; High-Performance Computing</h4>
+        <p data-i18n="cv.t21">Kraken2 · KrakenUniq · pathogen screening from read counts · SLURM job arrays on HPC (Dardel, PDC/KTH) · shell scripting on Linux</p>
       </div>
       <div class="skill-card" data-reveal>
-        <h4>Core Scientific Background</h4>
-        <p>General, organic and analytical chemistry · human anatomy and skeletal biology · microbiology and biology of deterioration · biostatistics</p>
+        <h4 data-i18n="cv.t22">Core Scientific Background</h4>
+        <p data-i18n="cv.t23">General, organic and analytical chemistry · human anatomy and skeletal biology · microbiology and biology of deterioration · biostatistics</p>
       </div>
       <div class="skill-card" data-reveal>
-        <h4>Communication, Organisation &amp; Autonomy</h4>
-        <p>Projects run independently from sampling design to written report · elected student representative at three degree levels (L-43, LM-11, PhD) · conference talks and co-authorship · academic writing in Italian and English</p>
+        <h4 data-i18n="cv.t24">Communication, Organisation &amp; Autonomy</h4>
+        <p data-i18n="cv.t25">Projects run independently from sampling design to written report · elected student representative at three degree levels (L-43, LM-11, PhD) · conference talks and co-authorship · academic writing in Italian and English</p>
       </div>
     </div>
     <div class="lang-row" data-reveal>
@@ -156,20 +161,20 @@
   <div class="wrap">
     <div class="two-col">
       <div data-reveal>
-        <h3 class="col-title">Work Experience</h3>
+        <h3 class="col-title" data-i18n="cv.t26">Work Experience</h3>
         <div class="mini-list">
-          <div class="mini-row"><span class="mini-date">01/2023 – 01/2025</span><div><strong>Library Assistant</strong><span>Library of the Department of Earth Sciences, Sapienza University of Rome</span></div></div>
-          <div class="mini-row"><span class="mini-date">2021 – 2023</span><div><strong>Private Science Tutor</strong><span>Self-employed</span></div></div>
-          <div class="mini-row"><span class="mini-date">06/2021 – 08/2021</span><div><strong>Tennis Instructor</strong><span><em>Reschio Hotel</em> Summer Camp</span></div></div>
+          <div class="mini-row"><span class="mini-date">01/2023 – 01/2025</span><div><strong data-i18n="cv.m01">Library Assistant</strong><span data-i18n="cv.m02">Library of the Department of Earth Sciences, Sapienza University of Rome</span></div></div>
+          <div class="mini-row"><span class="mini-date">2021 – 2023</span><div><strong data-i18n="cv.m03">Private Science Tutor</strong><span data-i18n="cv.m04">Self-employed</span></div></div>
+          <div class="mini-row"><span class="mini-date">06/2021 – 08/2021</span><div><strong data-i18n="cv.m05">Tennis Instructor</strong><span data-i18n-html="cv.m06"><em>Reschio Hotel</em> Summer Camp</span></div></div>
         </div>
       </div>
       <div data-reveal>
-        <h3 class="col-title">Certifications</h3>
+        <h3 class="col-title" data-i18n="cv.t27">Certifications</h3>
         <div class="mini-list">
-          <div class="mini-row"><span class="mini-date">2025</span><div><strong>Open Badge: Student Representation</strong><span>Issued by Bestr</span></div></div>
-          <div class="mini-row"><span class="mini-date">2024</span><div><strong>Open Badge: Service Learning</strong><span>Issued by Bestr</span></div></div>
-          <div class="mini-row"><span class="mini-date">27/02/2023</span><div><strong>Course: D.Lgs. 81/2008 Health and Safety Training</strong><span>KPMG Advisory</span></div></div>
-          <div class="mini-row"><span class="mini-date">2018</span><div><strong>Certificate of Excellence: Localizing the Sustainable Development Goals (MUSTER)</strong><span>Fiera delle Utopie Concrete</span></div></div>
+          <div class="mini-row"><span class="mini-date">2025</span><div><strong data-i18n="cv.m07">Open Badge: Student Representation</strong><span data-i18n="cv.m08">Issued by Bestr</span></div></div>
+          <div class="mini-row"><span class="mini-date">2024</span><div><strong data-i18n="cv.m09">Open Badge: Service Learning</strong><span data-i18n="cv.m10">Issued by Bestr</span></div></div>
+          <div class="mini-row"><span class="mini-date">27/02/2023</span><div><strong data-i18n="cv.m11">Course: D.Lgs. 81/2008 Health and Safety Training</strong><span data-i18n="cv.m12">KPMG Advisory</span></div></div>
+          <div class="mini-row"><span class="mini-date">2018</span><div><strong data-i18n="cv.m13">Certificate of Excellence: Localizing the Sustainable Development Goals (MUSTER)</strong><span data-i18n="cv.m14">Fiera delle Utopie Concrete</span></div></div>
         </div>
       </div>
     </div>
@@ -178,8 +183,8 @@
 
 <section class="page-nav">
   <div class="wrap">
-    <a href="publications.html"><span>Previous</span><strong>Publications</strong></a>
-    <a href="index.html" class="is-next"><span>Back to</span><strong>Home</strong></a>
+    <a href="publications.html"><span data-i18n="nav.previous">Previous</span><strong data-i18n="nav.publications">Publications</strong></a>
+    <a href="index.html" class="is-next"><span data-i18n="nav.backTo">Back to</span><strong data-i18n="nav.home">Home</strong></a>
   </div>
 </section>
 
@@ -200,12 +205,12 @@
           <svg class="footer-mark" aria-hidden="true"><use href="#helix"/></svg>
           <span>Mariagiulia<br>Martinelli</span>
         </span>
-        <p class="footer-sub">Bioarchaeology · Palaeogenetics<br>Conservation Science<br>Sapienza University of Rome</p>
+        <p class="footer-sub" data-i18n-html="footer.sub">Bioarchaeology · Palaeogenetics<br>Conservation Science<br>Sapienza University of Rome</p>
       </div>
       <div>
-        <h3 class="footer-title">Need to reach me?</h3>
-        <p><strong>Academic:</strong> <a href="mailto:martinelli.1994472@studenti.uniroma1.it">martinelli.1994472@studenti.uniroma1.it</a></p>
-        <p><strong>Personal:</strong> <a href="mailto:mariagiuliamartinelli1202@gmail.com">mariagiuliamartinelli1202@gmail.com</a></p>
+        <h3 class="footer-title" data-i18n="footer.title">Need to reach me?</h3>
+        <p><strong data-i18n="footer.academic">Academic:</strong> <a href="mailto:martinelli.1994472@studenti.uniroma1.it">martinelli.1994472@studenti.uniroma1.it</a></p>
+        <p><strong data-i18n="footer.personal">Personal:</strong> <a href="mailto:mariagiuliamartinelli1202@gmail.com">mariagiuliamartinelli1202@gmail.com</a></p>
         <div class="footer-links">
           <a href="https://github.com/mariagiuliamartinelli" target="_blank" rel="noopener">GitHub ↗</a>
           <a href="https://www.linkedin.com/in/mariagiulia-martinelli-19977b277/" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -221,9 +226,10 @@
   </div>
 </footer>
 
+<script src="js/i18n.js?v=30"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-<script src="js/main.js?v=29"></script>
+<script src="js/main.js?v=30"></script>
 </body>
 </html>
