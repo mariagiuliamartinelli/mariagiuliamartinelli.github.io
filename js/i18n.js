@@ -101,7 +101,7 @@
       'research.t16': 'Sapienza Università di Roma',
       'research.t17': 'Tirocinio di ricerca presso il <em>Laboratorio di Paleoantropologia e Bioarcheologia</em>',
       'research.t18': 'Studio bioantropologico e rivalutazione critica di una collezione di crani umani acquisita da Giuseppe Sergi (inizio XX secolo): profilo biologico, paleopatologia dentaria, storia degli studi precedenti e valutazione sistematica dello stato di conservazione, distinguendo il danno tafonomico da quello introdotto durante lo scavo e la conservazione museale. L’obiettivo era riportare in vita una collezione scientifica trascurata e proporre nuove direzioni di ricerca.',
-      'research.t19': 'Progettazione della pipeline R riproducibile usata per la collezione (<em>Etruscan-Analysis</em>, rilasciata open source).',
+      'research.t19': 'Progettazione della pipeline R riproducibile usata per la collezione (<em>Etruscan-Analysis</em>, in uscita).',
       'research.t22': 'Tirocinio di ricerca presso il Centro Ricerche ENEA, Casaccia (Roma)',
       'research.t23': 'Progettazione ed esecuzione in autonomia di un flusso di lavoro metagenomico completo sul deterioramento di un substrato minerale mediato dai microrganismi: campionamento sul campo e documentazione fotografica dei biofilm sulle pareti storiche del <em>Casino del Bel Respiro</em>, estrazione del DNA genomico, PCR (16S rRNA, ITS), sequenziamento degli ampliconi e classificazione filogenetica.',
       'research.t24': 'Costruzione da zero della pipeline R (phyloseq, vegan, ggplot2): diversità alfa e beta, composizione tassonomica e successione dei gruppi funzionali dopo trattamenti conservativi sostenibili. Presentata come contributo orale (UniPi, 2025) e abstract in coautoraggio.',
@@ -137,6 +137,7 @@
       /* ── open source ─────────────────────────────────────────────────── */
       'projects.t02': 'Il codice dietro le analisi',
       'projects.t03': 'Pipeline in R e shell dei miei progetti, pubblicate apertamente perché le analisi si possano rieseguire.',
+      'projects.t04': 'R · in uscita',
       'projects.t05': 'Etruscan-Analysis: pipeline bioarcheologica',
       'projects.t06': 'Pipeline per una collezione storica di crani: standardizzazione e controllo delle schede, mappe di calore anatomiche delle patologie dentarie e dei danni tafonomici, indicatori di stress per fascia d’età e mappatura interattiva della provenienza. Include un dataset fittizio per il riuso.',
       'projects.t09': 'Framework per il data mining bibliografico e l’analisi statistica degli indicatori osteologici di stress nelle popolazioni non adulte: 28 indicatori, matrici di co-occorrenza, parsing cronologico degli intervalli dei siti e test d’ipotesi non parametrici. Ossatura analitica della revisione sistematica.',

@@ -43,7 +43,7 @@ risolverebbero contro quella cartella inesistente e darebbero 404 a loro volta.
 
 ## Come guardare il sito (leggi prima di dire "non funziona")
 
-**Chrome tiene in cache l'`index.html` stesso.** Il numero di versione (`?v=31`)
+**Chrome tiene in cache l'`index.html` stesso.** Il numero di versione (`?v=32`)
 sta *dentro* l'HTML, quindi se il browser serve l'HTML vecchio continua a
 caricare anche il CSS vecchio, e le modifiche non si vedono. Questo ha già fatto
 perdere tempo una volta.
@@ -59,14 +59,14 @@ poi apri `http://localhost:8899/index.html?qualcosa` — la query finale salta l
 cache in modo garantito, senza scorciatoie da tastiera.
 
 **Dopo ogni modifica a `css/style.css`, `js/main.js` o `js/i18n.js`, alza il
-cache-buster in tutte e sette le pagine.** Ora è a `v=31`.
+cache-buster in tutte e sette le pagine.** Ora è a `v=32`.
 
 ```bash
 python3 - <<'EOF'
 import io, glob
 for f in sorted(glob.glob('*.html')):
     s = io.open(f, encoding='utf-8').read()
-    io.open(f,'w',encoding='utf-8').write(s.replace('?v=31','?v=32'))
+    io.open(f,'w',encoding='utf-8').write(s.replace('?v=32','?v=33'))
 EOF
 ```
 
