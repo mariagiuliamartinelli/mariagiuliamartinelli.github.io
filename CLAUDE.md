@@ -59,7 +59,7 @@ poi apri `http://localhost:8899/index.html?qualcosa` — la query finale salta l
 cache in modo garantito, senza scorciatoie da tastiera.
 
 **Dopo ogni modifica a `css/style.css`, `js/main.js` o `js/i18n.js`, alza il
-cache-buster in tutte e sette le pagine.** Ora è a `v=32`.
+cache-buster in tutte e sette le pagine.** Ora è a `v=33`.
 
 ```bash
 python3 - <<'EOF'
