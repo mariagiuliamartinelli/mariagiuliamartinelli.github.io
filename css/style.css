@@ -263,6 +263,10 @@ body.menu-open { overflow: hidden; }
   /* only the pinned version needs to clip: in normal flow the panel sits below
      the dish and the hero has to be free to grow past one viewport */
   overflow: visible;
+  /* ...except sideways: the dish's shadow (.dish-stage::before) reaches 24% past the
+     stage, which on a phone is past the screen edge. clip, unlike hidden, leaves the
+     vertical axis alone and does not make #hero a scroll container */
+  overflow-x: clip;
 }
 body.hero-scrub #hero { overflow: hidden; }
 .hero-inner { max-width: 760px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 2; }
@@ -292,10 +296,26 @@ body.hero-scrub #hero { overflow: hidden; }
       rgba(255,255,255,0.08) 300deg,
       rgba(255,255,255,0.05) 360deg);
   box-shadow:
-    0 70px 130px rgba(12,4,36,0.6),
-    0 24px 50px rgba(12,4,36,0.42),
     inset 0 0 0 1px rgba(255,255,255,0.24),
     inset 0 0 34px rgba(255,255,255,0.12);
+}
+/* the dish's cast shadow, painted as a gradient rather than an outer box-shadow:
+   Chrome rasterises a 130px-blur shadow in tiles, and under the backdrop-filter of
+   .dish those tiles showed up as a cross of darker rectangles on Retina screens */
+.dish-stage::before {
+  content: ""; position: absolute; inset: -24%; z-index: 0; pointer-events: none;
+  transform: translateY(7%);
+  /* an outer shadow is never painted under its own box: cut the same hole, or the
+     dark would show through the translucent glass. Box is 148% of the stage, so the
+     rim's radius is 50/148 = 33.78%, and the 7% shift moves the hole up to 43% */
+  -webkit-mask: radial-gradient(ellipse 33.78% 33.78% at 50% 43%, transparent 99.4%, #000 100%);
+          mask: radial-gradient(ellipse 33.78% 33.78% at 50% 43%, transparent 99.4%, #000 100%);
+  background: radial-gradient(closest-side,
+    rgba(12,4,36,0.72) 48%,
+    rgba(12,4,36,0.5) 60%,
+    rgba(12,4,36,0.22) 74%,
+    rgba(12,4,36,0.06) 88%,
+    transparent 100%);
 }
 /* inner lip: the step where the lid meets the base, a couple of px of bright glass */
 .dish-rim::after {

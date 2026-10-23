@@ -51,7 +51,7 @@ perdere tempo una volta.
 Modo affidabile:
 
 ```bash
-cd "/Users/macbookpro/Desktop/Università/website"
+cd "/Users/macbookpro/Desktop/Personale/Documenti&CV/Website"
 python3 -m http.server 8899
 ```
 
@@ -59,7 +59,7 @@ poi apri `http://localhost:8899/index.html?qualcosa` — la query finale salta l
 cache in modo garantito, senza scorciatoie da tastiera.
 
 **Dopo ogni modifica a `css/style.css`, `js/main.js` o `js/i18n.js`, alza il
-cache-buster in tutte e sette le pagine.** Ora è a `v=33`.
+cache-buster in tutte e sette le pagine.** Ora è a `v=34`.
 
 ```bash
 python3 - <<'EOF'
