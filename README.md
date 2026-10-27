@@ -1,7 +1,8 @@
 # mariagiuliamartinelli.github.io
 
 Personal academic site of Mariagiulia Martinelli — bioarchaeology,
-palaeogenetics and conservation science, Sapienza University of Rome.
+palaeogenetics and conservation science; PhD student at the Universities
+of Florence and Parma.
 
 Hand-written static HTML. **No build step, no generator, no dependencies:** the
 repository *is* the site.

@@ -46,10 +46,9 @@
       'nav.startHere':     'Comincia da qui',
       'nav.orGoTo':        'Oppure vai a',
       'nav.home':          'Home',
-      'footer.sub':      'Bioarcheologia · Paleogenetica<br>Scienze della conservazione<br>Sapienza Università di Roma',
+      'footer.sub':      'Bioarcheologia · Paleogenetica<br>Scienze della conservazione<br>Dottoranda, Università di Firenze e di Parma',
       'footer.title':    'Vuoi contattarmi?',
       'footer.academic': 'Accademica:',
-      'footer.personal': 'Personale:',
 
       /* ── page titles and descriptions ────────────────────────────────── */
       'meta.home.title': 'Mariagiulia Martinelli · Bioarcheologia, paleogenetica e scienze della conservazione',
@@ -57,7 +56,7 @@
       'meta.research.title': 'Esperienza di ricerca · Mariagiulia Martinelli',
       'meta.research.desc':  'Le esperienze di ricerca di Mariagiulia Martinelli: Centre for Palaeogenetics, Tusculum, ENEA Casaccia e i laboratori della Sapienza.',
       'meta.education.title': 'Formazione · Mariagiulia Martinelli',
-      'meta.education.desc':  'La formazione di Mariagiulia Martinelli: lauree LM-11 e L-43 alla Sapienza, Erasmus+ alla Stockholm University, convegni e workshop.',
+      'meta.education.desc':  'La formazione di Mariagiulia Martinelli: dottorato alle Università di Firenze e di Parma, lauree LM-11 e L-43 alla Sapienza, Erasmus+ alla Stockholm University, convegni e workshop.',
       'meta.projects.title': 'Open Source · Mariagiulia Martinelli',
       'meta.projects.desc':  'Le pipeline open source di Mariagiulia Martinelli: Etruscan-Analysis, framework per revisioni sistematiche, confronto kraken2 e altro.',
       'meta.pubs.title': 'Pubblicazioni e interventi · Mariagiulia Martinelli',
@@ -70,7 +69,7 @@
       /* ── home ────────────────────────────────────────────────────────── */
       'home.dishHint':   'passa sulla piastra',
       'home.scrollHint': 'Scorri per scoprire',
-      'home.eyebrow':    'Sapienza Università di Roma',
+      'home.eyebrow':    'Dottoranda · Firenze e Parma',
       'home.h1':         'Bioarcheologia, <em>paleogenetica</em> e scienze della conservazione.',
       'home.summary':    'Studio cosa accade al materiale biologico dopo la deposizione: la tafonomia dei resti scheletrici umani, il biodeterioramento microbico della pietra e la sopravvivenza delle biomolecole antiche. Lavoro fra bioarcheologia, paleogenetica e scienze della conservazione, dalla pratica osteologica e di laboratorio fino a pipeline in R riproducibili e rilasciate apertamente.',
       'home.ctaExplore': 'Esplora la mia ricerca ↓',
@@ -112,7 +111,12 @@
       /* ── education ───────────────────────────────────────────────────── */
       'education.t01': 'Formazione',
       'education.t02': 'Titoli di studio, scambio e convegni',
-      'education.t03': 'Gli studi alla Sapienza Università di Roma e alla Stockholm University, insieme ai convegni, ai workshop e ai webinar a cui partecipo.',
+      'education.t03': 'Il dottorato alle Università di Firenze e di Parma, gli studi precedenti alla Sapienza Università di Roma e alla Stockholm University, insieme ai convegni, ai workshop e ai webinar a cui partecipo.',
+      'education.p01': '11/2026 – in corso',
+      'education.p02': 'Università di Firenze · Università di Parma',
+      'education.p03': 'Dottorato in <em>Biologia Evoluzionistica ed Ecologia</em> (XLII ciclo)',
+      'education.p04': 'Curriculum: Ecologia ed etologia.',
+      'education.p05': 'Borsa di dottorato finanziata dall’Università di Parma, dove si svolge la ricerca.',
       'education.t04': '09/2024 – 10/2026',
       'education.t05': 'Sapienza Università di Roma · Voto finale 110/110 e lode',
       'education.t06': 'Laurea magistrale in <em>Scienze e Tecnologie per la Conservazione dei Beni Culturali</em> (LM-11)',
