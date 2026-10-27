@@ -160,7 +160,7 @@
       'pubs.t08': 'Manoscritti in preparazione',
       'pubs.t11': '<em>International Biodeterioration &amp; Biodegradation</em> · manoscritto in preparazione, 2026',
       'pubs.t14': '<em>International Journal of Paleopathology</em> · manoscritto in preparazione, 2026',
-      'pubs.t17': 'Manoscritto in revisione, 2026',
+      'pubs.t17': '<em>Archives of Natural History</em> · in revisione presso la rivista, 2026',
       'pubs.t18': 'Contributi orali',
       'pubs.t21': '<em>Orizzonti Antichi tra Ordine Perduto e Nuove Armonie</em> · Università di Pisa · 02–04/12/2025',
       'pubs.t24': 'Coautrice del contributo orale · <em>The Omics &amp; Heritage</em> (O&amp;H) · CNR, ISB · 14–15/05/2024',
