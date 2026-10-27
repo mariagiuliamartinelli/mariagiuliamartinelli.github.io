@@ -71,7 +71,7 @@
       'home.scrollHint': 'Scorri per scoprire',
       'home.eyebrow':    'Dottoranda · Firenze e Parma',
       'home.h1':         'La vita microbica, <em>dai resti antichi</em> ai suoli alpini.',
-      'home.summary':    'Sono dottoranda in Biologia Evoluzionistica ed Ecologia alle Università di Firenze e di Parma, dove comincio a lavorare sui microrganismi associati a piante e suoli alpini e sulla loro risposta al cambiamento climatico. Vengo dalla bioarcheologia, dalla paleogenetica e dalle scienze della conservazione, dove ho studiato cosa accade al materiale biologico dopo la deposizione. Gli strumenti restano gli stessi: metagenomica ad ampliconi, DNA antico e pipeline in R riproducibili e rilasciate apertamente.',
+      'home.summary':    'Sono dottoranda in Biologia Evoluzionistica ed Ecologia alle Università di Firenze e di Parma, dove comincio a lavorare sui microrganismi associati a piante e suoli alpini e sulla loro risposta al cambiamento climatico. Vengo dalla bioarcheologia, dalla paleogenetica e dalle scienze della conservazione, dove ho studiato cosa accade al materiale biologico dopo la deposizione.',
       'home.ctaExplore': 'Esplora la mia ricerca ↓',
       'home.ctaCv':      'Scarica il CV',
       'home.mission1':   '<strong>Paleogenetica e biomolecole antiche.</strong> Pipeline di classificazione eseguite su HPC per distinguere il segnale endogeno dalla colonizzazione microbica post-mortem, con screening dei patogeni antichi.',
