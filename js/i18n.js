@@ -46,7 +46,7 @@
       'nav.startHere':     'Comincia da qui',
       'nav.orGoTo':        'Oppure vai a',
       'nav.home':          'Home',
-      'footer.sub':      'Bioarcheologia · Paleogenetica<br>Scienze della conservazione<br>Dottoranda, Università di Firenze e di Parma',
+      'footer.sub':      'Ecologia microbica · Paleogenetica<br>Scienze della conservazione<br>Dottoranda, Università di Firenze e di Parma',
       'footer.title':    'Vuoi contattarmi?',
       'footer.academic': 'Accademica:',
 
