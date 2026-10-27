@@ -51,8 +51,8 @@
       'footer.academic': 'Accademica:',
 
       /* ── page titles and descriptions ────────────────────────────────── */
-      'meta.home.title': 'Mariagiulia Martinelli · Bioarcheologia, paleogenetica e scienze della conservazione',
-      'meta.home.desc':  'Mariagiulia Martinelli: bioarcheologia, paleogenetica e scienze della conservazione. Tafonomia e diagenesi ossea, colonizzazione microbica della pietra e conservazione delle biomolecole antiche.',
+      'meta.home.title': 'Mariagiulia Martinelli · Dai resti antichi ai suoli alpini',
+      'meta.home.desc':  'Mariagiulia Martinelli, dottoranda alle Università di Firenze e di Parma: microrganismi di piante e suoli alpini, paleogenetica e scienze della conservazione.',
       'meta.research.title': 'Esperienza di ricerca · Mariagiulia Martinelli',
       'meta.research.desc':  'Le esperienze di ricerca di Mariagiulia Martinelli: Centre for Palaeogenetics, Tusculum, ENEA Casaccia e i laboratori della Sapienza.',
       'meta.education.title': 'Formazione · Mariagiulia Martinelli',
@@ -70,8 +70,8 @@
       'home.dishHint':   'passa sulla piastra',
       'home.scrollHint': 'Scorri per scoprire',
       'home.eyebrow':    'Dottoranda · Firenze e Parma',
-      'home.h1':         'Bioarcheologia, <em>paleogenetica</em> e scienze della conservazione.',
-      'home.summary':    'Studio cosa accade al materiale biologico dopo la deposizione: la tafonomia dei resti scheletrici umani, il biodeterioramento microbico della pietra e la sopravvivenza delle biomolecole antiche. Lavoro fra bioarcheologia, paleogenetica e scienze della conservazione, dalla pratica osteologica e di laboratorio fino a pipeline in R riproducibili e rilasciate apertamente.',
+      'home.h1':         'La vita microbica, <em>dai resti antichi</em> ai suoli alpini.',
+      'home.summary':    'Sono dottoranda in Biologia Evoluzionistica ed Ecologia alle Università di Firenze e di Parma, dove comincio a lavorare sui microrganismi associati a piante e suoli alpini e sulla loro risposta al cambiamento climatico. Vengo dalla bioarcheologia, dalla paleogenetica e dalle scienze della conservazione, dove ho studiato cosa accade al materiale biologico dopo la deposizione. Gli strumenti restano gli stessi: metagenomica ad ampliconi, DNA antico e pipeline in R riproducibili e rilasciate apertamente.',
       'home.ctaExplore': 'Esplora la mia ricerca ↓',
       'home.ctaCv':      'Scarica il CV',
       'home.mission1':   '<strong>Paleogenetica e biomolecole antiche.</strong> Pipeline di classificazione eseguite su HPC per distinguere il segnale endogeno dalla colonizzazione microbica post-mortem, con screening dei patogeni antichi.',
