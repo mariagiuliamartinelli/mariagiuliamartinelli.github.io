@@ -116,6 +116,7 @@
       'education.p02': 'Università di Firenze · Università di Parma',
       'education.p03': 'Dottorato in <em>Biologia Evoluzionistica ed Ecologia</em> (XLII ciclo)',
       'education.p04': 'Curriculum: Ecologia ed etologia.',
+      'education.p06': 'Tutor: Michele Carbognani (Università di Parma); co-tutor: Andrea Quagliariello (Università di Firenze).',
       'education.p05': 'Borsa di dottorato finanziata dall’Università di Parma, dove si svolge la ricerca.',
       'education.t04': '09/2024 – 10/2026',
       'education.t05': 'Sapienza Università di Roma · Voto finale 110/110 e lode',
